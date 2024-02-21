@@ -34,3 +34,5 @@ git push -u origin main
 git remote add origin https://github.com/Kasplo-dev/k-reviews-admin.git
 git branch -M main
 git push -u origin main
+
+#git checkout -b "branch-name" main to create new branch

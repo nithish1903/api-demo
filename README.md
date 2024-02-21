@@ -36,3 +36,5 @@ git branch -M main
 git push -u origin main
 
 #git checkout -b "branch-name" main to create new branch
+#new branch for UI development
+#feature/reviews-dashboard-ui-dev

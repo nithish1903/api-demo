@@ -1,6 +1,7 @@
 "use client"
-import Image from 'next/image'
+
 import React from 'react'
+// import Image from 'next/image'
 import InputText from '@/components/common/InputText'
 import InputPassword from '@/components/common/InputPassword'
 import Label from '@/components/common/Label'
@@ -61,7 +62,7 @@ const LoginFormComp = () => {
                 <div className='col-span-12'>
                     <h2 className='text-[40px] font-[500] text-[#334851] text-center'>Log In</h2>
                 </div>
-                <div className='col-span-12 mt-10'>
+                {/* <div className='col-span-12 mt-10'>
                     <button className='bg-[#0266E1] mx-auto rounded-[4px] pl-1 py-1 pr-2 flex items-center gap-2'>
                         <div className=' w-[36px] h-[36px] p-[6px] bg-[#FFFFFF] rounded-tl-[4px] rounded-bl-[4px] '>
                             <Image src={"/assets/images/login/google.svg"} alt='logo' width={27} height={27}/>
@@ -75,8 +76,8 @@ const LoginFormComp = () => {
                         <p className='my-0 mx-4 text-center'>or</p>
                         <div className='w-[230px]  h-[2px] bg-[#334851]'></div>
                     </div>
-                </div>
-                <div className='col-span-12'>
+                </div> */}
+                <div className='col-span-12 mt-7'>
                     <InputText 
                         type={"text"} 
                         label={"Email"} 
@@ -118,17 +119,9 @@ const LoginFormComp = () => {
                 <div className='col-span-12'>
                     <div className='bg-[#334851] h-[2px] w-[100%] mt-9'></div>
                 </div>
-                <div className='col-span-12 sm:mx-auto mt-5'>
-                    <div className='grid grid-cols-12 gap-3 items-center'>
-                        <div className='col-span-12 sm:col-span-4'>
-                            <Link href={""}>I forgot my password</Link>
-                        </div>
-                        <div className='col-span-1 hidden sm:flex justify-center items-center'>
-                            <div className='w-[10px] h-[10px] bg-[#0266E1] rounded-full '></div>
-                        </div>
-                        <div className='col-span-12 sm:col-span-6'>
-                            <Link href={""}>Don’t have an account? Sign Up</Link>
-                        </div>
+                <div className='col-span-12 sm:mx-auto mt-8'>
+                    <div className='text-center'>
+                        <Link href={"/auth/forgot-password"}>I forgot my password</Link>
                     </div>
                 </div>
             </div>

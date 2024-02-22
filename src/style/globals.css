@@ -28,6 +28,9 @@
 
 :root {
   --font: "Nunito", sans-serif;
+  --black-color: #334851;
+  --primary-color: #0266E1;
+  --error-color: #C7022D;
 }
 
 * {
@@ -67,40 +70,60 @@ h1 {
   font-size: 46px;
   font-weight: 800;
   font-family: var(--font);
+  color: var(--black-color);
 }
 h2 {
   font-size: 38px;
   font-weight: 800;
- font-family: var(--font);
+  font-family: var(--font);
+  color: var(--black-color);
 }
 h3 {
   font-size: 32px;
   font-weight: 800;
+  color: var(--black-color);
 }
 h4 {
   font-size: 28px;
   font-weight: 700;
+  color: var(--black-color);
 }
 h5 {
   font-size: 24px;
   font-weight: 600;
+  color: var(--black-color);
 }
 h6 {
   font-size: 20px;
   font-weight: 500;
+  color: var(--black-color);
 }
 p {
     font-size: 18px;
     font-weight: 400;
+    color: var(--black-color);
 }
 a {
-  color: #0266E1;
+  color: var(--primary-color);
   font-weight: 400 !important;
+  text-decoration: none;
 }
+a:hover{
+  text-decoration: underline;
+}
+
 /*----------------------------------------*/
 /* 2.Common CSS */
 /*----------------------------------------*/
-
+.black{
+  color: var(--black-color);
+}
+.pry-clr{
+  color: var(--primary-color);
+}
+.err-cl{
+  color: var(--error-color);
+}
 /*----------------------------------------*/
 /* 3.Header CSS */
 /*----------------------------------------*/

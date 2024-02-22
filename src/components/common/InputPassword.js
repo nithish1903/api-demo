@@ -1,3 +1,4 @@
+"use client"
 import React from 'react'
 import { FiEyeOff ,FiEye} from "react-icons/fi";
 import Label from './Label';

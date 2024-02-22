@@ -35,7 +35,7 @@
 
 * {
   box-sizing: border-box;
-  transition: all 0.2s ease;
+  transition: all 70ms ease;
   font-family: var(--font);
 }
 
@@ -104,11 +104,12 @@ p {
     color: var(--black-color);
 }
 a {
-  color: var(--primary-color);
+  color: var(--black-color);
   font-weight: 400 !important;
   text-decoration: none;
 }
 a:hover{
+  color: var(--primary-color);
   text-decoration: underline;
 }
 

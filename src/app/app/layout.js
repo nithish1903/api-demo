@@ -1,10 +1,11 @@
+import AppLayout from '@/components/layouts/AppLayout'
 import React, { Fragment } from 'react'
 
 const layout = ({children}) => {
   return (
-    <Fragment>
+    <AppLayout>
       {children}
-    </Fragment>
+    </AppLayout>
   )
 }
 

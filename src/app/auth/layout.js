@@ -1,4 +1,4 @@
-import Container from '@/components/common/Container'
+
 import React, { Fragment } from 'react'
 
 const layout = ({children}) => {

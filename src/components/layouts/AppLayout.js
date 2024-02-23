@@ -158,27 +158,33 @@ const AppLayout = ({children}) => {
          {/* Content */}
          <Box
             sx={{
-                zIndex: 1,
-                flexGrow: 1,
-                bgcolor: theme.palette.primary[50],
-                height: 'calc(100% - 96px)',
-                width: `calc(100% - ${showNavBar?335:0}px)`,
-                marginLeft: 0,
-                transition: theme.transitions.create(['width', 'margin'], {
-                easing: theme.transitions.easing.sharp,
-                duration: theme.transitions.duration.leavingScreen
-                }),
+                    marginTop:"40px",
+                    width: `calc(100% - ${showNavBar?335:0}px)`,
+                    transition: theme.transitions.create(['width'], {
+                    easing: theme.transitions.easing.sharp,
+                    duration: theme.transitions.duration.leavingScreen,}),
             }}
         >
-            {
-                !showNavBar&&(
-                    <Box display={"inline-block"} onClick={handleShowNavBar} className="p-3 mt-5 ml-5 rounder-[4px] bg-[#fff] drop-shadow-[0_0_4px_rgba(0,0,0,0.25)]">
-                        <FaBars />
-                    </Box>
-                )
-            }
-            <LayoutHeader />
-          {children}
+            <Box className="flex items-start ml-12">
+                {
+                    !showNavBar&&(
+                        <Box sx={{
+                            transition: "margin 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms,width 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
+                        }} onClick={handleShowNavBar} className="inline-block p-3 mt-5 rounder-[4px] bg-[#fff] drop-shadow-[0_0_4px_rgba(0,0,0,0.25)]">
+                            <FaBars />
+                        </Box>
+                    )
+                }
+                <Box sx={{
+                    marginLeft:`${showNavBar?0:40}px`,
+                    transition: "width 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms,margin 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
+                }}>
+                    <LayoutHeader />
+                </Box>
+            </Box>
+          <Box className="ml-12 mt-8 mr-8">
+            {children}
+          </Box>
         </Box>
     </Box>
   )

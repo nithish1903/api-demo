@@ -1,16 +1,17 @@
-"use client"
-import { useHeader } from "@/context/HeaderContext";
 import { Box } from "@mui/material";
-import { useEffect } from "react";
+
+import ContainerBox from "@/components/common/ContainerBox";
+import HearBar from "@/components/common/HearBar";
+import DateDB from "@/components/view/dashboard/DateDB";
 
 export default function Dashboard() {
-  const { setPageTitle } = useHeader();
-  useEffect(() => {
-    setPageTitle('Home Page');
-  }, []);
+
   return (
     <Box>
-      Home
+      <HearBar title={"Dashboard"} review={"Review Dashboard"} />
+      <ContainerBox>
+        <DateDB />
+      </ContainerBox>
     </Box>
   );
 }

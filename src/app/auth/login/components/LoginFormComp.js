@@ -5,7 +5,7 @@ import React from 'react'
 import InputText from '@/components/common/InputText'
 import InputPassword from '@/components/common/InputPassword'
 import Label from '@/components/common/Label'
-import Button from '@/components/common/Button'
+import ButtonPrim from '@/components/common/ButtonPrim'
 import Link from 'next/link'
 
 const LoginFormComp = () => {
@@ -62,21 +62,6 @@ const LoginFormComp = () => {
                 <div className='col-span-12'>
                     <h2 className='text-[40px] font-[500] text-[#334851] text-center'>Log In</h2>
                 </div>
-                {/* <div className='col-span-12 mt-10'>
-                    <button className='bg-[#0266E1] mx-auto rounded-[4px] pl-1 py-1 pr-2 flex items-center gap-2'>
-                        <div className=' w-[36px] h-[36px] p-[6px] bg-[#FFFFFF] rounded-tl-[4px] rounded-bl-[4px] '>
-                            <Image src={"/assets/images/login/google.svg"} alt='logo' width={27} height={27}/>
-                        </div>
-                        <span className='text-[20px] font-[500] text-[#fff]'>Sign In With Google</span>
-                    </button>
-                </div>
-                <div className='col-span-12'>
-                    <div className='flex items-center my-12'>
-                        <div className='w-[230px] h-[2px] bg-[#334851]'></div>
-                        <p className='my-0 mx-4 text-center'>or</p>
-                        <div className='w-[230px]  h-[2px] bg-[#334851]'></div>
-                    </div>
-                </div> */}
                 <div className='col-span-12 mt-7'>
                     <InputText 
                         type={"text"} 
@@ -114,7 +99,7 @@ const LoginFormComp = () => {
                     </div>
                 </div>
                 <div className='col-span-12 mt-10'>
-                    <Button type="sumit"><span>Log In</span></Button>
+                    <ButtonPrim type="sumit"><span>Log In</span></ButtonPrim>
                 </div>
                 <div className='col-span-12'>
                     <div className='bg-[#334851] h-[2px] w-[100%] mt-9'></div>

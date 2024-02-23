@@ -1,4 +1,4 @@
-import AppLayout from '@/components/layouts/AppLayout'
+import AppLayout from '@/components/layouts/MainLayout/AppLayout'
 import React, { Fragment } from 'react'
 
 const layout = ({children}) => {

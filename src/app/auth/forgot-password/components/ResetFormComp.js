@@ -1,7 +1,7 @@
 "use client"
 import React from 'react'
 import InputText from '@/components/common/InputText'
-import Button from '@/components/common/Button'
+import ButtonPrim from '@/components/common/ButtonPrim'
 import Link from 'next/link'
 
 const ResetFormComp = () => {
@@ -73,7 +73,7 @@ const ResetFormComp = () => {
                     />
                 </div>
                 <div className='col-span-12'>
-                    <Button type="sumit"><span>Log In</span></Button>
+                    <ButtonPrim type="sumit"><span>Log In</span></ButtonPrim>
                 </div>
                 <div className='col-span-12'>
                     <div className='text-center'>

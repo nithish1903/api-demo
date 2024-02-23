@@ -2,7 +2,8 @@ import { Box } from "@mui/material";
 
 import ContainerBox from "@/components/common/ContainerBox";
 import HearBar from "@/components/common/HearBar";
-import DateDB from "@/components/view/dashboard/DateDB";
+import DateDBRangePicker from "@/components/view/dashboard/DateDBRangePicker";
+import ReviewsBoxDB from "@/components/view/dashboard/ReviewsBoxDB";
 
 export default function Dashboard() {
 
@@ -10,7 +11,24 @@ export default function Dashboard() {
     <Box>
       <HearBar title={"Dashboard"} review={"Review Dashboard"} />
       <ContainerBox>
-        <DateDB />
+          <div className="flex justify-end">
+            <div className="inline-block">
+              <DateDBRangePicker />
+            </div>
+          </div>
+          <div className="grid grid-cols-12 gap-3">
+            <div className="col-span-12  lg:col-span-7">
+              <ReviewsBoxDB />
+            </div>
+            <div className="col-span-12 lg:col-span-5">
+              <div style={{ boxShadow:'0px 0px 10px 5px #F8F8F8 inset'}} className="h-[633px] p-7 mt-6 bg-slate-300 rounded-[10px]">
+                <div>
+                  <h4 className="font-[600] text-[28px]">Hi Ankit Bopche,</h4>
+                  <p className="text-[18px] font-[600]">You Have 0 uncompleted optimization actions.</p>
+                </div>
+              </div>
+            </div>
+          </div>
       </ContainerBox>
     </Box>
   );

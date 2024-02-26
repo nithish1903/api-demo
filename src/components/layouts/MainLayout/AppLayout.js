@@ -154,7 +154,7 @@ const AppLayout = ({children}) => {
                     duration: theme.transitions.duration.leavingScreen,}),
             }}
         >
-            <Box className="flex items-start ml-12">
+            <Box className="flex items-start ml-3 lg:ml-12">
                 {
                     tablet?(
                             <Box sx={{
@@ -179,7 +179,7 @@ const AppLayout = ({children}) => {
                     <LayoutHeader />
                 </Box>
             </Box>
-          <Box className="ml-12 mt-8 mr-8">
+          <Box className="ml-3 lg:ml-12 mt-8 mr-3 lg:mr-8">
             {children}
           </Box>
         </Box>

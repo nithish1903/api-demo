@@ -26,7 +26,7 @@ const ReviewsBoxDB = () => {
     <div className='grid grid-cols-12 gap-2'>
         {
             reviews.map((review,r)=>{
-                return <div className='col-span-4 mt-6' key={r}>
+                return <div className='col-span-12 md:col-span-6 lg:col-span-4 mt-6' key={r}>
                 <div className={`p-2 border-2  ${review.active?"bg-[#0266E1] border-[#0266E1]":"bg-[#fff] border-[#CFD5E1]"} rounded-[4px]`}>
                     <h2 className={`text-[40px] font-[700] ${review.active&&"text-[#fff]"}`}>{review.value}</h2>
                     <div className='flex items-center justify-between'>

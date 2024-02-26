@@ -7,13 +7,18 @@ import InputPassword from '@/components/common/InputPassword'
 import Label from '@/components/common/Label'
 import ButtonPrim from '@/components/common/ButtonPrim'
 import Link from 'next/link'
+import { toast } from "react-hot-toast";
+import axios from 'axios'
+import {useRouter} from "next/navigation";
+
 
 const LoginFormComp = () => {
-
+    const router = useRouter();
     const [email,setEmail] = React.useState("")
     const [password,setPassword] = React.useState("")
     const [keepLoged,setKeepLoged] = React.useState(false)
     const [formError,setFormError] = React.useState({})
+    const [loading, setLoading] = React.useState(false);
 
     let formErr  = {}
 
@@ -42,8 +47,36 @@ const LoginFormComp = () => {
             const data = {
                 email,password,keepLoged
             }
+            onLogin(data)
             console.log(data)
             resolve()
+        }
+    }
+
+    const onLogin = async (user) => {
+        try {
+            setLoading(true);
+            const response = await axios.post("/api/auth/login", {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(user),
+            });
+            console.log(user)
+            console.log("Login success", response);
+
+            if (response.status===200) {
+                toast.success("Login success");
+                router.push("/app/dashboard");
+            } else {
+                // Handle errors
+                toast.error("Try Again! Somthing went wrong");
+            }
+            
+        } catch (error) {
+            console.log(error)
+            toast.error(error.message);
+        } finally{
+            setLoading(false);
         }
     }
 

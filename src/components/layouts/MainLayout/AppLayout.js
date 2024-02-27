@@ -2,7 +2,7 @@
 import { Box, Drawer, useTheme } from '@mui/material'
 import Image from 'next/image'
 import Link from 'next/link';
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useLayoutEffect, useMemo, useState } from 'react'
 
 import { FaAngleDown } from "react-icons/fa6";
 import { LuLayoutDashboard } from "react-icons/lu";
@@ -12,7 +12,7 @@ import LayoutHeader from './LayoutHeader';
 import NavBarCompo from './NavBarCompo';
 
 
-const AppLayout = ({children}) => {
+const AppLayout = React.memo(({children}) => {
 
     const [showNavBar,setShowNavBar] = useState(true)
     const [showSublink,setShowSubLink] = useState("")
@@ -22,24 +22,20 @@ const AppLayout = ({children}) => {
 
 
 
-    useEffect(() => {
-        const checkIsTablet = () => {
-            setTablet(window.innerWidth <= 1124);
-            setShowNavBar(window.innerWidth > 1124);
-        };
+    useLayoutEffect(() => {
+        if (typeof(window)!=="undefined") {
+            const checkIsTablet = () => {
+                setTablet(window.innerWidth <= 1124);
+                setShowNavBar(window.innerWidth > 1124);
+            };
+            checkIsTablet();
+            window.addEventListener("resize", checkIsTablet);
     
-        checkIsTablet();
-    
-        const handleResize = () => {
-          checkIsTablet();
-        };
-    
-        window.addEventListener("resize", handleResize);
-    
-        return () => {
-          window.removeEventListener("resize", handleResize);
-        };
-      }, []);
+            return () => {
+              window.removeEventListener("resize", checkIsTablet);
+            };
+        }
+    }, [window]);
     
 
     const navLists  = [
@@ -185,6 +181,6 @@ const AppLayout = ({children}) => {
         </Box>
     </Box>
   )
-}
+})
 
 export default AppLayout

@@ -1,10 +1,17 @@
-import AppLayout from '@/components/layouts/MainLayout/AppLayout'
-import React, { Fragment } from 'react'
+import React from 'react'
+import dynamic from "next/dynamic";
+
+const AppLayout = dynamic(
+  () => import('@/components/layouts/MainLayout/AppLayout'),
+  {
+    ssr: false,
+  }
+);
 
 const layout = ({children}) => {
   return (
     <AppLayout>
-      {children}
+        {children}
     </AppLayout>
   )
 }

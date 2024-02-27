@@ -7,9 +7,9 @@ const LayoutHeader = () => {
 
   return (
     <div className=''>
-        <h1 className='text-[42px] font-[700] '>{pageTitle}</h1>
+        <h1 className='text-[26px] md:text-[32px] lg:text-[42px] font-[700] '>{pageTitle}</h1>
         <p>{reviewTitle}</p>
-        <button onClick={goBack} className='pry-clr text-[18px] font-[400] flex items-center'>
+        <button onClick={goBack} className='pry-clr text-[16px] md:text-[18px] font-[400] flex items-center'>
         <div className='mr-3.5'>
           <HiArrowLongLeft className='w-[40px] h-[40px]' />
         </div>

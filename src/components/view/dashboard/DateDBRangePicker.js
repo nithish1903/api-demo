@@ -55,7 +55,7 @@ const DateDBRangePicker = () => {
               <ButtonPrim type={"button"} onClick={()=>{setOpenModel(!openModel)}} className={"w-auto"} >Save</ButtonPrim>
             </div>
             <div>
-              <Button onClick={()=>{setOpenModel(!openModel)}} className='py-2.5' variant="outlined">Cancle</Button>
+              <Button onClick={()=>{setOpenModel(!openModel)}} className='py-2.5' variant="outlined">Cancel</Button>
             </div>
           </div>
         </div>

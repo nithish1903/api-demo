@@ -123,8 +123,8 @@ const AppLayout = React.memo(({children}) => {
                 <Box className="fixed top-0 left-0">
                     <Box sx={{
                         paddingTop:"40px",
-                        width:`${showNavBar?320:0}px`,
-                        transform: `${showNavBar?"none":"translateX(-320px)"}`,
+                        width:`${showNavBar?300:0}px`,
+                        transform: `${showNavBar?"none":"translateX(-300px)"}`,
                         transition: `${showNavBar?"transform 225ms cubic-bezier(0, 0, 0.2, 1) 0ms":"box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms"}`,
                         visibility:`${showNavBar?"visible":"hidden"}`,
                     }} className="bg-[#fff] h-[100vh] relative">
@@ -143,8 +143,8 @@ const AppLayout = React.memo(({children}) => {
          <Box
             sx={{
                     marginTop:"40px",
-                    width: `calc(100% - ${showNavBar?320:0}px)`,
-                    marginLeft: `${showNavBar?320:0}px`,
+                    width: `calc(100% - ${showNavBar?300:0}px)`,
+                    marginLeft: `${showNavBar?300:0}px`,
                     transition: theme.transitions.create(['width'], {
                     easing: theme.transitions.easing.sharp,
                     duration: theme.transitions.duration.leavingScreen,}),

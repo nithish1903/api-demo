@@ -8,8 +8,13 @@ import 'react-date-range/dist/theme/default.css';
 
 import { DateRange } from 'react-date-range';
 import { addDays,format } from 'date-fns';
+import { IoCalendarOutline } from 'react-icons/io5';
+import { TiArrowSortedDown } from 'react-icons/ti';
 
 const DateDBRange = () => {
+
+
+  const [dateRangeValue,setDateRangeValue] = useState("All Time")
   const [range,setRange] = useState([
     {
       startDate: new Date(),
@@ -19,6 +24,11 @@ const DateDBRange = () => {
   ])
   const [open,setOpen] = useState(false)
   const refOne = useRef(null)
+
+
+  useEffect(()=>{
+    setDateRangeValue(`${format(range[0].startDate,"dd/MM/yyyy")} to ${format(range[0].endDate,"dd/MM/yyyy")}`)
+  },[range])
 
 
   useEffect(()=>{
@@ -40,22 +50,35 @@ const DateDBRange = () => {
   }
 
   return (
-    <div>
-      <input value={`${format(range[0].startDate,"dd/MM/yyyy")} to ${format(range[0].endDate,"dd/MM/yyyy")}`} readOnly className='border-2' onClick={()=>{
+    <div className=' relative'>
+       <div className='w-auto flex items-center border-2 border-[#CFD5E1] p-2 rounded-[4px] ' onClick={()=>{
         setOpen(open => !open)
-      }} />
-      <div ref={refOne}>
-        {
-          open &&  <DateRange 
-          onChange={item => setRange([item.selection])}
-          showSelectionPreview={true}
-          moveRangeOnFirstSelection={false}
-          months={2}
-          ranges={range}
-          direction="horizontal"
-          />
-        }
+      }}>
+          <div>
+            <IoCalendarOutline />
+          </div>
+          <div className='mx-2'>
+            <span>{dateRangeValue}</span>
+          </div>
+          <div className=''>
+            <TiArrowSortedDown />
+          </div>
       </div>
+      {
+        open && (
+          <div ref={refOne} className='absolute top-12 right-0 w-[270px] md:w-[332px] border-2 shadow-2xl'>
+              <DateRange 
+                onChange={item => setRange([item.selection])}
+                showSelectionPreview={true}
+                moveRangeOnFirstSelection={false}
+                months={2}
+                ranges={range}
+                direction="vertical"
+              />
+          </div>
+        )
+      }
+      
     </div>
   );
 };

@@ -8,9 +8,10 @@ import { FaAngleDown } from "react-icons/fa6";
 import { LuLayoutDashboard } from "react-icons/lu";
 import { FaRegCircle } from "react-icons/fa";
 import { FaBars } from "react-icons/fa";
-import LayoutHeader from './LayoutHeader';
 import NavBarCompo from './NavBarCompo';
-
+import DashboardHeader from './DashboardHeader';
+import { usePathname } from 'next/navigation'
+import PageHeaderLayout from './PageHeaderLayout';
 
 const AppLayout = React.memo(({children}) => {
 
@@ -18,8 +19,9 @@ const AppLayout = React.memo(({children}) => {
     const [showSublink,setShowSubLink] = useState("")
     const [tablet,setTablet] = useState(false)
     const [openDrawer,setOpenDrawer] = useState(false)
+    const pathname = usePathname()
     const theme = useTheme()
-
+    console.log(pathname)
 
 
     useLayoutEffect(() => {
@@ -109,7 +111,7 @@ const AppLayout = React.memo(({children}) => {
             tablet ? (
                 <div>
                     <Drawer className='overflow-visible' open={openDrawer} onClose={handleToggleDrawer} sx={{overflowY:"visible"}}>
-                        <Box sx={{ width: 335 , paddingRight:"30px" }} role="presentation" onClick={handleToggleDrawer}>
+                        <Box sx={{ width: 300 , paddingRight:"30px" }} role="presentation" onClick={handleToggleDrawer}>
                             <NavBarCompo 
                                 navLists={navLists} 
                                 showSublink={showSublink} 
@@ -150,34 +152,36 @@ const AppLayout = React.memo(({children}) => {
                     duration: theme.transitions.duration.leavingScreen,}),
             }}
         >
-            <Box className="flex items-start ml-3 lg:ml-12">
+            <Box className="flex items-start ml-3 lg:ml-12 w-full">
                 {
                     tablet?(
                             <Box sx={{
                                 transition: "margin 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms,width 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
-                            }} onClick={()=>setOpenDrawer(true)} className="inline-block p-3 mt-5 rounder-[4px] bg-[#fff] drop-shadow-[0_0_4px_rgba(0,0,0,0.25)]">
+                            }} onClick={()=>setOpenDrawer(true)} className="inline-block p-3 mr-5 rounder-[4px] bg-[#fff] drop-shadow-[0_0_4px_rgba(0,0,0,0.25)]">
                                 <FaBars />
                             </Box>
                     ):(
                         !showNavBar&&(
                             <Box sx={{
                                 transition: "margin 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms,width 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
-                            }} onClick={()=>setShowNavBar(true)} className="inline-block p-3 mt-5 rounder-[4px] bg-[#fff] drop-shadow-[0_0_4px_rgba(0,0,0,0.25)]">
+                            }} onClick={()=>setShowNavBar(true)} className="inline-block p-3 mt-5 mr-5 rounder-[4px] bg-[#fff] drop-shadow-[0_0_4px_rgba(0,0,0,0.25)]">
                                 <FaBars />
                             </Box>
                         )
                     )
                 }
                 <Box sx={{
-                    marginLeft:`${showNavBar?0:40}px`,
+                    width:`calc(100% - ${showNavBar?80:130}px)`,
                     transition: "width 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms,margin 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
                 }}>
-                    <LayoutHeader />
+                    {
+                        pathname=="/app/dashboard" ? <DashboardHeader /> : <PageHeaderLayout /> 
+                    }
                 </Box>
             </Box>
-          <Box className="ml-3 lg:ml-12 mt-8 mr-3 lg:mr-8">
-            {children}
-          </Box>
+            <Box className="ml-3 lg:ml-12 mt-8 mr-3 lg:mr-8">
+                {children}
+            </Box>
         </Box>
     </Box>
   )

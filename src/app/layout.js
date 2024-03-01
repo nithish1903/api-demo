@@ -2,7 +2,7 @@ import "@/style/globals.css"
 import { Nunito } from 'next/font/google'
 
 import ThemeWrapper from "./ThemeWrapper";
-import { HeaderProvider } from "@/context/HeaderContext";
+import { PageHeaderProvider } from "@/context/PageHeaderContext";
 
 export const metadata = {
   title: "Create Next App",
@@ -20,11 +20,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={nunito_init.variable}>
-          <HeaderProvider>
+          <PageHeaderProvider>
             <ThemeWrapper>
               {children}
             </ThemeWrapper>
-          </HeaderProvider>
+          </PageHeaderProvider>
         </body>
     </html>
   );

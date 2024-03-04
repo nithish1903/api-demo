@@ -152,7 +152,7 @@ const AppLayout = React.memo(({children}) => {
                     duration: theme.transitions.duration.leavingScreen,}),
             }}
         >
-            <Box className="flex items-start ml-3 lg:ml-12 w-full">
+            <Box className=" pl-3 lg:pl-10 w-full">
                 {
                     tablet?(
                             <Box sx={{
@@ -171,7 +171,6 @@ const AppLayout = React.memo(({children}) => {
                     )
                 }
                 <Box sx={{
-                    width:`calc(100% - ${showNavBar?80:130}px)`,
                     transition: "width 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms,margin 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
                 }}>
                     {

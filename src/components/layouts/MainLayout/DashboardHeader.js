@@ -17,7 +17,7 @@ const DashboardHeader = () => {
                 </div>
             </div>
         </div>
-        <div className='col-span-12 md:col-span-6 flex justify-end'>
+        <div className='col-span-12 md:col-span-6 flex justify-end pr-8'>
             <div className='flex items-center gap-3 md:gap-4 lg:gap-10'>
                 <div className='w-[42px] h-[42px] md:w-[50px] md:h-[50px] rounded-full bg-[#0266E1] flex items-center justify-center'>
                     <MdOutlineNotificationsActive className='w-[16px] md:w-[24px] h-[16px] md:h-[24px] text-[#fff]'/>

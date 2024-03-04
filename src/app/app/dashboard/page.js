@@ -1,7 +1,5 @@
 import { Box } from "@mui/material";
 
-import ContainerBox from "@/components/common/ContainerBox";
-import PageHeaderComp from "@/components/common/PageHeaderComp";
 import ReviewsBoxDB from "@/components/view/dashboard/ReviewsBoxDB";
 import AllTimeDB from "@/components/view/dashboard/AllTimeDB";
 import ReviewRequestCards from "@/components/view/dashboard/ReviewRequestCards";
@@ -10,7 +8,6 @@ export default function Dashboard() {
 
   return (
     <Box>
-      <PageHeaderComp title={"Dashboard"} review={"Review Dashboard"} />
       <>
           <div className="grid grid-cols-12 gap-4">
             <div className="col-span-12 md:col-span-6">

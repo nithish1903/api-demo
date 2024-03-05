@@ -1,10 +1,8 @@
 
-import React, { useRef } from 'react'
+import React from 'react'
 
-import { TiArrowSortedDown } from "react-icons/ti";
 import OutlinedInput from '@mui/material/OutlinedInput';
 import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { useTheme } from '@mui/material';
 
@@ -18,16 +16,15 @@ const styles = {
     },
     backgroundImage: `url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>")`,  
     backgroundRepeat: "no-repeat",
-    backgroundPositionX: "100%",
+    backgroundPositionX: "96%",
     backgroundPositionY: "10px"
   }
 }
-export const SelectOptions = ({value,options,handleChange,placeholder}) => {
-  const refSelect = useRef()
+export const SelectOptions = ({value,options,handleChange,placeholder,className}) => {
   return (
     <div className=''>
-      <select ref={refSelect} style={styles.select} 
-        className='py-3 px-2 rounded-[6px] border-2 border-[#CFD5E1]'
+      <select style={styles.select} 
+        className={`py-3 px-2 rounded-[6px] border-2 border-[#CFD5E1] ${className} `}
         onChange={(e)=>{
           handleChange(e)
         }}
@@ -36,7 +33,7 @@ export const SelectOptions = ({value,options,handleChange,placeholder}) => {
         <option>{placeholder}</option>
        {
         options.map((ele,e)=>{
-          return <option key={e} >{ele}</option>
+          return <option key={e} value={ele} >{ele}</option>
         })
        }
       </select>

@@ -1,8 +1,7 @@
 "use client"
 import { SaveChangesES } from '@/components/common/ButtonEmailSettings'
 import FormInputFiled from '@/components/common/FormInputFiled'
-import InputText from '@/components/common/InputText'
-import { Box, Checkbox } from '@mui/material'
+import { Checkbox } from '@mui/material'
 import Image from 'next/image'
 import React, { useState } from 'react'
 
@@ -72,19 +71,19 @@ const GeneralSettingsEmail = () => {
                 In case an email client has compatibility problems with review request email, review request contain a link to an external page where customers can respond.
                 </p>
             </div>
-            <div className='col-span-12 grid grid-cols-12 gap-10 items-center pb-10 border-b-2 border-[#CFD5E1]'>
+            <div className='col-span-12 grid grid-cols-12 gap-5 md:gap-10 items-center pb-10 border-b-2 border-[#CFD5E1]'>
                 <div className='col-span-12 lg:col-span-9'>
                     <FormInputFiled label={"Link body:"} placeholder={"Fashion Studio"}/>
                 </div>
-                <div className='col-span-12 lg:col-span-3'>
+                <div className='w-[250px] ld:w-full col-span-12 lg:col-span-3'>
                     <div>
                         <p>Font Size</p>
                     </div>
-                    <div className='flex items-center'>
+                    <div className='flex items-center gap-3'>
                         <p className='text-[22px] font-[700] py-2 cursor-pointer ' 
                             onClick={handleFontSizeDec}>-</p>
                         <input 
-                            className={`py-1 px-5 mx-2.5 text-center rounded-[4px] w-[100%] mt-1 text-[20px] font-[600] border-[2px] border-[#334851] text-[#334851]`}
+                            className={`py-1 px-5 text-center rounded-[4px] w-[100%] mt-1 text-[20px] font-[600] border-[2px] border-[#334851] text-[#334851]`}
                             value={fontSize} 
                             type={"number"}
                             onChange={(e)=>{(setFontSize(Number(e.target.value)))}}

@@ -8,7 +8,7 @@ const TabPreviewES = () => {
         <div className='col-span-12 xl:col-span-7'>
             <TabEmailSettings />
         </div>
-        <div className='col-span-12 xl:col-span-5'>
+        <div className='col-span-12 xl:col-span-5 mt-10 xl:mt-0'>
           <PreviewEmailSettings />
         </div>
     </div>

@@ -12,7 +12,7 @@ const PreviewEmailSettings = () => {
             </div>
         </div>
         <div className='col-span-12 mt-5'> 
-            <div className="w-[100%] h-[751px] rounded-[10px] bg-[url('/assets/images/emailSetting/bg-preview.svg')]">
+            <div className="w-[100%] xl:h-[751px] rounded-[10px] bg-[url('/assets/images/emailSetting/bg-preview.svg')]">
                 <div className='bg-[#F8F8F8] px-5 py-4 flex items-center justify-between rounded-t-[10px]'>
                     <p className='font-[600]'>Preview</p>
                     <div className='flex items-center gap-2'>

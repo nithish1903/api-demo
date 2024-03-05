@@ -1,9 +1,6 @@
 "use client"
 import { OutLineBtnEmail } from '@/components/common/ButtonEmailSettings'
 import FormInputFiled from '@/components/common/FormInputFiled'
-import InputText from '@/components/common/InputText'
-import { Box, Checkbox } from '@mui/material'
-import Image from 'next/image'
 import React, { useState } from 'react'
 
 const BlacklistEmail = () => {
@@ -36,7 +33,7 @@ const BlacklistEmail = () => {
                 <OutLineBtnEmail text={"Add To Blocklist"} />
             </div>
         </div>
-        <div className='grid grid-cols-12 gap-2 pt-7'>
+        <div className='grid grid-cols-12 gap-5 md:gap-2 pt-7'>
             <div className='col-span-12'>
                 <h6 className='font-[700]'>Remove from Blocklist</h6>
             </div>
@@ -45,10 +42,10 @@ const BlacklistEmail = () => {
                     Type and select the email address of the customers you wish to remove from the email blocklist.
                 </p>
             </div>
-            <div className='col-span-6'>
+            <div className='col-span-12 md:col-span-6'>
                 <FormInputFiled  placeholder={"Type an Email"}/>
             </div>
-            <div className='col-span-6'>
+            <div className='col-span-12 md:col-span-6'>
                 <OutLineBtnEmail text={"Remove from Blocklist"} />
             </div>
         </div>

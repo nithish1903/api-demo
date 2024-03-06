@@ -71,11 +71,11 @@ const GeneralSettingsEmail = () => {
                 In case an email client has compatibility problems with review request email, review request contain a link to an external page where customers can respond.
                 </p>
             </div>
-            <div className='col-span-12 grid grid-cols-12 gap-5 md:gap-10 items-center pb-10 border-b-2 border-[#CFD5E1]'>
+            <div className='col-span-12 grid grid-cols-12 gap-5 items-center pb-10 border-b-2 border-[#CFD5E1]'>
                 <div className='col-span-12 lg:col-span-9'>
                     <FormInputFiled label={"Link body:"} placeholder={"Fashion Studio"}/>
                 </div>
-                <div className='w-[250px] ld:w-full col-span-12 lg:col-span-3'>
+                <div className='max-w-[250px] col-span-12 lg:col-span-3'>
                     <div>
                         <p>Font Size</p>
                     </div>

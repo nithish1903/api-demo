@@ -8,7 +8,7 @@ import LooksFeelEmail from './tabs/LooksFeelEmail'
 const tabs = ["General Settings","Blacklist","Promoted Products","Looks & Feel"]
 
 const TabEmailSettings = () => {
-    const [currentTab,setCurrentTab] = useState(tabs[3])
+    const [currentTab,setCurrentTab] = useState(tabs[0])
     
     const handelTabChange = (value)=>{
         setCurrentTab(value)
@@ -19,7 +19,7 @@ const TabEmailSettings = () => {
         <div className='flex flex-row gap-3 overflow-x-scroll overflow-y-hidden scroll-m-0 scroll-p-0'>
             {
                 tabs.map((tab,t)=>{
-                    return <div key={t} onClick={()=>{handelTabChange(tab)}} className={`relative border-[1px] border-[#334851] px-3 py-2.5 rounded-t-[8px] ${currentTab===tab && "border-b-0"}`}>
+                    return <div key={t} onClick={()=>{handelTabChange(tab)}} className={`relative cursor-pointer border-[1px] border-[#334851] px-3 py-2.5 rounded-t-[8px] ${currentTab===tab && "border-b-0"}`}>
                         {
                             t !== tabs.length -1 && <div className=' absolute -bottom-[1px] -right-[14px] border-[1px] border-[#334851] w-[16px] h-[2px] '></div>
                         }

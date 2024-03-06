@@ -64,8 +64,8 @@ const AppLayout = React.memo(({children}) => {
             ]
         },
         {
-            label:"Profile",
-            link:"/app/profile",
+            label:"Teammates",
+            link:"/app/teammates",
             icon:(className)=><LuUserCog2  className={`${className}`}/>,
             subLink:[]
         },

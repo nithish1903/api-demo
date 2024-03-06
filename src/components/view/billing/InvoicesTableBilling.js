@@ -30,13 +30,13 @@ export default function InvoicesTableBilling() {
             <TableContainer component={Paper}>
             <Table aria-label="simple table">
                 <TableHead>
-                <TableRow>
-                    <TableCell>DATE</TableCell>
-                    <TableCell align="center">AMOUNT</TableCell>
-                    <TableCell align="center">PLAN</TableCell>
-                    <TableCell align="center">STATUS</TableCell>
-                    <TableCell align="center">INVOICE</TableCell>
-                </TableRow>
+                  <TableRow>
+                      <TableCell>DATE</TableCell>
+                      <TableCell align="center">AMOUNT</TableCell>
+                      <TableCell align="center">PLAN</TableCell>
+                      <TableCell align="center">STATUS</TableCell>
+                      <TableCell align="center">INVOICE</TableCell>
+                  </TableRow>
                 </TableHead>
                 <TableBody>
                 {rows.map((row,r) => (

@@ -30,7 +30,7 @@ export const SelectOptions = ({value,options,handleChange,placeholder,className}
         }}
         value={value}
       >
-        <option>{placeholder}</option>
+        <option disabled>{placeholder}</option>
        {
         options.map((ele,e)=>{
           return <option key={e} value={ele} >{ele}</option>

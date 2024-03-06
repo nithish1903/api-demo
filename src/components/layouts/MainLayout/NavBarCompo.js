@@ -3,8 +3,11 @@ import Image from 'next/image'
 import { Box } from '@mui/material'
 import { FaAngleDown, FaRegCircle } from 'react-icons/fa6'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 const NavBarCompo = ({navLists,showSublink,handleShowLink,handleShowNavBar}) => {
+    const pathname = usePathname()
+
   return (
     <div>
         <Box className="">
@@ -53,9 +56,9 @@ const NavBarCompo = ({navLists,showSublink,handleShowLink,handleShowNavBar}) => 
                                 ) :(
                                     <Link href={nav.link}  className={`group py-3 my-4 m pl-12 pr-2 flex items-center hover:text-[#fff] bg-[#fff] hover:bg-gradient-to-r hover:from-blue-700 hover:via-blue-700 hover:to-sky-500`}>
                                         <div className='mr-8'>
-                                            {nav.icon("w-[21px] h-[21px] group-hover:text-[#fff] text-[#334851]")}
+                                            {nav.icon(`w-[21px] h-[21px] group-hover:text-[#fff] ${pathname.startsWith(nav.link)?"text-[#0180F9]":"text-[#334851]"} `)}
                                         </div>
-                                        <p className='text-[18px] font-[300] group-hover:text-[#fff]'>{nav.label}</p>
+                                        <p className={`text-[18px] group-hover:text-[#fff] ${pathname.startsWith(nav.link)?"text-[#0180F9] font-[600]":"text-[#334851] font-[300]"}`}>{nav.label}</p>
                                     </Link>
                                 )
                             }

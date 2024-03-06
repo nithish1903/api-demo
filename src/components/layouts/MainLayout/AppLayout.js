@@ -1,17 +1,17 @@
 "use client";
 import { Box, Drawer, useTheme } from '@mui/material'
-import Image from 'next/image'
-import Link from 'next/link';
-import React, { useCallback, useEffect, useLayoutEffect, useMemo, useState } from 'react'
+import React, { useCallback, useLayoutEffect, useState } from 'react'
 
-import { FaAngleDown } from "react-icons/fa6";
 import { LuLayoutDashboard } from "react-icons/lu";
-import { FaRegCircle } from "react-icons/fa";
 import { FaBars } from "react-icons/fa";
 import NavBarCompo from './NavBarCompo';
 import DashboardHeader from './DashboardHeader';
 import { usePathname } from 'next/navigation'
 import PageHeaderLayout from './PageHeaderLayout';
+import { TbMailCog } from "react-icons/tb";
+import { RiBillLine } from "react-icons/ri";
+import { LuUserCog2 ,} from "react-icons/lu";
+
 
 const AppLayout = React.memo(({children}) => {
 
@@ -21,7 +21,6 @@ const AppLayout = React.memo(({children}) => {
     const [openDrawer,setOpenDrawer] = useState(false)
     const pathname = usePathname()
     const theme = useTheme()
-    console.log(pathname)
 
 
     useLayoutEffect(() => {
@@ -45,50 +44,29 @@ const AppLayout = React.memo(({children}) => {
             label:"Dashboard",
             link:"/app/dashboard",
             icon:(className)=><LuLayoutDashboard  className={`${className}`}/>,
-            subLink:[
-                {
-                    lable:"Form",
-                    link:"/auth/login"
-                },
-                {
-                    lable:"Lable",
-                    link:"/app/dashboard"
-                },
-                {
-                    lable:"Input",
-                    link:"/app/dashboard"
-                },
-            ]
-        },
-        {
-            label:"Emails",
-            link:"/app/dashboard",
-            icon:(className)=><LuLayoutDashboard  className={`${className}`}/>,
             subLink:[]
         },
         {
-            label:"On-Site Widgets",
-            link:"/app/dashboard",
-            icon:(className)=><LuLayoutDashboard  className={`${className}`}/>,
+            label:"Email Settings",
+            link:"/app/email-settings",
+            icon:(className)=><TbMailCog  className={`${className}`}/>,
+            subLink:[]
+        },
+        {
+            label:"Billing",
+            link:"/app/billing",
+            icon:(className)=><RiBillLine  className={`${className}`}/>,
             subLink:[
-                {
-                    lable:"Form",
-                    link:"/auth/login"
-                },
-                {
-                    lable:"Lable",
-                    link:"/app/dashboard"
-                },
-                {
-                    lable:"Input",
-                    link:"/app/dashboard"
-                },
+                // {
+                //     lable:"Form",
+                //     link:"/auth/login"
+                // },
             ]
         },
         {
-            label:"Analytics",
-            link:"/app/dashboard",
-            icon:(className)=><LuLayoutDashboard  className={`${className}`}/>,
+            label:"Profile",
+            link:"/app/profile",
+            icon:(className)=><LuUserCog2  className={`${className}`}/>,
             subLink:[]
         },
     ]

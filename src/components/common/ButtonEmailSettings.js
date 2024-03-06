@@ -1,8 +1,8 @@
 import React from 'react'
 
-export const SaveChangesES = ({text,type}) => {
+export const SaveChangesES = ({text,type,className}) => {
   return (
-    <button type={type?type:"button"} className='px-6 py-3 rounded-[3px] bg-[#0266E1] text-[18px] font-[700] text-[#fff] text-center'>{text}</button>
+    <button type={type?type:"button"} className={`px-6 py-2 rounded-[3px] bg-[#0266E1] text-[18px] font-[700] text-[#fff] text-center ${className}`}>{text}</button>
   )
 }
 

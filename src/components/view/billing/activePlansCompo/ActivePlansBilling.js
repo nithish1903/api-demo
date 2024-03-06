@@ -1,13 +1,38 @@
-import Image from 'next/image'
-import React from 'react'
+"use client"
+import React, { useState } from 'react'
 import { HiOutlineBookOpen } from "react-icons/hi";
 import { BsCreditCardFill } from "react-icons/bs";
 import SwitchGreen from '@/components/common/SwitchGreen';
 import { HiDotsHorizontal } from "react-icons/hi";
 import "./table.css"
 
+import IconButton from '@mui/material/IconButton';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import Link from 'next/link';
+
+const options = [
+    {
+        label:'Plan',
+        link:"/app/billing/plan"
+    }
+  ];
+  const ITEM_HEIGHT = 48;
+
+  const thead = ["Plan","Subscription","Current Usage Fee","Paid By","Due On","Total","Action"]
+
+
 const ActivePlansBilling = () => {
-    const thead = ["Plan","Subscription","Current Usage Fee","Paid By","Due On","Total","Action"]
+    const [anchorEl, setAnchorEl] = useState(null);
+    const open = Boolean(anchorEl);
+
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
 
   return (
     <div className=''>
@@ -17,16 +42,18 @@ const ActivePlansBilling = () => {
         <div className=''>
             <table className='w-full'>
                 <thead className='py-2.5'>
-                    {
-                        thead.map((heading,h)=>{
-                            return <th key={h} scope="col" className='text-left'>{heading}</th>
-                        })
-                    }
+                    <tr>
+                        {
+                            thead.map((heading,h)=>{
+                                return <th key={h} scope="col" className='text-left'>{heading}</th>
+                            })
+                        }
+                    </tr>
                 </thead>
                 <tbody>
                     <tr className=' box-border  border-2 border-[#CFD5E1] rounded-[6px]'>
                         <td data-label="Plan" className='py-4 pl-4 '>
-                            <div className='flex items-center gap-4'>
+                            <div className='flex items-center justify-end xl:justify-start gap-4'>
                                 <div className='w-[50px] h-[50px] flex justify-center items-center bg-[#F3F6F9] rounded-[6px]'>
                                     <HiOutlineBookOpen className='w-[20px] h-[20px] text-[#0266E1]' /> 
                                 </div>
@@ -37,7 +64,7 @@ const ActivePlansBilling = () => {
                             </div>
                         </td>
                         <td data-label="Subscription" className='py-4'>
-                            <div className='flex items-center gap-2'>
+                            <div className='flex items-center justify-end xl:justify-start gap-2'>
                                 <div>
                                     <BsCreditCardFill className='text-[#D9D9D9] w-[12px] h-auto' />
                                 </div>
@@ -45,9 +72,9 @@ const ActivePlansBilling = () => {
                             </div>
                         </td>
                         <td data-label="Current Usage Fee" className='py-4'>
-                            <div className='flex gap-4'>
+                            <div className='flex flex-col md:flex-row justify-end xl:justify-start gap-4'>
                                 <div>
-                                    <div className='flex items-center gap-2'>
+                                    <div className='flex items-center justify-end xl:justify-start gap-2'>
                                         <div>
                                             <BsCreditCardFill className='text-[#D9D9D9] w-[12px] h-auto' />
                                         </div>
@@ -55,8 +82,10 @@ const ActivePlansBilling = () => {
                                     </div>
                                     <p className='text-[14px]'>Review Booster</p>
                                 </div>
-                                <div>
-                                    <SwitchGreen  />
+                                <div className=''>
+                                    <div className='inline-block'>
+                                        <SwitchGreen  />
+                                    </div>
                                     <p className='text-[14px]'>OFF</p>
                                 </div>
                             </div>
@@ -71,7 +100,38 @@ const ActivePlansBilling = () => {
                             <p className='text-[16px] font-bold'>₹2388.00</p>
                         </td>
                         <td data-label="Action" className='py-4 pr-4'>
-                            <HiDotsHorizontal className='text-[#334851] w-[20px] h-auto'/>
+                            <IconButton
+                                aria-label="more"
+                                id="long-button"
+                                aria-controls={open ? 'long-menu' : undefined}
+                                aria-expanded={open ? 'true' : undefined}
+                                aria-haspopup="true"
+                                onClick={handleClick}
+                            >
+                                <HiDotsHorizontal className='text-[#334851] w-[20px] h-auto'/>
+                            </IconButton>
+                          <Menu
+                            id="long-menu"
+                            MenuListProps={{
+                              'aria-labelledby': 'long-button',
+                            }}
+                            anchorEl={anchorEl}
+                            open={open}
+                            onClose={handleClose}
+                            PaperProps={{
+                              style: {
+                                maxHeight: ITEM_HEIGHT * 4.5,
+                                width: '20ch',
+                              },
+                            }}
+                          >
+                            {options.map((option) => (
+                              <MenuItem key={option} selected={option === 'Pyxis'} onClick={handleClose}>
+                                <Link href={option.link} className='w-full block'> {option.label}</Link>
+                              </MenuItem>
+                            ))}
+                          </Menu>
+                            
                         </td>
                     </tr>
                 </tbody>

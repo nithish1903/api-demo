@@ -11,6 +11,7 @@ import PageHeaderLayout from './PageHeaderLayout';
 import { TbMailCog } from "react-icons/tb";
 import { RiBillLine } from "react-icons/ri";
 import { LuUserCog2 ,} from "react-icons/lu";
+import { AiOutlineControl } from "react-icons/ai";
 
 
 const AppLayout = React.memo(({children}) => {
@@ -44,6 +45,12 @@ const AppLayout = React.memo(({children}) => {
             label:"Dashboard",
             link:"/app/dashboard",
             icon:(className)=><LuLayoutDashboard  className={`${className}`}/>,
+            subLink:[]
+        },
+        {
+            label:"Moderation",
+            link:"/app/moderation",
+            icon:(className)=><AiOutlineControl  className={`${className}`}/>,
             subLink:[]
         },
         {

@@ -1,9 +1,14 @@
+"use client"
 import { SaveChangesES } from '@/components/common/ButtonEmailSettings'
-import React from 'react'
+import React, { useState } from 'react'
 import AllTeammatesTable from './AllTeammatesTable'
 import ContainerBox from '@/components/common/ContainerBox'
+import AddTeammates from './AddTeammates'
 
 const TeammatesLayout = () => {
+    const [open,setOpen] = useState(false)
+
+    const handleModal = ()=>setOpen(!open)
   return (
     <ContainerBox>
         <div>
@@ -16,7 +21,8 @@ const TeammatesLayout = () => {
                     <p className='text-[#b0afaf] font-[500]'>1/1</p>
                 </div>
                 <div>
-                    <SaveChangesES text={"Add Teammates"} />
+                    <SaveChangesES text={"Add Teammates"} onClick={handleModal}/>
+                    <AddTeammates open={open} handleModal={handleModal} />
                 </div>
             </div>
             <div className='border-t-2 border-[#CFD5E1]'>

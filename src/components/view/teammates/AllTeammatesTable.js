@@ -150,8 +150,8 @@ export default function AllTeammatesTable() {
             </TableRow>
           )}
         </TableBody>
-        <TableFooter>
-          <TableRow>
+        <TableFooter sx={{paddingLeft:"0px"}}>
+          <TableRow sx={{paddingLeft:"0px"}}>
             <TablePagination
               rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
               colSpan={3}
@@ -166,6 +166,7 @@ export default function AllTeammatesTable() {
                   native: true,
                 },
               }}
+              sx={{paddingLeft:"0px"}}
               onPageChange={handleChangePage}
               onRowsPerPageChange={handleChangeRowsPerPage}
               ActionsComponent={TablePaginationActions}

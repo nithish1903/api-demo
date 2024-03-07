@@ -11,6 +11,9 @@ const EmailPreferences = () => {
     
   return (
     <div className='grid grid-cols-12 gap-5 px-5 py-5 bg-[#fff] border-[1px] border-[#CFD5E1] rounded-[10px] '>
+         <div className='col-span-12'>
+            <h6 className='font-[700]'>Email Preferences</h6>
+        </div>
         <div className='col-span-12'>
             <div className='flex items-center'>
                 <div>

@@ -52,8 +52,12 @@ const ReviewsLayoutMdt = () => {
             </div>
           </div>
         </div>
-        <div>
-          <ReviewsCommentsMdt />
+        <div className='grid grid-cols-12 gap-5'>
+          {
+            [...Array(6)].map((e)=>{
+              return <div className='col-span-12' key={e}><ReviewsCommentsMdt /></div>
+            })
+          }
         </div>
     </div>
   )

@@ -1,16 +1,22 @@
+import React, { useState } from 'react'
 import { CheckBox } from '@mui/icons-material'
-import React from 'react'
-import { IoIosStar, IoMdArrowRoundUp } from "react-icons/io";
-import { TiArrowSortedDown } from "react-icons/ti";
+import { IoIosStar } from "react-icons/io";
 import { LuInfo } from "react-icons/lu";
 import { IoStarOutline } from 'react-icons/io5';
 import { BiMessageSquareDetail } from "react-icons/bi";
-import { BsThreeDotsVertical } from "react-icons/bs";
+import PublishedDrepDown from './PublishedDrepDown';
+import DotsDropDownMdt from './DotsDropDownMdt';
+import WriteComments from './WriteComments';
+
+
 
 const ReviewsCommentsMdt = () => {
+    const [showComment,setShowComment] = useState(false)
+    const handleShowComment = ()=>{setShowComment(!showComment)}
+
   return (
-    <div className='grid grid-cols-12 gap-4 px-8 py-8 border-2 border-[#CFD5E1]'>
-        <div className='col-span-3 grid grid-cols-1 content-between h-[100%] gap-2'>
+    <div className='grid grid-cols-12 gap-4 px-3 lg:px-8 py-8 border-2 border-[#CFD5E1]'>
+        <div className='col-span-12 lg:col-span-3 grid grid-cols-1 content-between h-[100%] gap-5 lg:gap-2'>
             <div className='flex gap-3 items-center'>
                 <div>
                     <CheckBox sx={{padding:"0px"}}/>
@@ -23,14 +29,10 @@ const ReviewsCommentsMdt = () => {
                 
             </div>
             <div className=''>
-                <button className='flex items-center gap-3 justify-center border-2 border-[#CFD5E1] px-2 rounded-[4px]'>
-                    <span className='w-[14px] h-[14px] bg-[#0266E1] text-[#fff] rounded-full flex items-center justify-center'><IoMdArrowRoundUp /></span>
-                    Published
-                    <TiArrowSortedDown className=''/>
-                </button>
+                <PublishedDrepDown />
             </div>
         </div>
-        <div className='col-span-6'>
+        <div className='col-span-12 lg:col-span-6'>
             <div>
                 <h5>Good choice for music listeners of all age</h5>
                 <div className='my-6'>
@@ -41,13 +43,13 @@ const ReviewsCommentsMdt = () => {
                 </div>
             </div>
         </div>
-        <div className='col-span-3 grid grid-cols-1 content-between h-[100%] gap-4'>
+        <div className='col-span-12 lg:col-span-3 grid grid-cols-1 lg:content-between h-[100%] gap-4'>
             <div className=''>
-                <div className='flex items-center justify-end gap-2'>
+                <div className='flex items-center lg:justify-end gap-2'>
                     <LuInfo className='text-[#B6B6B6]'/>
                     <p className='text-[12px] text-[#B6B6B6]'>Incentivized Review</p>
                 </div>
-                <div className='flex items-center justify-end gap-2'>
+                <div className='flex items-center lg:justify-end gap-2'>
                     <IoIosStar className='text-[#F9C612] w-[18px] h-[18px]' />
                     <IoIosStar className='text-[#F9C612] w-[18px] h-[18px]' />
                     <IoStarOutline className='text-[#F9C612] w-[18px] h-[18px]' />
@@ -55,14 +57,13 @@ const ReviewsCommentsMdt = () => {
                     <IoStarOutline className='text-[#F9C612] w-[18px] h-[18px]' />
                 </div>
             </div>
-            <div className='flex items-center justify-end gap-3 '>
-                <button className='flex items-center gap-3 justify-center border-2 border-[#CFD5E1] px-2 py-1.5 rounded-[4px]'>
+            <div className='flex items-center lg:justify-end gap-3 relative '>
+                <button onClick={handleShowComment} className='flex items-center gap-3 justify-center border-2 border-[#CFD5E1] px-2 py-1.5 rounded-[4px]'>
                     Comments
                     <BiMessageSquareDetail className='text-[#0266E1] w-[14px] h-[14px]'/>
                 </button>
-                <button className='flex items-center gap-3 justify-center border-2 border-[#CFD5E1] px-2 py-2 rounded-[4px]'>
-                    <BsThreeDotsVertical className=''/>
-                </button>
+                <WriteComments handleShowComment={handleShowComment} showComment={showComment} setShowComment={setShowComment}/>
+                <DotsDropDownMdt />
             </div>
         </div>
     </div>

@@ -4,6 +4,8 @@ import { Box } from '@mui/material'
 import { FaAngleDown, FaRegCircle } from 'react-icons/fa6'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { RiLogoutCircleRLine } from "react-icons/ri";
+
 
 const NavBarCompo = ({navLists,showSublink,handleShowLink,handleShowNavBar}) => {
     const pathname = usePathname()
@@ -65,6 +67,12 @@ const NavBarCompo = ({navLists,showSublink,handleShowLink,handleShowNavBar}) => 
                         </div>
                     })
                 }
+            </div>
+            <div  className={`group cursor-pointer mt-16 py-3 my-4 m pl-12 pr-2 flex items-center hover:text-[#fff] bg-[#fff] hover:bg-gradient-to-r hover:from-blue-700 hover:via-blue-700 hover:to-sky-500`}>
+                <div className='mr-8'>
+                    <RiLogoutCircleRLine className='w-[21px] h-[21px] group-hover:text-[#fff] text-[#334851]' />
+                </div>
+                <p className={`text-[18px] group-hover:text-[#fff] text-[#334851] font-[300]`}>Logout</p>
             </div>
         </Box>
         <Box className="absolute top-14 -right-3 z-[1000] flex justify-center items-center w-[30px] h-[30px] rounded-full bg-[#fff] drop-shadow-[0_0_4px_rgba(0,0,0,0.25)]"

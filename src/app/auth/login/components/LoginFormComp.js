@@ -1,19 +1,19 @@
 "use client"
 
 import React from 'react'
-// import Image from 'next/image'
 import InputText from '@/components/common/InputText'
 import InputPassword from '@/components/common/InputPassword'
 import Label from '@/components/common/Label'
 import ButtonPrim from '@/components/common/ButtonPrim'
 import Link from 'next/link'
-import { toast } from "react-hot-toast";
-import axios from 'axios'
 import {useRouter} from "next/navigation";
+import { userLogin } from '@/lib/features/userAuth/userAction'
+import { useDispatch } from 'react-redux'
 
 
 const LoginFormComp = () => {
     const router = useRouter();
+    const dispatch = useDispatch()
     const [email,setEmail] = React.useState("")
     const [password,setPassword] = React.useState("")
     const [keepLoged,setKeepLoged] = React.useState(false)
@@ -32,51 +32,8 @@ const LoginFormComp = () => {
         if(!validateEmail(email)){
             formErr.email = "Email is incorrect"
         }
-        if(password.toString().trim().length<8){
-            formErr.password = "Password should be 8 charater"
-        }
-    }
-
-    const handleFormSubmit = (e)=>{
-        e.preventDefault()
-        handleError()
-        if(Object.keys(formErr).length>0){
-            setFormError(formErr)
-            formErr = {}
-        }else{
-            const data = {
-                email,password,keepLoged
-            }
-            onLogin(data)
-            console.log(data)
-            resolve()
-        }
-    }
-
-    const onLogin = async (user) => {
-        try {
-            setLoading(true);
-            const response = await axios.post("/api/auth/login", {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(user),
-            });
-            console.log(user)
-            console.log("Login success", response);
-
-            if (response.status===200) {
-                toast.success("Login success");
-                router.push("/app/dashboard");
-            } else {
-                // Handle errors
-                toast.error("Try Again! Somthing went wrong");
-            }
-            
-        } catch (error) {
-            console.log(error)
-            toast.error(error.message);
-        } finally{
-            setLoading(false);
+        if(password.toString().trim().length<6){
+            formErr.password = "Password should be 6 charater"
         }
     }
 
@@ -86,14 +43,31 @@ const LoginFormComp = () => {
         setKeepLoged(false)
         setFormError({})
         formErr = {}
+        router.push("/app/dashboard");
     }
+
+    const handleFormSubmit = (e)=>{
+        e.preventDefault()
+        handleError()
+        if(Object.keys(formErr).length>0){
+            setFormError(formErr)
+            formErr = {}
+        }else{
+            const formData = {
+                email,password
+            }
+            const req = {formData,resolve}
+            dispatch(userLogin(req))
+        }
+    }
+
 
   return (
     <div className='w-[100%] sm:w-[568px] mx-auto rounded-[30px] bg-white drop-shadow-[0_0_19px_rgba(0,0,0,0.25)]'>
         <form onSubmit={handleFormSubmit} className='px-4 sm:px-8 py-10'>
             <div className='grid grid-cols-12 gap-4'>
                 <div className='col-span-12'>
-                    <h2 className='text-[40px] font-[500] text-[#334851] text-center'>Log In</h2>
+                    <h2 className='text-[26px] md:text-[40px] font-[500] text-[#334851] text-center'>Log In</h2>
                 </div>
                 <div className='col-span-12 mt-7'>
                     <InputText 
@@ -113,7 +87,6 @@ const LoginFormComp = () => {
                 </div>
                 <div className='col-span-12'>
                     <InputPassword
-                        type={"text"} 
                         htmlFor={"password"}
                         id={"password"}
                         value={password} 

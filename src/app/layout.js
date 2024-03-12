@@ -3,6 +3,7 @@ import { Nunito } from 'next/font/google'
 
 import ThemeWrapper from "./ThemeWrapper";
 import { PageHeaderProvider } from "@/context/PageHeaderContext";
+import ReduxProvider from "@/lib/ReduxProvider";
 
 export const metadata = {
   title: "Create Next App",
@@ -20,11 +21,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={nunito_init.variable}>
+        <ReduxProvider>
           <PageHeaderProvider>
             <ThemeWrapper>
               {children}
             </ThemeWrapper>
           </PageHeaderProvider>
+        </ReduxProvider>
         </body>
     </html>
   );

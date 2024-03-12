@@ -1,8 +1,11 @@
-import Image from "next/image";
-import { redirect } from 'next/navigation'
+import CheckCookiesRedirect from "@/lib/CheckCookiesRedirect";
+
+
 export default function Home() {
-  redirect('auth/login')
+
   return (
-    <p>Home</p>
+   <>
+    <CheckCookiesRedirect></CheckCookiesRedirect>
+   </>
   );
 }

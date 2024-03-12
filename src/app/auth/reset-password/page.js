@@ -1,5 +1,5 @@
 import Image from "next/image";
-import ForgotPasswordForm from "./components/ForgotPasswordForm";
+import ResetPasswordForm from "./components/ResetPasswordForm";
 
 export default function Home() {
   return (
@@ -12,7 +12,7 @@ export default function Home() {
             </div>
           </div>
           <div className="col-span-12 my-10">
-            <ForgotPasswordForm />
+            <ResetPasswordForm />
           </div>
         </div>
       </section>

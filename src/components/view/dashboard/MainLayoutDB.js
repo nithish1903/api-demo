@@ -12,9 +12,7 @@ export default function MainLayoutDB() {
     const dispatch = useDispatch()
 
     React.useEffect(()=>{
-        setTimeout(()=>{
-            dispatch(dashboardActionPost({}))
-        },4000)
+        dispatch(dashboardActionPost({}))
     },[dispatch])
 
   const state = useSelector((state)=>{

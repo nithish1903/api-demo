@@ -88,7 +88,7 @@ const ResetPasswordForm = () => {
     const handleResetPswRequest = async (data)=>{
         try{
             setLoadingTrue()
-            const response  = await axios.post("http://localhost:9024/v1/user/reset-password",data)
+            const response  = await axios.post("http://localhost:9024/v1/user/reset-password",data,{withCredentials: true})
             const resData = response.data
             if(response.status === 200 && resData.data && resData.statuscode === 200 ){
                 setIsSuccessTrue()

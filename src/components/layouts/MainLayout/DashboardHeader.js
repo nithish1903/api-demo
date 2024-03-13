@@ -13,7 +13,7 @@ const DashboardHeader = () => {
             <div className='w-[240px] lg:w-[450px] relative'>
                 <input type='text' className='px-5 lg:px-10 py-5 w-full rounded-full' placeholder='Search'/>
                 <div className=' absolute top-[50%] translate-y-[-50%] right-[40px]'>
-                    <Image src='/assets/images/header/search.svg' width={19} height={19} className='' />
+                    <Image src='/assets/images/header/search.svg' alt='search-bar' width={19} height={19} className='' />
                 </div>
             </div>
         </div>
@@ -23,7 +23,7 @@ const DashboardHeader = () => {
                     <MdOutlineNotificationsActive className='w-[16px] md:w-[24px] h-[16px] md:h-[24px] text-[#fff]'/>
                 </div>
                 <div className='w-[42px] md:w-[50px] h-[42px] md:h-[50px] rounded-full'>
-                    <Image src='/assets/images/header/AnilPic.svg' width={50} height={50} className='' />
+                    <Image src='/assets/images/header/AnilPic.svg' alt='profile-pic' width={50} height={50} className='' />
                 </div>
                 <div className='block md:hidden'>
                     <IoIosArrowDown className='text-[#334851] w-[20px] h-auto' />

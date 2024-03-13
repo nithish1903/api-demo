@@ -1,4 +1,4 @@
-import { setCookiesNext } from "@/lib/cookiesNext"
+import { setCookiesNext } from "@/lib/cookies/cookiesNext"
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import axios from "axios"
 

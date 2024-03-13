@@ -1,7 +1,7 @@
 "use client"
 
 import { Provider } from "react-redux";
-import store from "@/lib/store";
+import store from "@/lib/redux/store";
 import React from 'react'
 
 const ReduxProvider = ({children}) => {

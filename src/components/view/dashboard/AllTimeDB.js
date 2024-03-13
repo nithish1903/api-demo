@@ -9,10 +9,13 @@ import 'react-date-range/dist/theme/default.css';
 import { DateRange } from 'react-date-range';
 import { addDays,format } from 'date-fns';
 import { TiArrowSortedDown } from 'react-icons/ti';
+import { convertToISOFormat } from '@/lib/others/timeConvertion';
+import { useDispatch } from 'react-redux';
+import { dashboardActionPost } from '@/lib/redux/features/dashboard/dashboardAction';
 
 const AllTimeDB = () => {
-
-
+  const dispatch = useDispatch()
+  const [timeRange,setTimeRange] = useState({})
   const [dateRangeValue,setDateRangeValue] = useState("All Time")
 
   const [range,setRange] = useState([
@@ -25,12 +28,20 @@ const AllTimeDB = () => {
   const [open,setOpen] = useState(false)
   const refOne = useRef(null)
 
-
   useEffect(()=>{
     if(range&&range.length>0&&range[0].startDate){
+      // console.log(range[0].startDate,"S" , range[0].endDate , "E")
         setDateRangeValue(`${format(range[0].startDate,"dd/MM/yyyy")} to ${format(range[0].endDate,"dd/MM/yyyy")}`)
+        setTimeRange({start_date:convertToISOFormat(range[0].startDate),end_date:convertToISOFormat(range[0].endDate)})
     }
   },[range])
+
+  useEffect(()=>{
+    if(timeRange&&Object.keys(timeRange).length>0){
+      dispatch(dashboardActionPost(timeRange))
+    }
+  },[dispatch,timeRange])
+
 
 
   useEffect(()=>{

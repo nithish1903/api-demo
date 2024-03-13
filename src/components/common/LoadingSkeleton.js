@@ -3,7 +3,7 @@ import Skeleton from '@mui/material/Skeleton';
 
 export const LoadingSkeletonBasic = () => {
   return (
-    <div className='w-[280px] flex flex-col gap-4 px-3 py-3 border-2 border-[#e1e1e1] rounded-[10px] mx-auto'>
+    <div className='w-[280px] flex flex-col gap-4 px-3 py-3 border-2 border-[#e1e1e1] rounded-[10px] mx-auto bg-white'>
       <div className='flex items-center gap-4'>
       <Skeleton variant="circular" width={60} height={60} />
         <div className='flex flex-col gap-3'>

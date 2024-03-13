@@ -6,10 +6,24 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { RiLogoutCircleRLine } from "react-icons/ri";
 
+import { useDispatch } from "react-redux"
+import Cookies from "js-cookie"
+import { useRouter } from "next/navigation"
+import { userReset } from '@/lib/redux/features/userAuth/userSlice'
+import { dashboardReset } from '@/lib/redux/features/dashboard/dashboardSlice'
 
 const NavBarCompo = ({navLists,showSublink,handleShowLink,handleShowNavBar}) => {
     const pathname = usePathname()
+    const dispatch = useDispatch()
+    const router = useRouter()
 
+    const reset  = ()=>{
+        dispatch(userReset())
+        dispatch(dashboardReset())
+        Cookies.remove("user")
+        Cookies.remove("user-cache")
+        router.push("/auth/login")
+    }
   return (
     <div>
         <Box className="">
@@ -68,7 +82,7 @@ const NavBarCompo = ({navLists,showSublink,handleShowLink,handleShowNavBar}) => 
                     })
                 }
             </div>
-            <div  className={`group cursor-pointer mt-16 py-3 my-4 m pl-12 pr-2 flex items-center hover:text-[#fff] bg-[#fff] hover:bg-gradient-to-r hover:from-blue-700 hover:via-blue-700 hover:to-sky-500`}>
+            <div onClick={()=>{reset()}}  className={`group cursor-pointer mt-16 py-3 my-4 m pl-12 pr-2 flex items-center hover:text-[#fff] bg-[#fff] hover:bg-gradient-to-r hover:from-blue-700 hover:via-blue-700 hover:to-sky-500`}>
                 <div className='mr-8'>
                     <RiLogoutCircleRLine className='w-[21px] h-[21px] group-hover:text-[#fff] text-[#334851]' />
                 </div>

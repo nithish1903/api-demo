@@ -7,7 +7,7 @@ import Label from '@/components/common/Label'
 import ButtonPrim from '@/components/common/ButtonPrim'
 import Link from 'next/link'
 import {useRouter} from "next/navigation";
-import { userLogin } from '@/lib/features/userAuth/userAction'
+import { userLogin } from '@/lib/redux/features/userAuth/userAction'
 import { useDispatch } from 'react-redux'
 import axios from 'axios'
 

@@ -3,7 +3,7 @@ import { Nunito } from 'next/font/google'
 
 import ThemeWrapper from "./ThemeWrapper";
 import { PageHeaderProvider } from "@/context/PageHeaderContext";
-import ReduxProvider from "@/lib/ReduxProvider";
+import ReduxProvider from "@/lib/redux/ReduxProvider";
 
 export const metadata = {
   title: "Create Next App",

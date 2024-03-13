@@ -12,7 +12,15 @@ const initialState = {
 const dashboardSlice = createSlice({
   name:"dashboard",
   initialState,
-  reducers:{},
+  reducers:{
+    dashboardReset:(state)=>{
+      state.dashboardData = {}
+      state.isLoading = false
+      state.isSuccess= false
+      state.isError= false
+      state.errorMessage=null
+    }
+  },
   extraReducers:(builder)=>{
     builder.addCase( dashboardActionPost.pending , (state)=>{
       state.isLoading = true
@@ -37,5 +45,7 @@ const dashboardSlice = createSlice({
     });
   }
 })
+
+export const {dashboardReset} = dashboardSlice.actions
 
 export default dashboardSlice.reducer;

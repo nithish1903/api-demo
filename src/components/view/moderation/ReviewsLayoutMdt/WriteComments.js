@@ -28,7 +28,7 @@ const WriteComments = ({showComment,handleShowComment,setShowComment}) => {
     <>
         {
             (
-                <div ref={refOne} onClick={()=>{setShowComment(false)}} className={`${showComment?"block":"hidden"} absolute bottom-0 -right-4 sm:right-0 z-[200] bg-[#fff] shadow-lg w-[280px] md:w-[400px] lg:w-[500px]`}>
+                <div ref={refOne} onClick={()=>{setShowComment(false)}} className={`${showComment?"block":"hidden"} absolute top-0 -right-4 sm:right-[40%] lg:right-0 z-[200] bg-[#fff] shadow-lg w-[280px] md:w-[400px] lg:w-[500px]`}>
                     <div className='px-4 py-4'>
                         <div>
                             <textarea className='border-2 border-[#334851] w-full px-2 py-2' rows={8}></textarea>

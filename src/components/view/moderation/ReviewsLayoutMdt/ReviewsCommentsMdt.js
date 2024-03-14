@@ -97,7 +97,7 @@ const ReviewsCommentsMdt = ({user,created_at,title,content,rating}) => {
                         <div>
                             {
                                 comments.map((comment,c)=>{
-                                    return <div key={c} className='py-2 px-2 my-3 border-[1px] border-[#CFD5E1] rounded-[10px]'>
+                                    return <div key={c} className='py-2 px-2 my-3 border-[1px] border-[#CFD5E1] rounded-[10px] bg-[#eeeeef]'>
                                         <p className='text-[#334851] text-[13px]'>{comment.comment}</p>
                                     </div>
                                 })

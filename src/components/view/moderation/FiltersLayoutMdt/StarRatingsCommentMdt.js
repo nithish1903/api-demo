@@ -6,10 +6,17 @@ import { IoStarOutline } from "react-icons/io5";
 import { Checkbox, Radio } from '@mui/material';
 import Label from '@/components/common/Label';
 import { useReviewsFilter } from '@/context/ReviewsFilterContext';
+import { useSelector } from 'react-redux';
 
 
 const StarRatingsCommentMdt = () => {
     const { reviewFilter , handleStar_ratings , handleMedia,handleComments }  = useReviewsFilter()
+
+    const {moderationData,isLoading,isSuccess,isError,errorMessage} = useSelector((state)=>{
+        return state.moderation
+      })
+
+      const presentData  = (isSuccess && moderationData && Object.keys(moderationData).length>0 && moderationData.data && Object.keys(moderationData.data).length>0)
     
   return (
         <div className='grid grid-cols-12 gap-3'>
@@ -31,7 +38,7 @@ const StarRatingsCommentMdt = () => {
                         </div>
                     </div>
                     <div className='inline-block bg-[#0266E1] px-1.5 py-1 rounded-[20px]'>
-                        <p className='text-[12px] font-[700] text-[#fff]'>1309</p>
+                        <p className='text-[12px] font-[700] text-[#fff]'>{presentData&&moderationData.data.ratings_counts['1']?moderationData.data.ratings_counts['1']:0 }</p>
                     </div>
                 </div>
                 <div className='flex items-start justify-between mb-1'>
@@ -48,7 +55,7 @@ const StarRatingsCommentMdt = () => {
                         </div>
                     </div>
                     <div className='inline-block bg-[#0266E1] px-1.5 py-1 rounded-[20px]'>
-                        <p className='text-[12px] font-[700] text-[#fff]'>149</p>
+                        <p className='text-[12px] font-[700] text-[#fff]'>{presentData&&moderationData.data.ratings_counts['2']?moderationData.data.ratings_counts['2']:0 }</p>
                     </div>
                 </div>
                 <div className='flex items-start justify-between mb-1'>
@@ -65,7 +72,7 @@ const StarRatingsCommentMdt = () => {
                         </div>
                     </div>
                     <div className='inline-block bg-[#0266E1] px-1.5 py-1 rounded-[20px]'>
-                        <p className='text-[12px] font-[700] text-[#fff]'>59</p>
+                        <p className='text-[12px] font-[700] text-[#fff]'>{presentData&&moderationData.data.ratings_counts['3']?moderationData.data.ratings_counts['3']:0}</p>
                     </div>
                 </div>
                 <div className='flex items-start justify-between mb-1'>
@@ -82,7 +89,7 @@ const StarRatingsCommentMdt = () => {
                         </div>
                     </div>
                     <div className='inline-block bg-[#0266E1] px-1.5 py-1 rounded-[20px]'>
-                        <p className='text-[12px] font-[700] text-[#fff]'>39</p>
+                        <p className='text-[12px] font-[700] text-[#fff]'>{presentData&&moderationData.data.ratings_counts['4']?moderationData.data.ratings_counts['4']:0}</p>
                     </div>
                 </div>
                 <div className='flex items-start justify-between mb-1'>
@@ -99,7 +106,7 @@ const StarRatingsCommentMdt = () => {
                         </div>
                     </div>
                     <div className='inline-block bg-[#0266E1] px-1.5 py-1 rounded-[20px]'>
-                        <p className='text-[12px] font-[700] text-[#fff]'>13</p>
+                        <p className='text-[12px] font-[700] text-[#fff]'>{presentData&&moderationData.data.ratings_counts['5']?moderationData.data.ratings_counts['5']:0}</p>
                     </div>
                 </div>
             </div>

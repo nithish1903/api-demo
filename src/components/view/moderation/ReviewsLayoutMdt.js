@@ -2,7 +2,7 @@
 import Label from '@/components/common/Label';
 import { SelectReact } from '@/components/common/ReactSelect';
 // import { Checkbox } from '@mui/material';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 // import { IoIosRefresh } from "react-icons/io";
 import ReviewsCommentsMdt from './ReviewsLayoutMdt/ReviewsCommentsMdt';
 import { useReviewsFilter } from '@/context/ReviewsFilterContext';
@@ -25,22 +25,42 @@ const options = [
 
 const ReviewsLayoutMdt = () => {
     // const [exportCSV,setExportCSV] = useState(null)
-    const [sortReview,SetSortReview] = useState( options[1] )
+    const {moderationData,isLoading,isSuccess,isError,errorMessage} = useSelector((state)=>{
+      return state.moderation
+    })
+    const presentData  = (isSuccess && moderationData && Object.keys(moderationData).length>0 && moderationData.data && Object.keys(moderationData.data).length>0)
+
     const { reviewFilter,handleSort }  = useReviewsFilter()
 
-    React.useEffect(()=>{
+    const [sortReview,SetSortReview] = useState( options[1] )
+    const [pagination, setPagination] = useState({
+      total: 0,
+      perPage: 10,
+      currentPage: 1
+    });
+
+    useEffect(()=>{
+      if(isSuccess&&moderationData&& Object.keys(moderationData).length>0 && moderationData.pagination){
+        setPagination(prevPagination => ({
+          ...prevPagination,
+          total: moderationData.pagination.total,
+          perPage: moderationData.pagination.per_page
+        }));
+      }
+    },[moderationData,isSuccess])
+
+    useEffect(()=>{
       if(sortReview&&Object.keys(sortReview).length>0&&sortReview.value){
         handleSort(sortReview.value)
       }
     },[sortReview])
 
-    const {moderationData,isLoading,isSuccess,isError,errorMessage} = useSelector((state)=>{
-      return state.moderation
-    })
-
-    console.log(moderationData)
-
-    const presentData  = isSuccess&&moderationData&&Object.keys(moderationData).length>0&&moderationData.data&&Object.keys(moderationData.data).length>0
+    const handlePageChange = (event, page) => {
+      setPagination(prevPagination => ({
+        ...prevPagination,
+        currentPage: page
+      }));
+    };
 
   return (
     <div>
@@ -87,7 +107,18 @@ const ReviewsLayoutMdt = () => {
                   })
                 }
                 <div className='col-span-12 flex justify-center'>
-                  <Pagination count={10} variant="outlined" shape="rounded" />
+                  {
+                    isSuccess&& moderationData&& Object.keys(moderationData).length>0 && moderationData.pagination && (
+                      <Pagination 
+                        count={Math.ceil(pagination.total / pagination.perPage)}
+                        page={pagination.currentPage}
+                        variant="outlined"
+                        shape="rounded"
+                        onChange={handlePageChange} 
+                      />
+                    )
+                  }
+                  
                 </div>
             </div>
           )

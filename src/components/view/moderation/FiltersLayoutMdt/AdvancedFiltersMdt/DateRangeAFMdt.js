@@ -9,9 +9,11 @@ import 'react-date-range/dist/theme/default.css';
 import { DateRange } from 'react-date-range';
 import { addDays,format } from 'date-fns';
 import { TiArrowSortedDown } from 'react-icons/ti';
+import { useReviewsFilter } from '@/context/ReviewsFilterContext';
+import { convertToISOFormat } from '@/lib/others/timeConvertion';
 
 const DateRangeAFMdt = () => {
-
+  const { handleTimeRange }  = useReviewsFilter()
 
   const [dateRangeValue,setDateRangeValue] = useState("All Time")
 
@@ -29,9 +31,9 @@ const DateRangeAFMdt = () => {
   useEffect(()=>{
     if(range&&range.length>0&&range[0].startDate){
         setDateRangeValue(`${format(range[0].startDate,"dd/MM/yyyy")} to ${format(range[0].endDate,"dd/MM/yyyy")}`)
+        handleTimeRange(convertToISOFormat(range[0].startDate),convertToISOFormat(range[0].endDate))
     }
   },[range])
-
 
   useEffect(()=>{
     document.addEventListener("keydown",handleHide,true)
@@ -61,7 +63,7 @@ const DateRangeAFMdt = () => {
             <TiArrowSortedDown />
           </div>
         </div>
-        <div ref={refOne} className='absolute top-12 z-[200] right-14 md:right-0 w-[270px] md:w-[332px]'>
+        <div ref={refOne} className='absolute top-12 z-[200] right-16 sm:right-20 md:right-0 w-[270px] md:w-[332px]'>
             {
                 open && (
                     <div className='border-2 shadow-2xl'>

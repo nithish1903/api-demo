@@ -1,12 +1,7 @@
 import React from 'react'
 
 import { Dropdown, DropdownMenuItem,DropdownNestedMenuItem } from '@/components/common/DropdownCustom';
-
-import { TiArrowSortedDown } from 'react-icons/ti'
 import { ArrowRight } from '@mui/icons-material';
-import { Button } from '@mui/base';
-import { IoMdArrowRoundUp } from 'react-icons/io';
-import { AiOutlineDelete } from 'react-icons/ai';
 import Link from 'next/link';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import { FaSquareXTwitter } from "react-icons/fa6";
@@ -79,7 +74,7 @@ const DotsDropDownMdt = () => {
                     />,
                     othernested.map((ele,e)=>{
                         return <DropdownMenuItem key={e}>
-                                <Link href={ele.link} key={e} className='my-1 mx-3 w-full block  '>
+                                <Link href={ele.link} className='my-1 mx-3 w-full block  '>
                                     <div className='flex items-center'>
                                         {ele.icon()}
                                         {ele.lable}

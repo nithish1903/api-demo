@@ -1,9 +1,13 @@
+
+import { ReviewsFilterProvider } from '@/context/ReviewsFilterContext'
 import React, { Fragment } from 'react'
 
 const layout = ( {children}) => {
   return (
     <Fragment>
-      {children}
+      <ReviewsFilterProvider>
+        {children}
+      </ReviewsFilterProvider>
     </Fragment>
   )
 }

@@ -3,102 +3,123 @@ import React from 'react'
 import { Dropdown, DropdownMenuItem,DropdownNestedMenuItem } from '@/components/common/DropdownCustom';
 
 import { TiArrowSortedDown } from 'react-icons/ti'
-import { ArrowRight } from '@mui/icons-material';
-import { Button } from '@mui/base';
+// import { ArrowRight } from '@mui/icons-material';
 import { IoMdArrowRoundUp } from 'react-icons/io';
 import { AiOutlineDelete } from 'react-icons/ai';
 import Link from 'next/link';
 
-const nestedMenu = [
-    {
-        lable:"Rejected",
-        icon: ()=><AiOutlineDelete />,
-        link:"",
-        nested:[
-            {
-                lable:"Legal transgression",
-                icon: ()=>{},
-                link:"",
-            },
-            {
-                lable:"Profanity / Inappropriate",
-                icon: ()=>{},
-                link:"",
-            },
-            {
-                lable:"Foreign language",
-                icon: ()=>{},
-                link:"",
-            },
-            {
-                lable:"Contains private information",
-                icon: ()=>{},
-                link:"",
-            },
-            {
-                lable:"Unrelated to the product or service",
-                icon: ()=>{},
-                link:"",
-            },
-            {
-                lable:"False or misleading",
-                icon: ()=>{},
-                link:"",
-            },
-            {
-                lable:"Fake",
-                icon: ()=>{},
-                link:"",
-            },
-            {
-                lable:"Other (Write your own)",
-                icon: ()=>{},
-                link:"",
-            },
-        ]
-    },
-]
+// const nestedMenu = [
+//     {
+//         lable:"Rejected",
+//         icon: ()=><AiOutlineDelete />,
+//         link:"",
+//         nested:[
+//             {
+//                 lable:"Legal transgression",
+//                 icon: ()=>{},
+//                 link:"",
+//             },
+//             {
+//                 lable:"Profanity / Inappropriate",
+//                 icon: ()=>{},
+//                 link:"",
+//             },
+//             {
+//                 lable:"Foreign language",
+//                 icon: ()=>{},
+//                 link:"",
+//             },
+//             {
+//                 lable:"Contains private information",
+//                 icon: ()=>{},
+//                 link:"",
+//             },
+//             {
+//                 lable:"Unrelated to the product or service",
+//                 icon: ()=>{},
+//                 link:"",
+//             },
+//             {
+//                 lable:"False or misleading",
+//                 icon: ()=>{},
+//                 link:"",
+//             },
+//             {
+//                 lable:"Fake",
+//                 icon: ()=>{},
+//                 link:"",
+//             },
+//             {
+//                 lable:"Other (Write your own)",
+//                 icon: ()=>{},
+//                 link:"",
+//             },
+//         ]
+//     },
+// ]
 
-let nested =[
+// let nested =[
+//     {
+//         lable:"Legal transgression",
+//         icon: ()=>{},
+//         link:"",
+//     },
+//     {
+//         lable:"Profanity / Inappropriate",
+//         icon: ()=>{},
+//         link:"",
+//     },
+//     {
+//         lable:"Foreign language",
+//         icon: ()=>{},
+//         link:"",
+//     },
+//     {
+//         lable:"Contains private information",
+//         icon: ()=>{},
+//         link:"",
+//     },
+//     {
+//         lable:"Unrelated to the product or service",
+//         icon: ()=>{},
+//         link:"",
+//     },
+//     {
+//         lable:"False or misleading",
+//         icon: ()=>{},
+//         link:"",
+//     },
+//     {
+//         lable:"Fake",
+//         icon: ()=>{},
+//         link:"",
+//     },
+//     {
+//         lable:"Other (Write your own)",
+//         icon: ()=>{},
+//         link:"",
+//     },
+// ]
+
+
+const othernested = [
     {
-        lable:"Legal transgression",
+        lable:"Select",
         icon: ()=>{},
         link:"",
+        nested:[]
     },
     {
-        lable:"Profanity / Inappropriate",
+        lable:"Publish",
         icon: ()=>{},
         link:"",
+        nested:[]
     },
     {
-        lable:"Foreign language",
+        lable:"Reject",
         icon: ()=>{},
         link:"",
-    },
-    {
-        lable:"Contains private information",
-        icon: ()=>{},
-        link:"",
-    },
-    {
-        lable:"Unrelated to the product or service",
-        icon: ()=>{},
-        link:"",
-    },
-    {
-        lable:"False or misleading",
-        icon: ()=>{},
-        link:"",
-    },
-    {
-        lable:"Fake",
-        icon: ()=>{},
-        link:"",
-    },
-    {
-        lable:"Other (Write your own)",
-        icon: ()=>{},
-        link:"",
+        nested:[]
     },
 ]
 
@@ -120,18 +141,16 @@ const PublishedDrepDown = () => {
                 <TiArrowSortedDown className=''/>
             </button>}
                 menu={[
-                    <DropdownNestedMenuItem
-                    label="Rejected"
-                    rightIcon={<ArrowRight />}
-                    leftIcon={<AiOutlineDelete />}
-                    menu={[
-                        nested.map((itemnest,i)=>{
-                            return <Link href={itemnest.link} key={i} className='my-1 mx-3 w-full block  '>
-                                {itemnest.lable}
-                            </Link>
-                        })
-                    ]}
-                    />
+                    othernested.map((ele,e)=>{
+                        return <DropdownMenuItem key={e}>
+                                <Link href={ele.link} className='my-1 mx-3 w-full block  '>
+                                    <div className='flex items-center'>
+                                        {ele.icon()}
+                                        {ele.lable}
+                                    </div>
+                                </Link>
+                        </DropdownMenuItem>
+                    })
                 ]}
                 />
     </>

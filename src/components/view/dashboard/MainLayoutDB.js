@@ -26,10 +26,34 @@ export default function MainLayoutDB() {
 
   // console.log(dashboardData,isLoading,isSuccess,isError,errorMessage)
 
+  const countReview = (data)=>{
+    let str = ""
+    let arr = []
+    if(data.new_product_reviews_count===0 && data.new_site_reviews_count===0 && data.new_product_qa_count===0){
+      arr.push("0")
+    }
+    if(data.new_product_reviews_count>0){
+      arr.push(`${data.new_product_reviews_count} new product reviews`)
+    }
+    if(data.new_site_reviews_count>0){
+      arr.push(`${data.new_site_reviews_count} new site reviews`)
+    }
+    if(data.new_product_qa_count>0){
+      arr.push(`${data.new_product_qa_count} new questions`)
+    }
+    if(arr.length>0){
+      str = arr.join(', ')
+    }else{
+      str = arr.join('')
+    }
+    return str
+  }
+
+
   if(isError){
 
   }
-
+  // You got 2 new site reviews, 2 new product reviews, 2 new questions
   return (
     <Box>
       <>
@@ -49,7 +73,7 @@ export default function MainLayoutDB() {
           </div>
           {
             isLoading ? (
-              <div className="w-full h-[80vh] grid grid-cols-12 gap-4 py-14">
+              <div className="w-full h-auto md:h-[80vh] grid grid-cols-12 gap-4 py-14">
                   {
                      [...Array(3)].map((e,i)=>{
                       return <div className='col-span-12 md:col-span-6 lg:col-span-4' key={i}><LoadingSkeletonBasic /></div>
@@ -61,14 +85,14 @@ export default function MainLayoutDB() {
                 <div className="col-span-12 mt-10">
                   <ReviewRequestCards dashboardData={dashboardData}/>
                 </div>
-                {/* <div className="col-span-12  lg:col-span-7">
-                  <ReviewsBoxDB />
-                </div> */}
+                <div className="col-span-12  lg:col-span-7">
+                  {/* <ReviewsBoxDB /> */}
+                </div>
                 <div className="col-span-12 lg:col-span-5">
                   <div style={{ boxShadow:'0px 0px 10px 5px #F8F8F8 inset'}} className="h-[633px] p-7 mt-6 bg-slate-300 rounded-[10px]">
                     <div>
                       <h4 className="font-[600] text-[28px]">Hi Ankit Bopche,</h4>
-                      <p className="text-[18px] font-[600]">You Have {dashboardData.new_product_reviews_count} uncompleted optimization actions.</p>
+                        <p className="text-[18px] font-[600]">You Have {dashboardData && Object.keys(dashboardData).length>0 ? countReview(dashboardData) : "Null"} uncompleted optimization actions.</p>
                     </div>
                   </div>
                 </div>

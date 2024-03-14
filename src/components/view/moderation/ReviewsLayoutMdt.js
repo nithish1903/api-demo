@@ -30,7 +30,10 @@ const ReviewsLayoutMdt = () => {
     })
     const presentData  = (isSuccess && moderationData && Object.keys(moderationData).length>0 && moderationData.data && Object.keys(moderationData.data).length>0)
 
-    const { reviewFilter,handleSort }  = useReviewsFilter()
+    const {reviewFilter, handleSort }  = useReviewsFilter()
+
+    console.log(moderationData)
+    
 
     const [sortReview,SetSortReview] = useState( options[1] )
     const [pagination, setPagination] = useState({
@@ -65,7 +68,7 @@ const ReviewsLayoutMdt = () => {
   return (
     <div>
         <div>
-          <h5>Reviews ({presentData ? moderationData.data.results.length : "Null"})</h5>
+          <h5>Reviews ({presentData ? moderationData.data.results.length : "0"})</h5>
         </div>
         <div className='grid grid-cols-12 gap-4 my-6'>
           <div className='col-span-12 lg:col-span-4 flex items-center gap-3'>
@@ -102,15 +105,15 @@ const ReviewsLayoutMdt = () => {
           ) : (
             <div className='grid grid-cols-12 gap-5'>
                 {
-                  presentData && moderationData.data.results.map((result,r)=>{
+                  presentData && (reviewFilter.content_type === "product_reviews" || reviewFilter.content_type === "site_reviews"  ) && moderationData.data.results.map((result,r)=>{
                     return <div className='col-span-12' key={r}><ReviewsCommentsMdt {...result}/></div>
                   })
                 }
                 <div className='col-span-12 flex justify-center'>
                   {
-                    isSuccess&& moderationData&& Object.keys(moderationData).length>0 && moderationData.pagination && (
+                    isSuccess&& moderationData&& Object.keys(moderationData).length>0 && Object.keys(moderationData.data).length>0 && moderationData.data.results.length>0 && moderationData.pagination && Object.keys(moderationData.pagination).length>0 && (
                       <Pagination 
-                        count={Math.ceil(pagination.total / pagination.perPage)}
+                        count={Math.ceil(pagination.total / pagination.perPage)?Math.ceil(pagination.total / pagination.perPage):0}
                         page={pagination.currentPage}
                         variant="outlined"
                         shape="rounded"

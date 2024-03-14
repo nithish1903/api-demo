@@ -8,8 +8,11 @@ import ButtonPrim from '@/components/common/ButtonPrim'
 import Link from 'next/link'
 import {useRouter} from "next/navigation";
 import { userLogin } from '@/lib/redux/features/userAuth/userAction'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios'
+import useAPi from '@/hooks/useApi'
+import { ErrorSnackbar } from '@/components/common/Snackbars'
+import { userReset } from '@/lib/redux/features/userAuth/userSlice'
 
 
 const LoginFormComp = () => {
@@ -19,7 +22,7 @@ const LoginFormComp = () => {
     const [password,setPassword] = React.useState("")
     const [keepLoged,setKeepLoged] = React.useState(false)
     const [formError,setFormError] = React.useState({})
-    const [loading, setLoading] = React.useState(false);
+    // setErrorMessage(error.response.data.message)
 
     let formErr  = {}
 
@@ -61,10 +64,25 @@ const LoginFormComp = () => {
             dispatch(userLogin(req))
         }
     }
+    
+    const {login,isLoading,isSuccess,isError,errorMessage} = useSelector((state)=>{
+        return state.user
+    })
+
+    const handleErrorMessage = (errorMessage)=>{ 
+        if(errorMessage && errorMessage.response && (errorMessage.response.status===401 || errorMessage.response.status===404) && errorMessage.response.data){
+            return errorMessage.response.data.data
+        }
+        if(errorMessage && errorMessage.message){
+            return errorMessage.message
+        }
+    }
 
 
 
   return (
+   <>
+    <ErrorSnackbar open={isError} handleCloseSnack={()=>{dispatch(userReset())}} message={errorMessage && handleErrorMessage(errorMessage)} />
     <div className='w-[100%] sm:w-[568px] mx-auto rounded-[30px] bg-white drop-shadow-[0_0_19px_rgba(0,0,0,0.25)]'>
         <form onSubmit={handleFormSubmit} className='px-4 sm:px-8 py-10'>
             <div className='grid grid-cols-12 gap-4'>
@@ -120,6 +138,7 @@ const LoginFormComp = () => {
             </div>
         </form>
     </div>
+   </>
   )
 }
 

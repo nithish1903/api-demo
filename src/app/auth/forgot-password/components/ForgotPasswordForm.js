@@ -5,16 +5,15 @@ import ButtonPrim from '@/components/common/ButtonPrim'
 import Link from 'next/link'
 import axios from 'axios'
 import useAPi from '@/hooks/useApi'
-import useToggle from '@/hooks/useToggle'
 import { ErrorSnackbar, SuccessSnackbars } from '@/components/common/Snackbars'
-import BasicSkeleton, { LoadingSkeletonBasic } from '@/components/common/LoadingSkeleton'
+import { LoadingSkeletonBasic } from '@/components/common/LoadingSkeleton'
 
 
 const ForgotPasswordForm = () => {
 
     const [email,setEmail] = React.useState("")
     const [formError,setFormError] = React.useState({})
-    const {toggle ,setToggle } = useToggle()
+
     const { 
         isLoading,
         setLoadingFalse,

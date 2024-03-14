@@ -11,7 +11,7 @@ const ReviewsFilterProvider = ({children}) => {
             "search_keyword": "", // it can be empty
             "content_type": "product_reviews", // product_reviews, site_reviews, product_question_answers
             "status": "", // pending, approved, rejected, trash
-            "star_ratings": [1,2], // [1,2,3,4,5]
+            "star_ratings": [], // [1,2,3,4,5]
             "media": [], // ['image','video']
             "comments": false, // true/false
             "sort": "oldest" //oldest, newest, highestRating,lowestRating

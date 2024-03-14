@@ -9,7 +9,7 @@ const store = configureStore({
         user:userSlice,
         dashboard:dashboardSlice,
         moderation:moderationSlice,
-    }
+    },
 })
 
 

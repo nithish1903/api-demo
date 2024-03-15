@@ -1,18 +1,15 @@
 import React, { useState } from 'react'
-import { IoIosStar } from "react-icons/io";
-import { LuInfo } from "react-icons/lu";
-import { IoStarOutline } from 'react-icons/io5';
-import { BiMessageSquareDetail, BiSolidEdit } from "react-icons/bi";
+
+import { BiMessageSquareDetail } from "react-icons/bi";
 import PublishedDrepDown from './PublishedDrepDown';
 // import DotsDropDownMdt from './DotsDropDownMdt';
 import WriteComments from './WriteComments';
 import { Button } from '@mui/material';
 import useToggle from '@/hooks/useToggle';
 import { formatDateModerationReview } from '@/lib/others/timeConvertion';
-import { MdDelete } from 'react-icons/md';
 import ListCommentsRCMdt from './ListComments/ListCommentsRCMdt';
 
-const ReviewsCommentsMdt = ({user,created_at,title,content,rating,comment,_id}) => {
+const ReviewsCommentsQAMdt = ({name,email,created_at,question,comment,_id}) => {
     const [writeComment,setWriteComment] = useState("")
     const [privateComment,setPrivateComment] = useState(false)
     const [showWriteComment,setShowWriteComment] = useState(false)
@@ -24,8 +21,6 @@ const ReviewsCommentsMdt = ({user,created_at,title,content,rating,comment,_id}) 
     } 
     const { toggle,handleToggle } = useToggle()
 
-    const countMinsStar = 5-rating
-
   return (
     <div className='grid grid-cols-12 gap-4 px-3 lg:px-8 py-8 border-2 border-[#CFD5E1] rounded-[10px]'>
         <div className='col-span-12 lg:col-span-3 grid grid-cols-1 content-between h-[100%] gap-5 lg:gap-2'>
@@ -33,10 +28,10 @@ const ReviewsCommentsMdt = ({user,created_at,title,content,rating,comment,_id}) 
                 {/* <div>
                     <Checkbox sx={{padding:"0px"}}/>
                 </div> */}
-                <div>
-                    <h6 className='font-[700]'>{user.name?user.name:"Null"}</h6>
+                 <div>
+                    <h6 className='font-[700]'>{name?name:"Null"}</h6>
                     <p className='text-[#bfbfbf] text-[16px]'>{created_at?formatDateModerationReview(created_at) :"Null"}</p>
-                    <p className='text-[12px] mt-5'>{user.email?user.email:"Null"} <span className='block text-[#0266E1] font-[600]'>(View Timeline)</span></p>
+                    <p className='text-[12px] mt-5'>{email?email:"Null"} <span className='block text-[#0266E1] font-[600]'>(View Timeline)</span></p>
                 </div>
                 
             </div>
@@ -46,34 +41,10 @@ const ReviewsCommentsMdt = ({user,created_at,title,content,rating,comment,_id}) 
         </div>
         <div className='col-span-12 lg:col-span-6'>
             <div>
-                <h5>{title?title:"Null"}</h5>
-                <div className='my-6'>
-                    <p className='text-[12px]'>Product Name:<span className='text-[#0266E1]'>Music Wizard Wireless Headphone - Black</span></p>
-                </div>
-                <div>
-                    <p className='text-[17px]'>{content?content:"Null"} <span className='font-bold'> Highly recommended</span>!</p>
-                </div>
+                <h5>{question?question:"Null"}</h5>
             </div>
         </div>
         <div className='col-span-12 lg:col-span-3 grid grid-cols-1 lg:content-between h-[100%] gap-4'>
-            <div className=''>
-                <div className='flex items-center lg:justify-end gap-2'>
-                    <LuInfo className='text-[#B6B6B6]'/>
-                    <p className='text-[12px] text-[#B6B6B6]'>Incentivized Review</p>
-                </div>
-                <div className='flex items-center lg:justify-end gap-2'>
-                {rating && (
-                    <>
-                        {[...Array(rating)].map((e, i) => (
-                            <IoIosStar key={i} className='text-[#F9C612] w-[18px] h-[18px]' />
-                        ))}
-                        {[...Array(countMinsStar)].map((x, i) => (
-                            <IoStarOutline key={i} className='text-[#F9C612] w-[18px] h-[18px]' />
-                        ))}
-                    </>
-                )}
-                </div>
-            </div>
             <div className='flex items-center lg:justify-end gap-3 relative'>
                 <button onClick={handleShowWriteComment} className='flex items-center gap-3 justify-center border-2 border-[#CFD5E1] px-2 py-1.5 rounded-[4px]'>
                     Comments
@@ -107,4 +78,4 @@ const ReviewsCommentsMdt = ({user,created_at,title,content,rating,comment,_id}) 
   )
 }
 
-export default ReviewsCommentsMdt
+export default ReviewsCommentsQAMdt

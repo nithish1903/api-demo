@@ -24,3 +24,20 @@ export function SmallModalBox({open,handleModal,children}) {
     </>
   );
 }
+
+export function ModalCustomBox({open,handleModal,className,children}) {
+  return (
+    <>
+      <Modal
+        open={open}
+        onClose={handleModal}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style} className={`${className?className:"w-[90%] lg:w-[500px]"} w-[95%] md:w-[400px] mx-auto absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]  px-2 md:px-3 py-2.5 md:py-4 border-[3px] border-[#CFD5E1] rounded-[8px]`}>
+            {children}
+        </Box>
+      </Modal>
+    </>
+  );
+}

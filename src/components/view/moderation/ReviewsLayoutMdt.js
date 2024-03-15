@@ -9,6 +9,7 @@ import { useReviewsFilter } from '@/context/ReviewsFilterContext';
 import { Pagination } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { LoadingSkeletonReview } from '@/components/common/LoadingSkeleton';
+import ReviewsCommentsQAMdt from './ReviewsLayoutMdt/ReviewsCommentsQAMdt';
 
 const options = [
   { value: 'newest', label: 'Date (newest first)' },
@@ -107,6 +108,11 @@ const ReviewsLayoutMdt = () => {
                 {
                   presentData && (reviewFilter.content_type === "product_reviews" || reviewFilter.content_type === "site_reviews"  ) && moderationData.data.results.map((result,r)=>{
                     return <div className='col-span-12' key={r}><ReviewsCommentsMdt {...result}/></div>
+                  })
+                }
+                 {
+                  presentData && (reviewFilter.content_type === "product_question_answers" ) && moderationData.data.results.map((result,r)=>{
+                    return <div className='col-span-12' key={r}><ReviewsCommentsQAMdt {...result}/></div>
                   })
                 }
                 <div className='col-span-12 flex justify-center'>

@@ -17,7 +17,7 @@ const ModerationLayout = () => {
   },[reviewFilter,dipatch])
 
   return (
-    <div className=''>
+    <div className='mb-10'>
         <ContainerBox>
             <FiltersLayoutMdt />
         </ContainerBox>

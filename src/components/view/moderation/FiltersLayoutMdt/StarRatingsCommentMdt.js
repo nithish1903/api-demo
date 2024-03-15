@@ -27,7 +27,7 @@ const StarRatingsCommentMdt = () => {
                 <div className='flex items-start justify-between mb-1'>
                     <div className='flex items-center gap-2'>
                         <div>
-                            <Checkbox sx={{padding:"0px"}} checked={reviewFilter.star_ratings.includes(1)} onChange={()=>{handleStar_ratings(1)}}/>
+                            <Checkbox sx={{padding:"0px"}} checked={reviewFilter.star_ratings.includes(5)} onChange={()=>{handleStar_ratings(5)}}/>
                         </div>
                         <div className='flex items-center gap-2'>
                             <IoIosStar className='text-[#F9C612] w-[18px] h-[18px]' />
@@ -38,13 +38,13 @@ const StarRatingsCommentMdt = () => {
                         </div>
                     </div>
                     <div className='inline-block bg-[#0266E1] px-1.5 py-1 rounded-[20px]'>
-                        <p className='text-[12px] font-[700] text-[#fff]'>{presentData&&moderationData.data.ratings_counts['1']?moderationData.data.ratings_counts['1']:0 }</p>
+                        <p className='text-[12px] font-[700] text-[#fff]'>{presentData&&moderationData.data.ratings_counts['5']?moderationData.data.ratings_counts['5']:0 }</p>
                     </div>
                 </div>
                 <div className='flex items-start justify-between mb-1'>
                     <div className='flex items-center gap-2'>
                         <div>
-                            <Checkbox sx={{padding:"0px"}} checked={reviewFilter.star_ratings.includes(2)} onChange={()=>{handleStar_ratings(2)}} />
+                            <Checkbox sx={{padding:"0px"}} checked={reviewFilter.star_ratings.includes(4)} onChange={()=>{handleStar_ratings(4)}} />
                         </div>
                         <div className='flex items-center gap-2'>
                             <IoIosStar className='text-[#F9C612] w-[18px] h-[18px]' />
@@ -55,7 +55,7 @@ const StarRatingsCommentMdt = () => {
                         </div>
                     </div>
                     <div className='inline-block bg-[#0266E1] px-1.5 py-1 rounded-[20px]'>
-                        <p className='text-[12px] font-[700] text-[#fff]'>{presentData&&moderationData.data.ratings_counts['2']?moderationData.data.ratings_counts['2']:0 }</p>
+                        <p className='text-[12px] font-[700] text-[#fff]'>{presentData&&moderationData.data.ratings_counts['4']?moderationData.data.ratings_counts['4']:0 }</p>
                     </div>
                 </div>
                 <div className='flex items-start justify-between mb-1'>
@@ -78,7 +78,7 @@ const StarRatingsCommentMdt = () => {
                 <div className='flex items-start justify-between mb-1'>
                     <div className='flex items-center gap-2'>
                         <div>
-                            <Checkbox sx={{padding:"0px"}} checked={reviewFilter.star_ratings.includes(4)} onChange={()=>{handleStar_ratings(4)}}/>
+                            <Checkbox sx={{padding:"0px"}} checked={reviewFilter.star_ratings.includes(2)} onChange={()=>{handleStar_ratings(2)}}/>
                         </div>
                         <div className='flex items-center gap-2'>
                             <IoIosStar className='text-[#F9C612] w-[18px] h-[18px]' />
@@ -89,13 +89,13 @@ const StarRatingsCommentMdt = () => {
                         </div>
                     </div>
                     <div className='inline-block bg-[#0266E1] px-1.5 py-1 rounded-[20px]'>
-                        <p className='text-[12px] font-[700] text-[#fff]'>{presentData&&moderationData.data.ratings_counts['4']?moderationData.data.ratings_counts['4']:0}</p>
+                        <p className='text-[12px] font-[700] text-[#fff]'>{presentData&&moderationData.data.ratings_counts['2']?moderationData.data.ratings_counts['2']:0}</p>
                     </div>
                 </div>
                 <div className='flex items-start justify-between mb-1'>
                     <div className='flex items-center gap-2'>
                         <div>
-                            <Checkbox sx={{padding:"0px"}} checked={reviewFilter.star_ratings.includes(5)} onChange={()=>{handleStar_ratings(5)}}/>
+                            <Checkbox sx={{padding:"0px"}} checked={reviewFilter.star_ratings.includes(1)} onChange={()=>{handleStar_ratings(1)}}/>
                         </div>
                         <div className='flex items-center gap-2'>
                             <IoIosStar className='text-[#F9C612] w-[18px] h-[18px]' />
@@ -106,7 +106,7 @@ const StarRatingsCommentMdt = () => {
                         </div>
                     </div>
                     <div className='inline-block bg-[#0266E1] px-1.5 py-1 rounded-[20px]'>
-                        <p className='text-[12px] font-[700] text-[#fff]'>{presentData&&moderationData.data.ratings_counts['5']?moderationData.data.ratings_counts['5']:0}</p>
+                        <p className='text-[12px] font-[700] text-[#fff]'>{presentData&&moderationData.data.ratings_counts['1']?moderationData.data.ratings_counts['1']:0}</p>
                     </div>
                 </div>
             </div>

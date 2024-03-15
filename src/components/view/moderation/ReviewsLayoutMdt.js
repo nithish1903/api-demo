@@ -31,9 +31,9 @@ const ReviewsLayoutMdt = () => {
     })
     const presentData  = (isSuccess && moderationData && Object.keys(moderationData).length>0 && moderationData.data && Object.keys(moderationData.data).length>0)
 
-    const {reviewFilter, handleSort }  = useReviewsFilter()
+    const {reviewFilter, handleSort ,handlePage}  = useReviewsFilter()
 
-    const [sortReview,SetSortReview] = useState( options[1] )
+    const [sortReview,SetSortReview] = useState( options[0] )
     const [pagination, setPagination] = useState({
       total: 0,
       perPage: 10,
@@ -61,6 +61,7 @@ const ReviewsLayoutMdt = () => {
         ...prevPagination,
         currentPage: page
       }));
+      handlePage(Number(page))
     };
 
   return (
@@ -93,7 +94,7 @@ const ReviewsLayoutMdt = () => {
         </div>
         {
           isLoading ? (
-              <div className="w-full h-auto md:h-[80vh] grid grid-cols-12 gap-4 py-14">
+              <div className="w-full grid grid-cols-12 gap-4 py-14">
                   {
                     [...Array(3)].map((e,i)=>{
                       return <div className='col-span-12' key={i}><LoadingSkeletonReview className={"md:w-[90%]"}/></div>
@@ -102,6 +103,8 @@ const ReviewsLayoutMdt = () => {
               </div>
           ) : (
             <div className='grid grid-cols-12 gap-5'>
+              {presentData && moderationData.data.results && moderationData.data.results.length !==0 ? (
+                <>
                 {
                   presentData && (reviewFilter.content_type === "product_reviews" || reviewFilter.content_type === "site_reviews"  ) && moderationData.data.results.map((result,r)=>{
                     return <div className='col-span-12' key={r}><ReviewsCommentsMdt {...result}/></div>
@@ -124,8 +127,17 @@ const ReviewsLayoutMdt = () => {
                       />
                     )
                   }
-                  
                 </div>
+                </>
+              ) :  (
+                <>
+                  <div className='col-span-12'>
+                    <div className='bg-[#D4E6FD] flex justify-center items-center rounded-[10px] w-[90%] mx-auto py-10'>
+                      <h5>No Comments</h5>
+                    </div>
+                  </div>
+                </>
+              ) }
             </div>
           )
         }

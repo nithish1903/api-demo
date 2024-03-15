@@ -8,10 +8,11 @@ import NavBarCompo from './NavBarCompo';
 import DashboardHeader from './DashboardHeader';
 import { usePathname } from 'next/navigation'
 import PageHeaderLayout from './PageHeaderLayout';
-import { TbMailCog } from "react-icons/tb";
 import { RiBillLine } from "react-icons/ri";
 import { LuUserCog2 ,} from "react-icons/lu";
 import { AiOutlineControl } from "react-icons/ai";
+import { LuSettings } from "react-icons/lu";
+
 
 
 const AppLayout = React.memo(({children}) => {
@@ -54,9 +55,9 @@ const AppLayout = React.memo(({children}) => {
             subLink:[]
         },
         {
-            label:"Email Settings",
-            link:"/app/email-settings",
-            icon:(className)=><TbMailCog  className={`${className}`}/>,
+            label:"Settings",
+            link:"/app/settings",
+            icon:(className)=><LuSettings  className={`${className}`}/>,
             subLink:[]
         },
         {

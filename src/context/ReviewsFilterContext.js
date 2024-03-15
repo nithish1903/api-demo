@@ -6,6 +6,7 @@ const ReviewsFilterContext = createContext()
 const ReviewsFilterProvider = ({children}) => {
     const [reviewFilter, setReviewFilter] = useState(
         {
+            "page": 1,
             "start_date": "", // it can be empty
             "end_date": "", // it can be empty
             "search_keyword": "", // it can be empty
@@ -14,9 +15,16 @@ const ReviewsFilterProvider = ({children}) => {
             "star_ratings": [], // [1,2,3,4,5]
             "media": [], // ['image','video']
             "comments": false, // true/false
-            "sort": "oldest" //oldest, newest, highestRating,lowestRating
+            "sort": "newest" //oldest, newest, highestRating,lowestRating
         }
       );
+
+      const handlePage = (value)=>{
+        setReviewFilter((preValue)=>({
+            ...preValue,
+            ["page"]:value
+        }))
+      }
 
       const handleTimeRange = (start_date,end_date)=>{
         setReviewFilter((preValue)=>({
@@ -97,7 +105,8 @@ const ReviewsFilterProvider = ({children}) => {
         handleStar_ratings,
         handleMedia,
         handleComments,
-        handleSort
+        handleSort,
+        handlePage,
     }
   return (
     <ReviewsFilterContext.Provider value={contextValue}>{children}</ReviewsFilterContext.Provider>

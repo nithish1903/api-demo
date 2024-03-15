@@ -33,10 +33,10 @@ const AdvancedFiltersMdt = () => {
       name:"Rejected",
       value:"rejected",
     },
-    {
-      name:"Escalated",
-      value:"trash",
-    },
+    // {
+    //   name:"Escalated",
+    //   value:"trash",
+    // },
   ]
 
   return (

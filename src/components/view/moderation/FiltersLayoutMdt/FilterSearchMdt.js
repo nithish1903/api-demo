@@ -10,11 +10,14 @@ const FilterSearchMdt = () => {
     const { reviewFilter , handleSearch_keyword }  = useReviewsFilter()
 
   return (
-    <div className='grid grid-cols-12 gap-4'>
+    <div className='grid grid-cols-12 gap-3'>
+        <div className='col-span-12'>
+          <h6 className='font-[700]'>Search</h6>
+        </div>
         <div className='col-span-12 pb-6 border-b-2 border-[#334851]'>
-            <div className=' relative'>
+            <div className='relative'>
                 <input 
-                    className='pl-8 pr-4 py-4 border-2 border-[#CFD5E1] rounded-[6px] w-full' 
+                    className='pl-8 pr-3 py-2 border-2 border-[#CFD5E1] rounded-[6px] w-full' 
                     placeholder='Search content & email address' 
                     value={reviewFilter.search_keyword}
                     onChange={(e)=>{

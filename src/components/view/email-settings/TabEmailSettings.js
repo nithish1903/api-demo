@@ -1,11 +1,16 @@
 "use client"
 import React, { useState } from 'react'
 import GeneralSettingsEmail from './tabs/GeneralSettingsEmail'
-import BlacklistEmail from './tabs/BlacklistEmail'
-import PromotedProductsEmail from './tabs/PromotedProductsEmail'
+// import BlacklistEmail from './tabs/BlacklistEmail'
+// import PromotedProductsEmail from './tabs/PromotedProductsEmail'
 import LooksFeelEmail from './tabs/LooksFeelEmail'
 
-const tabs = ["General Settings","Blacklist","Promoted Products","Looks & Feel"]
+const tabs = [
+    "General Settings",
+    // "Blacklist",
+    // "Promoted Products",
+    "Looks & Feel"
+]
 
 const TabEmailSettings = () => {
     const [currentTab,setCurrentTab] = useState(tabs[0])
@@ -14,6 +19,8 @@ const TabEmailSettings = () => {
         setCurrentTab(value)
     }
     
+
+
   return (
     <div>
         <div className='flex flex-row gap-3 overflow-x-scroll overflow-y-hidden scroll-m-0 scroll-p-0'>
@@ -32,14 +39,14 @@ const TabEmailSettings = () => {
             {
                 currentTab === tabs[0] && <GeneralSettingsEmail />
             }
-            {
+            {/* {
                 currentTab === tabs[1] && <BlacklistEmail />
             }
             {
                 currentTab === tabs[2] && <PromotedProductsEmail />
-            }
+            } */}
             {
-                 currentTab === tabs[3] && <LooksFeelEmail />
+                 currentTab === tabs[1] && <LooksFeelEmail />
             }
         </div>
     </div>

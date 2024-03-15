@@ -8,12 +8,12 @@ export default function Dashboard() {
 
   return (
     <Box>
-      <PageHeaderComp title={"Email Settings"} review={""} />
+      <PageHeaderComp title={"Settings"} review={""} />
       <ContainerBox>
           <div className="grid grid-cols-12 gap-4">
             <div className="col-span-12">
               <div className="">
-                <h5>Email Settings</h5>
+                <h5>Settings</h5>
               </div>
             </div>
             <div className="col-span-12">

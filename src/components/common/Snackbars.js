@@ -98,3 +98,39 @@ export function SuccessSnackbars({open,handleCloseSnack,message}) {
       </>
     );
   }
+
+
+
+export function ErrorReduxSnackbar({open:openBox,handleCloseSnack,message}) {
+
+  const [state, setState] = React.useState({
+    vertical: 'top',
+    horizontal: 'center',
+    Transition: SlideTransition,
+  });
+
+  const { vertical, horizontal ,Transition } = state;
+
+  const [open,setOpen] = React.useState(openBox)
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return  handleCloseSnack(setOpen);
+    } 
+    handleCloseSnack(setOpen)
+  };
+
+  return (
+    <>
+      <Snackbar
+        anchorOrigin={{ vertical, horizontal }}
+        open={open}
+        onClose={handleClose}
+        message={message}
+        action={<Action handleClose={handleClose} />}
+        autoHideDuration={5000}
+        TransitionComponent={Transition}
+      />
+    </>
+  );
+}

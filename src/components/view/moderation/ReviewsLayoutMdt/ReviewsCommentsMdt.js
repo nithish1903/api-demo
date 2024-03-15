@@ -94,7 +94,11 @@ const ReviewsCommentsMdt = ({user,created_at,title,content,rating,comment,_id}) 
                                 <div>
                                     {
                                         comment.map((comment,c)=>{
-                                            return <ListCommentsRCMdt key={c} comment={comment} _id={_id}/>
+                                            return <div key={c}>
+                                                {
+                                                    comment.status === 1 && <ListCommentsRCMdt key={c} comment={comment} _id={_id}/>
+                                                }
+                                            </div>
                                         })
                                     }
                                 </div>
@@ -106,5 +110,5 @@ const ReviewsCommentsMdt = ({user,created_at,title,content,rating,comment,_id}) 
     </div>
   )
 }
-
+// status === 1
 export default ReviewsCommentsMdt

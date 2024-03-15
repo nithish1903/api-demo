@@ -8,17 +8,11 @@ import { Button } from '@mui/material';
 import useToggle from '@/hooks/useToggle';
 import { formatDateModerationReview } from '@/lib/others/timeConvertion';
 import ListCommentsRCMdt from './ListComments/ListCommentsRCMdt';
+import ListAnswersRCQAMdt from './ListAnswers/ListAnswersRCQAMdt';
+import WriteAnswerrRCQAMdt from './ListAnswers/WriteAnswerrRCQAMdt';
 
-const ReviewsCommentsQAMdt = ({name,email,created_at,question,comment,_id}) => {
-    const [writeComment,setWriteComment] = useState("")
-    const [privateComment,setPrivateComment] = useState(false)
-    const [showWriteComment,setShowWriteComment] = useState(false)
-
-    const handleShowWriteComment = ()=>{
-        setShowWriteComment(!showWriteComment) 
-        setWriteComment("")
-        setPrivateComment(false)
-    } 
+const ReviewsCommentsQAMdt = ({name,email,created_at,question,comment,answer,_id}) => {
+    const [showWirteAns,setshowWirteAns] = useState(false)
     const { toggle,handleToggle } = useToggle()
 
   return (
@@ -46,26 +40,28 @@ const ReviewsCommentsQAMdt = ({name,email,created_at,question,comment,_id}) => {
         </div>
         <div className='col-span-12 lg:col-span-3 grid grid-cols-1 lg:content-between h-[100%] gap-4'>
             <div className='flex items-center lg:justify-end gap-3 relative'>
-                <button onClick={handleShowWriteComment} className='flex items-center gap-3 justify-center border-2 border-[#CFD5E1] px-2 py-1.5 rounded-[4px]'>
-                    Comments
+                <button onClick={()=>{setshowWirteAns(true)}} className='flex items-center gap-3 justify-center border-2 border-[#CFD5E1] px-2 py-1.5 rounded-[4px]'>
+                    Answer
                     <BiMessageSquareDetail className='text-[#0266E1] w-[14px] h-[14px]'/>
                 </button>
-                <WriteComments _id={_id} privateComment={privateComment} setPrivateComment={setPrivateComment} writeComment={writeComment} setWriteComment={setWriteComment} handleShowWriteComment={handleShowWriteComment} showWriteComment={showWriteComment} setShowWriteComment={setShowWriteComment}/>
+                <WriteAnswerrRCQAMdt _id={_id} showWirteAns={showWirteAns} handleShowWriteAns={()=>{setshowWirteAns(!showWirteAns)}}/>
                 {/* <DotsDropDownMdt /> */}
             </div>
         </div>
         {
-            comment && comment.length>0 && (
+            answer && answer.length>0 && (
                 <div className='col-span-12'>
                         <div>
-                            <Button variant="text" className='text-[#0266E1]' onClick={handleToggle}>{toggle?"Hide Comments":"Show Comments"}</Button>
+                            <Button variant="text" className='text-[#0266E1]' onClick={handleToggle}>{toggle?"Hide Answer":"Show Answer"}</Button>
                         </div>
                         {
                             toggle && (
                                 <div>
                                     {
-                                        comment.map((comment,c)=>{
-                                            return <ListCommentsRCMdt key={c} comment={comment} _id={_id}/>
+                                        answer.map((answer,a)=>{
+                                            return <div key={a}>
+                                                {answer.status === 1 && <ListAnswersRCQAMdt answer={answer} _id={_id}/>}
+                                            </div>
                                         })
                                     }
                                 </div>

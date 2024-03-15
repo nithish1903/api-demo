@@ -33,9 +33,6 @@ const ReviewsLayoutMdt = () => {
 
     const {reviewFilter, handleSort }  = useReviewsFilter()
 
-    console.log(moderationData)
-    
-
     const [sortReview,SetSortReview] = useState( options[1] )
     const [pagination, setPagination] = useState({
       total: 0,

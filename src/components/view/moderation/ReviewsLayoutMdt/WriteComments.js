@@ -68,7 +68,8 @@ const WriteComments = ( {
         setSuccessMessage,
     } = useAPi()
 
-    const handleApiCall = ()=>{
+
+    const handlePublishedReview = async ()=>{
         const data = {
             "id": _id,
             "comment": writeComment,
@@ -77,11 +78,6 @@ const WriteComments = ( {
             // "comment_id": "1710413533", // only if your updating or deleting the comment
             "content_type": reviewFilter.content_type // product_reviews, site_reviews, product_question_answers
         }
-        
-        handlePublishedReview(data)
-    }
-
-    const handlePublishedReview = async (data)=>{
         try {
             setLoadingTrue()
             const response  = await axios.post("http://localhost:9024/v1/shopify/manage-comment",data ,{withCredentials: true} )
@@ -118,7 +114,7 @@ const WriteComments = ( {
                             </div>
                             <div className='col-span-2 lg:col-span-1 flex items-center lg:justify-end gap-3'>
                                 <Button variant="text" onClick={handleShowWriteComment}>Cancel</Button>
-                                <Button variant="contained" onClick={handleApiCall}>Publish</Button>
+                                <Button variant="contained" onClick={handlePublishedReview}>Publish</Button>
                             </div>
                         </div>
                     </div>

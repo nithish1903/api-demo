@@ -4,10 +4,16 @@ import React from 'react'
 import { MdOutlineNotificationsActive } from "react-icons/md";
 import { IoIosArrowDown } from "react-icons/io";
 import Link from 'next/link';
+import { useSelector } from 'react-redux';
 
 
 
 const DashboardHeader = () => {
+    const {userData , isLoading,errorMessage,isError,isSuccess} = useSelector((state)=>{
+        return state.user
+    })
+    const user_response = isSuccess && userData &&  Object.keys(userData).length>0  
+
   return (
     <div className='grid grid-cols-12 gap-5 md:gap-0'>
         {/* <div className='col-span-12 md:col-span-6'>
@@ -33,7 +39,7 @@ const DashboardHeader = () => {
                         </div>
                         <div className='hidden md:block'>
                             <div className='flex items-center'>
-                                <p className='text-[14px] font-[700] mr-3'>Anil Jadhav</p>
+                                <p className='text-[14px] font-[700] mr-3'>{user_response && userData.name ? userData.name : ""}</p>
                                 <div>
                                     <IoIosArrowDown className='text-[#334851] w-[20px] h-auto' />
                                 </div>

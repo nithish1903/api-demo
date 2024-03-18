@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { userLogin } from "./userAction";
+import { userDetails, userLogin } from "./userAction";
 
 const initialState = {
   userData:{},
@@ -15,7 +15,6 @@ const userSlice = createSlice({
   initialState,
   reducers:{
     userReset:(state)=>{
-      state.userData = {}
       state.login = {}
       state.isLoading = false
       state.isSuccess= false
@@ -30,14 +29,12 @@ const userSlice = createSlice({
       state.isError = false;
       state.isSuccess = false
       state.login = {}
-      state.userData = {}
     });
     builder.addCase( userLogin.fulfilled , (state,action)=>{
       state.isLoading = false;
       state.errorMessage = null;
       state.isError = false;
       state.isSuccess = true
-      state.userData = {}
       state.login = action.payload
     });
     builder.addCase( userLogin.rejected , (state,action)=>{
@@ -48,6 +45,27 @@ const userSlice = createSlice({
       state.userData = {}
       state.login = {}
     });
+    builder.addCase(userDetails.pending , (state)=>{
+      state.isLoading = true
+      state.errorMessage = null;
+      state.isError = false;
+      state.isSuccess = false
+      state.userData = {}
+    })
+    builder.addCase(userDetails.fulfilled , (state,action)=>{
+      state.isLoading = false
+      state.errorMessage = null;
+      state.isError = false;
+      state.isSuccess = true
+      state.userData = action.payload
+    })
+    builder.addCase(userDetails.rejected , (state,action)=>{
+      state.isLoading = false
+      state.errorMessage = action.payload;
+      state.isError = true;
+      state.isSuccess = false
+      state.userData = {}
+    })
   }
 })
 

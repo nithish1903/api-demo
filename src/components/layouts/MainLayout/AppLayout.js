@@ -1,6 +1,6 @@
 "use client";
 import { Box, Drawer, useTheme } from '@mui/material'
-import React, { useCallback, useLayoutEffect, useState } from 'react'
+import React, { useCallback, useEffect, useLayoutEffect, useState } from 'react'
 
 import { LuLayoutDashboard } from "react-icons/lu";
 import { FaBars } from "react-icons/fa";
@@ -12,11 +12,15 @@ import { RiBillLine } from "react-icons/ri";
 import { LuUserCog2 ,} from "react-icons/lu";
 import { AiOutlineControl } from "react-icons/ai";
 import { LuSettings } from "react-icons/lu";
+import { useDispatch, useSelector } from 'react-redux';
+import { userDetails } from '@/lib/redux/features/userAuth/userAction';
+import { getCookiesNext } from '@/lib/cookies/cookiesNext';
+import Cookies from 'js-cookie';
 
 
 
 const AppLayout = React.memo(({children}) => {
-
+    const dispatch  = useDispatch()
     const [showNavBar,setShowNavBar] = useState(true)
     const [showSublink,setShowSubLink] = useState("")
     const [tablet,setTablet] = useState(false)
@@ -39,6 +43,15 @@ const AppLayout = React.memo(({children}) => {
             };
         }
     }, [window]);
+
+    useEffect(()=>{
+        const user_token  = JSON.parse(Cookies.get("user"))
+        if(user_token && user_token.account_id){
+            dispatch(userDetails({ "user_id": user_token.account_id}))
+        }
+    },[dispatch])
+
+   
     
 
     const navLists  = [

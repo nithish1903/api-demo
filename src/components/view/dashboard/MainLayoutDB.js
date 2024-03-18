@@ -20,11 +20,27 @@ export default function MainLayoutDB() {
         dispatch(dashboardActionPost({}))
     },[dispatch])
 
-  const {dashboardData,isLoading,isSuccess,isError,errorMessage} = useSelector((state)=>{
+  const {
+    dashboardData,
+    isLoading,
+    isSuccess,
+    isError,
+    errorMessage
+  } = useSelector((state)=>{
     return state.dashboard
   })
 
-  // console.log(dashboardData,isLoading,isSuccess,isError,errorMessage)
+  const {
+    userData , 
+    isLoading: userLoading,
+    errorMessage: userErrorMessage,
+    isError: userIsError,
+    isSuccess: userIsSuccess
+  } = useSelector((state)=>{
+    return state.user
+  })
+
+  const user_response = userIsSuccess && userData &&  Object.keys(userData).length>0  
 
   const countReview = (data)=>{
     let str = ""
@@ -91,7 +107,7 @@ export default function MainLayoutDB() {
                 <div className="col-span-12 lg:col-span-5">
                   <div style={{ boxShadow:'0px 0px 10px 5px #F8F8F8 inset'}} className="h-[633px] p-7 mt-6 bg-slate-300 rounded-[10px]">
                     <div>
-                      <h4 className="font-[600] text-[28px]">Hi Ankit Bopche,</h4>
+                      <h4 className="font-[600] text-[28px]">Hi { user_response && userData.name ? userData.name : ""},</h4>
                         <p className="text-[18px] font-[600]">You Have {dashboardData && Object.keys(dashboardData).length>0 ? countReview(dashboardData) : "Null"} uncompleted optimization actions.</p>
                     </div>
                   </div>

@@ -5,5 +5,5 @@ export async function setCookiesNext(name,data) {
 }
 
 export async function getCookiesNext(name) {
-  return Cookies.get(name)
+  return JSON.parse(Cookies.get(name))
 }

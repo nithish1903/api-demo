@@ -3,11 +3,9 @@ import React, { useState } from 'react'
 import { BiMessageSquareDetail } from "react-icons/bi";
 import PublishedDrepDown from './PublishedDrepDown';
 // import DotsDropDownMdt from './DotsDropDownMdt';
-import WriteComments from './WriteComments';
 import { Button } from '@mui/material';
 import useToggle from '@/hooks/useToggle';
 import { formatDateModerationReview } from '@/lib/others/timeConvertion';
-import ListCommentsRCMdt from './ListComments/ListCommentsRCMdt';
 import ListAnswersRCQAMdt from './ListAnswers/ListAnswersRCQAMdt';
 import WriteAnswerrRCQAMdt from './ListAnswers/WriteAnswerrRCQAMdt';
 

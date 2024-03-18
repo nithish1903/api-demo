@@ -37,10 +37,10 @@ const AllTimeDB = () => {
   },[range])
 
   useEffect(()=>{
-    if(timeRange&&Object.keys(timeRange).length>0){
+    if(timeRange&&Object.keys(timeRange).length>0 && !open){
       dispatch(dashboardActionPost(timeRange))
     }
-  },[dispatch,timeRange])
+  },[dispatch,timeRange,open])
 
 
 

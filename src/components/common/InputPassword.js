@@ -3,15 +3,15 @@ import React from 'react'
 import { FiEyeOff ,FiEye} from "react-icons/fi";
 import Label from './Label';
 
-const InputPassword = ({label,value,onChange,placeholder,htmlFor,id,error,errorMsg,classLable,onCopy,onPaste}) => {
+const InputPassword = ({label,value,onChange,placeholder,htmlFor,id,error,errorMsg,classLable,onCopy,onPaste,classNameInput}) => {
     const [show,setShow] = React.useState(false)
 
   return (
     <div>
-        <Label className={classLable} htmlFor={htmlFor} label={label?label:"Password"} />
+        <Label className={classLable} htmlFor={htmlFor} label={label?label:""} />
         <div className=' relative'>
                 <input 
-                    className={`border-[2px] ${error?"text-[#C7022D] border-[#C7022D]":"border-[#334851] text-[#334851]"}  py-2.5 px-5 rounded-[4px] w-[100%] mt-1 text-[12px] font-[400]`}
+                    className={`border-[2px] ${classNameInput?classNameInput:""} ${error?"text-[#C7022D] border-[#C7022D]":"border-[#334851] text-[#334851]"}  py-2.5 px-5 rounded-[4px] w-[100%] mt-1 text-[16px] font-[400]`}
                     value={value}
                     type={show?"text":"password"} 
                     onChange={onChange} 
@@ -20,7 +20,7 @@ const InputPassword = ({label,value,onChange,placeholder,htmlFor,id,error,errorM
                     onPaste={onPaste}
                     placeholder={placeholder?placeholder:"Enter Password"}
                 />
-                <div className='absolute top-5 right-5 cursor-pointer' onClick={()=>setShow(!show)}>
+                <div className='absolute top-5 right-5 cursor-pointer bg-[#ff] ' onClick={()=>setShow(!show)}>
                 {
                     show?<FiEye />:<FiEyeOff />
                 }

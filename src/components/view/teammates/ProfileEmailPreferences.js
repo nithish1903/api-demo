@@ -1,7 +1,7 @@
-import Image from 'next/image'
+
 import React from 'react'
 import ProfilePreferences from './ProfileEmailPreferences/ProfilePreferences'
-import EmailPreferences from './ProfileEmailPreferences/EmailPreferences'
+// import EmailPreferences from './ProfileEmailPreferences/EmailPreferences'
 
 const ProfileEmailPreferences = () => {
   return (
@@ -9,9 +9,9 @@ const ProfileEmailPreferences = () => {
         <div className='col-span-1'>
             <ProfilePreferences />
         </div>
-        <div className='col-span-1'>
+        {/* <div className='col-span-1'>
             <EmailPreferences />
-        </div>
+        </div> */}
     </div>
   )
 }

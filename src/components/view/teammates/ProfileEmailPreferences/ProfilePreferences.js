@@ -1,8 +1,16 @@
+"use client"
+import { SaveChangesES } from '@/components/common/ButtonEmailSettings'
 import FormInputFiled from '@/components/common/FormInputFiled'
+import InputPassword from '@/components/common/InputPassword'
 import Image from 'next/image'
-import React from 'react'
+import React, { useState } from 'react'
 
 const ProfilePreferences = () => {
+
+    const [name,setName] = useState("")
+    const [currentPassword,setCurrentPassword] = useState("")
+    const [newPassword,setNewPassword] = useState("")
+
   return (
     <div className='grid grid-cols-12 gap-5 px-5 py-5 bg-[#fff] border-[1px] border-[#CFD5E1] rounded-[10px] '>
         <div className='col-span-12'>
@@ -18,17 +26,49 @@ const ProfilePreferences = () => {
             </div>
         </div>
         <div className='col-span-12'>
-            <FormInputFiled placeholder={"Enter Name"}/>
+            <FormInputFiled value={name} onChange={(e)=>setName(e.target.value)} placeholder={"Enter Name"}/>
         </div>
         <div className='col-span-12'>
-            <FormInputFiled placeholder={"Enter Email Address"}/>
+            <InputPassword
+                htmlFor={"currentPassword"}
+                id={"currentPassword"}
+                placeholder={"Current Password"}
+                classNameInput={"border-[#CFD5E1]"}
+                onCopy={(e)=>{e.preventDefault()}}
+                onPaste={(e)=>{e.preventDefault()}}
+                value={currentPassword} 
+                onChange={(e)=>{
+                    setCurrentPassword(e.target.value)
+                }} 
+                // error={(Object.keys(formError).length>0&&formError.password2)?true:false}
+                // errorMsg={Object.keys(formError).length>0&&formError.password2}
+            />
+        </div>
+        <div className='col-span-12'>
+            <InputPassword
+                htmlFor={"NewPassword"}
+                id={"NewPassword"}
+                placeholder={"New Password"}
+                classNameInput={"border-[#CFD5E1]"}
+                onCopy={(e)=>{e.preventDefault()}}
+                onPaste={(e)=>{e.preventDefault()}}
+                value={currentPassword} 
+                onChange={(e)=>{
+                    setCurrentPassword(e.target.value)
+                }} 
+                // error={(Object.keys(formError).length>0&&formError.password2)?true:false}
+                // errorMsg={Object.keys(formError).length>0&&formError.password2}
+            />
         </div>
         <div className='col-span-12'>
             <FormInputFiled placeholder={"Enter Role"}/>
         </div>
         <div className='col-span-12'>
-            <button className='text-[20px] font-[700] text-[#0266E1] bg-none p-0 m-0 border-0 outline-0'>Change Password</button>
+            <SaveChangesES text={"Save Changes"}/>
         </div>
+        {/* <div className='col-span-12'>
+            <button className='text-[20px] font-[700] text-[#0266E1] bg-none p-0 m-0 border-0 outline-0'>Change Password</button>
+        </div> */}
     </div>
   )
 }

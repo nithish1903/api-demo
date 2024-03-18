@@ -29,9 +29,6 @@ const TeammatesLayout = () => {
                 <AllTeammatesTable />
             </div>
         </div>
-        <div className='mt-7'>
-            <SaveChangesES text={"Save Changes"}/>
-        </div>
     </ContainerBox>
   )
 }

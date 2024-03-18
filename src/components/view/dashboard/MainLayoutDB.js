@@ -108,7 +108,7 @@ export default function MainLayoutDB() {
                   <div style={{ boxShadow:'0px 0px 10px 5px #F8F8F8 inset'}} className="h-[633px] p-7 mt-6 bg-slate-300 rounded-[10px]">
                     <div>
                       <h4 className="font-[600] text-[28px]">Hi { user_response && userData.name ? userData.name : ""},</h4>
-                        <p className="text-[18px] font-[600]">You Have {dashboardData && Object.keys(dashboardData).length>0 ? countReview(dashboardData) : "Null"} uncompleted optimization actions.</p>
+                        <p className="text-[18px] font-[600]">You have {dashboardData && Object.keys(dashboardData).length>0 ? countReview(dashboardData) : "Null"} to be approved.</p>
                     </div>
                   </div>
                 </div>

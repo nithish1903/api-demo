@@ -27,7 +27,6 @@ const settingsSlice = createSlice({
       state.errorMessage = null;
       state.isError = false;
       state.isSuccess = false
-      state.settingsData = {}
     });
     builder.addCase( settingsActionGet.fulfilled , (state,action)=>{
       state.isLoading = false;
@@ -48,7 +47,6 @@ const settingsSlice = createSlice({
       state.errorMessage = null;
       state.isError = false;
       state.isSuccess = false
-      state.settingsData = {}
     });
     builder.addCase( settingsActionPost.fulfilled , (state,action)=>{
       state.isLoading = false;
@@ -61,8 +59,7 @@ const settingsSlice = createSlice({
       state.isLoading = false;
       state.errorMessage = action.payload;
       state.isError = true;
-      state.isSuccess = false
-      state.settingsData = {}  
+      state.isSuccess = false 
     });
   }
 })

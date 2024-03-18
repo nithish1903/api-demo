@@ -12,7 +12,6 @@ const GeneralSettingsEmail = () => {
     const {settingsData,isError,errorMessage} = useSelector((state)=>{
         return state.settings
     })
-    console.log(settingsData)
     const is_email_notifications = settingsData && Object.keys(settingsData).length > 0 && settingsData.data && Object.keys(settingsData.data).length>0 && settingsData.data.email_notifications  
 
     const [from_name,setfrom_name] = useState(is_email_notifications&&is_email_notifications.from_name?is_email_notifications.from_name:"")
@@ -60,8 +59,6 @@ const GeneralSettingsEmail = () => {
     //         setFontSize((count) => count - 1)
     //     }
     // }
-
-    console.log(is_email_notifications)
 
     const handleFormSubmit = (e)=>{
         e.preventDefault()

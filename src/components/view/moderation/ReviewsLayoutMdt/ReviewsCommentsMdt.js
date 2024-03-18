@@ -12,7 +12,7 @@ import { formatDateModerationReview } from '@/lib/others/timeConvertion';
 import { MdDelete } from 'react-icons/md';
 import ListCommentsRCMdt from './ListComments/ListCommentsRCMdt';
 
-const ReviewsCommentsMdt = ({user,created_at,title,content,rating,comment,_id}) => {
+const ReviewsCommentsMdt = ({user,created_at,title,content,rating,comment,_id,status}) => {
     const [writeComment,setWriteComment] = useState("")
     const [privateComment,setPrivateComment] = useState(false)
     const [showWriteComment,setShowWriteComment] = useState(false)
@@ -24,8 +24,9 @@ const ReviewsCommentsMdt = ({user,created_at,title,content,rating,comment,_id}) 
     } 
     const { toggle,handleToggle } = useToggle()
 
-    const countMinsStar = 5-rating
+    const countMinsStar = rating && 5-rating
 
+    
   return (
     <div className='grid grid-cols-12 gap-4 px-3 lg:px-8 py-8 border-2 border-[#CFD5E1] rounded-[10px]'>
         <div className='col-span-12 lg:col-span-3 grid grid-cols-1 content-between h-[100%] gap-5 lg:gap-2'>
@@ -41,7 +42,7 @@ const ReviewsCommentsMdt = ({user,created_at,title,content,rating,comment,_id}) 
                 
             </div>
             <div className=''>
-                <PublishedDrepDown _id={_id} />
+                <PublishedDrepDown _id={_id} status={status} />
             </div>
         </div>
         <div className='col-span-12 lg:col-span-6'>

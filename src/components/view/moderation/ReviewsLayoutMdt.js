@@ -67,7 +67,7 @@ const ReviewsLayoutMdt = () => {
   return (
     <div>
         <div>
-          <h5>Reviews ({presentData ? moderationData.data.results.length : "0"})</h5>
+          <h5>Reviews ({presentData && moderationData.pagination && Object.keys(moderationData.pagination).length>0 && moderationData.pagination.total ? moderationData.pagination.total : "0"})</h5>
         </div>
         <div className='grid grid-cols-12 gap-4 my-6'>
           <div className='col-span-12 lg:col-span-4 flex items-center gap-3'>

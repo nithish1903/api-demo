@@ -11,7 +11,7 @@ import ListCommentsRCMdt from './ListComments/ListCommentsRCMdt';
 import ListAnswersRCQAMdt from './ListAnswers/ListAnswersRCQAMdt';
 import WriteAnswerrRCQAMdt from './ListAnswers/WriteAnswerrRCQAMdt';
 
-const ReviewsCommentsQAMdt = ({name,email,created_at,question,comment,answer,_id}) => {
+const ReviewsCommentsQAMdt = ({user,created_at,question,status,answer,_id}) => {
     const [showWirteAns,setshowWirteAns] = useState(false)
     const { toggle,handleToggle } = useToggle()
 
@@ -23,14 +23,14 @@ const ReviewsCommentsQAMdt = ({name,email,created_at,question,comment,answer,_id
                     <Checkbox sx={{padding:"0px"}}/>
                 </div> */}
                  <div>
-                    <h6 className='font-[700]'>{name?name:"Null"}</h6>
+                    <h6 className='font-[700]'>{user.name?user.name:"Null"}</h6>
                     <p className='text-[#bfbfbf] text-[16px]'>{created_at?formatDateModerationReview(created_at) :"Null"}</p>
-                    <p className='text-[12px] mt-5'>{email?email:"Null"} <span className='block text-[#0266E1] font-[600]'>(View Timeline)</span></p>
+                    <p className='text-[12px] mt-5'>{user.email?user.email:"Null"} <span className='block text-[#0266E1] font-[600]'>(View Timeline)</span></p>
                 </div>
                 
             </div>
             <div className=''>
-                <PublishedDrepDown _id={_id} />
+                <PublishedDrepDown _id={_id} status={status} />
             </div>
         </div>
         <div className='col-span-12 lg:col-span-6'>

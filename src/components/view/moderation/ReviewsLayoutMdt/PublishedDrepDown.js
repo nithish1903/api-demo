@@ -131,7 +131,7 @@ const othernested = [
     },
 ]
 
-const PublishedDrepDown = ({_id}) => {
+const PublishedDrepDown = ({_id,status}) => {
 
     const dipatch = useDispatch()
 
@@ -184,7 +184,7 @@ const PublishedDrepDown = ({_id}) => {
         }
     }
 
-    
+    // // // status = rejected , pending  , approved 
     
   return (
     <>
@@ -198,16 +198,58 @@ const PublishedDrepDown = ({_id}) => {
                 <TiArrowSortedDown className=''/>
             </button>}
                 menu={[
-                    othernested.map((ele,e)=>{
-                        return <DropdownMenuItem key={e}>
-                                <div className='my-1 mx-3 w-full block  '>
-                                    <div className='flex items-center' onClick={()=>{handleApiCall(ele.value)}}>
-                                        {ele.icon()}
-                                        {ele.lable}
+                    <div>
+                        {
+                            (status === "rejected") && (
+                                <DropdownMenuItem>
+                                    <div className='my-1 mx-3 w-full block  '>
+                                        <div className='flex items-center' onClick={()=>{handleApiCall("approved")}}>
+                                        Publish
+                                        </div>
                                     </div>
-                                </div>
-                        </DropdownMenuItem>
-                    })
+                                </DropdownMenuItem>
+                            )
+                        }
+                    </div>,
+                    <div>
+                        {
+                            (status === "approved") && (
+                                <DropdownMenuItem>
+                                    <div className='my-1 mx-3 w-full block  '>
+                                        <div className='flex items-center' onClick={()=>{handleApiCall("rejected")}}>
+                                            Reject
+                                        </div>
+                                    </div>
+                                </DropdownMenuItem>
+                            )
+                        }
+                    </div>,
+                    <div>
+                        {
+                            (status === "pending") && (
+                                <DropdownMenuItem>
+                                    <div className='my-1 mx-3 w-full block  '>
+                                        <div className='flex items-center' onClick={()=>{handleApiCall("approved")}}>
+                                            Publish
+                                        </div>
+                                    </div>
+                                </DropdownMenuItem>
+                            )
+                        }
+                    </div>,
+                    <div>
+                        {
+                            (status === "pending") && (
+                                <DropdownMenuItem>
+                                    <div className='my-1 mx-3 w-full block  '>
+                                        <div className='flex items-center' onClick={()=>{handleApiCall("rejected")}}>
+                                            Reject
+                                        </div>
+                                    </div>
+                                </DropdownMenuItem>
+                            )
+                        }
+                    </div>,     
                 ]}
                 />
     </>

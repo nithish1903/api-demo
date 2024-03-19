@@ -13,15 +13,19 @@ const LooksFeelEmail = () => {
     const [fontOptions,setFontOptions] = React.useState(["inherit","Poppins Sans","Sans","Roboto","Time New Roman"])
 
     const [title_prd,settitle_prd] = React.useState("")
+    const [status_prd,setStatus_prd] = React.useState(false)
+    const [starColor_prd,setStarColor_prd] =  React.useState("#00A3FF");
     const [currentFont_prd, setCurrentFont_prd] = React.useState(fontOptions[1]);
     const [color1_prd, setColor1_prd] = React.useState("#00A3FF");
     const [color2_prd, setColor2_prd] = React.useState("#00FFA3");
 
     const [title_site,settitle_site] = React.useState("")
+    const [status_site,setStatus_site] = React.useState(false)
+    const [starColor_site,setStarColor_site] =  React.useState("#00A3FF");
     const [currentFont_site, setCurrentFont_site] = React.useState(fontOptions[1]);
     const [color1_site, setColor1_site] = React.useState("#00A3FF");
     const [color2_site, setColor2_site] = React.useState("#00FFA3");
-    const [ btnPositionOptions ,setbtnPositionOptions ] = React.useState(["right","left","center","top","bottom"])
+    const [ btnPositionOptions ,setbtnPositionOptions ] = React.useState(["right","left"])
     const [btnPosition_site, setbtnPosition_site] = React.useState(btnPositionOptions[1]);
 
     const {settingsData,isError,errorMessage,isLoading,isSuccess} = useSelector((state)=>{
@@ -91,7 +95,10 @@ const LooksFeelEmail = () => {
                             fontOptions={fontOptions} 
                             currentFont={currentFont_prd} 
                             setCurrentFont={setCurrentFont_prd}
-
+                            status={status_prd}
+                            handleStatus={()=>{setStatus_prd(!status_prd)}}
+                            starColor={starColor_prd}
+                            setStarColor={setStatus_prd}
                             color1={color1_prd}
                             setColor1={setColor1_prd}
                             color2={color2_prd}
@@ -105,7 +112,10 @@ const LooksFeelEmail = () => {
                             fontOptions={fontOptions} 
                             currentFont={currentFont_site} 
                             setCurrentFont={setCurrentFont_site}
-
+                            status={status_site}
+                            handleStatus={()=>{setStatus_site(!status_site)}}
+                            starColor={starColor_site}
+                            setStarColor={setStarColor_site}
                             color1={color1_site}
                             setColor1={setColor1_site}
                             color2={color2_site}

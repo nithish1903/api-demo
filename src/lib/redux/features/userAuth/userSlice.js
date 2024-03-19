@@ -42,7 +42,6 @@ const userSlice = createSlice({
       state.errorMessage = action.payload;
       state.isError = true;
       state.isSuccess = false
-      state.userData = {}
       state.login = {}
     });
     builder.addCase(userDetails.pending , (state)=>{

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const FormInputFiled = ({label,classlabel,htmlFor,id,type,onChange,value,placeholder,error,errorMsg,classInput,classbox}) => {
+const FormInputFiled = ({label,classlabel,htmlFor,id,type,onChange,value,placeholder,error,errorMsg,classInput,classbox,inuputProps}) => {
   return (
     <div className={classbox}>
         <label htmlFor={htmlFor?htmlFor:""}  className={`text-[16px] font-[700] text-[#334851] ${classlabel?classlabel:""}`} >{label}</label>
@@ -11,6 +11,7 @@ const FormInputFiled = ({label,classlabel,htmlFor,id,type,onChange,value,placeho
             type={type?type:"text"} 
             onChange={onChange} 
             placeholder={placeholder?placeholder:"Enter"}
+            {...inuputProps}
         />
         {
             error && <p className='text-[#C7022D] text-[12px] font-[400] m-0'>{errorMsg}</p>

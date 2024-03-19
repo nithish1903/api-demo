@@ -3,6 +3,7 @@ import userSlice from "./features/userAuth/userSlice";
 import dashboardSlice from "./features/dashboard/dashboardSlice";
 import moderationSlice from "./features/moderation/moderationSlice";
 import settingsSlice from "./features/settings/settingsSlice";
+import teammatesSlice from "./features/teammates/teammatesSlice";
 
 
 const store = configureStore({
@@ -11,6 +12,7 @@ const store = configureStore({
         dashboard:dashboardSlice,
         moderation:moderationSlice,
         settings:settingsSlice,
+        teammates:teammatesSlice
     },
 })
 

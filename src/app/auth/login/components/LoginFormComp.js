@@ -109,6 +109,7 @@ const LoginFormComp = () => {
                     <InputPassword
                         htmlFor={"password"}
                         id={"password"}
+                        label={"Password"}
                         value={password} 
                         onChange={(e)=>{
                             setPassword(e.target.value)

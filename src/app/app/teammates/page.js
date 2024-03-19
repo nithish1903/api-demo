@@ -7,7 +7,7 @@ import ProfileEmailPreferences from "@/components/view/teammates/ProfileEmailPre
 export default function Dashboard() {
 
   return (
-    <Box>
+    <Box className="mb-10">
       <PageHeaderComp title={"Teammates"} review={""} />
       <div className="grid grid-cols-12 gap-4">
         <div className="col-span-12 lg:col-span-8">

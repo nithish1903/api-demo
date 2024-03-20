@@ -1,9 +1,19 @@
 import Cookies from "js-cookie"
  
-export async function setCookiesNext(name,data) {
+import { redirect } from "next/navigation"
+
+export function setCookiesNext(name,data) {
   return Cookies.set(name,JSON.stringify(data))
 }
 
-export async function getCookiesNext(name) {
+export function getCookiesNext(name) {
   return JSON.parse(Cookies.get(name))
+}
+
+export  function errorClearRedirct(error){
+  if(error && error.response && error.response.status && error.response.status===401){
+      Cookies.remove("user")
+      Cookies.remove("user-cache")
+      redirect("/auth/login")
+  }
 }

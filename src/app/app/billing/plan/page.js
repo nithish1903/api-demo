@@ -7,7 +7,7 @@ import BillingPlanLayout from "@/components/view/billing-plan/BillingPlanLayout"
 export default function Dashboard() {
 
   return (
-    <Box>
+    <Box sx={{marginBottom:"40px"}}>
       <PageHeaderComp title={"Billing"} review={""} />
       <ContainerBox>
           <BillingPlanLayout />

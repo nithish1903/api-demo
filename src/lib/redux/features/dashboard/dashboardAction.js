@@ -15,6 +15,11 @@ export const dashboardActionPost = createAsyncThunk("user/dasnboard", async (for
             }
         }
     } catch (error) {
+        // if(error.response.status===401){
+        //     Cookies.remove("user")
+        //     Cookies.remove("user-cache")
+        //     redirect("/auth/login")
+        // }
         return thunkApi.rejectWithValue(error)
     }
 })

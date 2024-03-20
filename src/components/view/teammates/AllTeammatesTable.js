@@ -43,22 +43,23 @@ export default function AllTeammatesTable() {
   // State variables for total, page, and rowsPerPage
   const [total,setTotal] = React.useState(0);
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(is_pagination&&is_pagination.per_page?is_pagination.per_page:5);
+  const [rowsPerPage, setRowsPerPage] = React.useState(null);
 
   React.useEffect(() => {
-    if (is_pagination) {
+    if (is_pagination&&isSuccess) {
       setPage(is_pagination.page - 1);
       setRowsPerPage(is_pagination.per_page);
       setTotal(is_pagination.total);
     }
-  }, [is_pagination]);
+  }, [is_pagination,isSuccess]);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
 
     let no_newPage = newPage +1
     const formData = {
-      "page": no_newPage
+      "page": no_newPage,
+      "per_page": rowsPerPage
     }
     dispatch(teammatesActionGet(formData))
   };

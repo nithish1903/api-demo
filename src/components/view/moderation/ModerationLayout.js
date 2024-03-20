@@ -10,11 +10,11 @@ import { moderationActionPost } from '@/lib/redux/features/moderation/moderation
 
 const ModerationLayout = () => {
   const {reviewFilter} = useReviewsFilter()
-  const dipatch = useDispatch()
+  const dispatch = useDispatch()
 
   useEffect(()=>{
-    dipatch(moderationActionPost(reviewFilter))
-  },[reviewFilter,dipatch])
+    dispatch(moderationActionPost(reviewFilter))
+  },[reviewFilter,dispatch])
 
   return (
     <div className='mb-10'>

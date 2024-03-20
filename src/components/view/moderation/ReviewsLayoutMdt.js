@@ -7,9 +7,10 @@ import React, { useEffect, useState } from 'react'
 import ReviewsCommentsMdt from './ReviewsLayoutMdt/ReviewsCommentsMdt';
 import { useReviewsFilter } from '@/context/ReviewsFilterContext';
 import { Pagination } from '@mui/material';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { LoadingSkeletonReview } from '@/components/common/LoadingSkeleton';
 import ReviewsCommentsQAMdt from './ReviewsLayoutMdt/ReviewsCommentsQAMdt';
+import { moderationActionPost } from '@/lib/redux/features/moderation/moderationAction';
 
 const options = [
   { value: 'newest', label: 'Date (newest first)' },
@@ -26,6 +27,8 @@ const options = [
 
 const ReviewsLayoutMdt = () => {
     // const [exportCSV,setExportCSV] = useState(null)
+    const dispatch = useDispatch()
+
     const {moderationData,isLoading,isSuccess,isError,errorMessage} = useSelector((state)=>{
       return state.moderation
     })
@@ -63,6 +66,19 @@ const ReviewsLayoutMdt = () => {
       }));
       handlePage(Number(page))
     };
+
+    if(isError){
+      errorClearRedirct(errorMessage)
+      if( errorMessage && errorMessage.response && errorMessage.response.status && errorMessage.response.status===500){
+        let msg_err = errorMessage.response.data && errorMessage.response.data.message
+        return <div className="w-[100%] h-[85vh] flex items-center justify-center">
+         <div className="flex justify-center items-center flex-col">
+          <p>{msg_err&&msg_err}</p>
+          <SaveChangesES text={"Re-try Again"} onClick={()=>{ dispatch(moderationActionPost(reviewFilter) ) }} />
+         </div>
+        </div>
+      }
+    }
 
   return (
     <div>

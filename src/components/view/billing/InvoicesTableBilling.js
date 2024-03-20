@@ -35,7 +35,7 @@ export default function InvoicesTableBilling() {
                       <TableCell align="center">AMOUNT</TableCell>
                       <TableCell align="center">PLAN</TableCell>
                       <TableCell align="center">STATUS</TableCell>
-                      <TableCell align="center">INVOICE</TableCell>
+                      {/* <TableCell align="center">INVOICE</TableCell> */}
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -50,11 +50,11 @@ export default function InvoicesTableBilling() {
                     <TableCell align="center">{row.AMOUNT}</TableCell>
                     <TableCell align="center">{row.PLAN}</TableCell>
                     <TableCell align="center">{row.STATUS}</TableCell>
-                    <TableCell align="center">
+                    {/* <TableCell align="center">
                         <div className='w-full flex items-start justify-center'>
                             <MdOutlineFileDownload className='w-[12px] h-[12px] text-[#334851]'/>
                         </div>
-                    </TableCell>
+                    </TableCell> */}
                     </TableRow>
                 ))}
                 </TableBody>

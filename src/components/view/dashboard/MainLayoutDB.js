@@ -11,6 +11,8 @@ import { dashboardActionPost } from "@/lib/redux/features/dashboard/dashboardAct
 import AllTimeDB from "@/components/view/dashboard/AllTimeDB";
 import ReviewRequestCards from "@/components/view/dashboard/ReviewRequestCards";
 import { LoadingSkeletonBasic } from "@/components/common/LoadingSkeleton";
+import { errorClearRedirct } from "@/lib/cookies/cookiesNext";
+import { SaveChangesES } from "@/components/common/ButtonEmailSettings";
 
 export default function MainLayoutDB() {
 
@@ -67,9 +69,18 @@ export default function MainLayoutDB() {
 
 
   if(isError){
-
+    errorClearRedirct(errorMessage)
+    if( errorMessage && errorMessage.response && errorMessage.response.status && errorMessage.response.status===500){
+      let msg_err = errorMessage.response.data && errorMessage.response.data.message
+      return <div className="w-[100%] h-[85vh] flex items-center justify-center">
+       <div className="flex justify-center items-center flex-col">
+        <p>{msg_err&&msg_err}</p>
+        <SaveChangesES text={"Re-try Again"} onClick={()=>{ dispatch(dashboardActionPost({}))}} />
+       </div>
+      </div>
+    }
   }
-  // You got 2 new site reviews, 2 new product reviews, 2 new questions
+
   return (
     <Box>
       <>

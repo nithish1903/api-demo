@@ -39,7 +39,10 @@ export function NavMenuHeader({anchorEl,setAnchorEl}) {
         }}
       >
         <MenuItem onClick={handleClose}>
-            <Link href={"/app/teammates"}>Profile</Link>
+            <Link href={"/app/general-settings"}>Profile</Link>
+        </MenuItem>
+        <MenuItem onClick={handleClose}>
+            <Link href={"/app/teammates"}>Users</Link>
         </MenuItem>
         <MenuItem onClick={()=>{
             handleClose()

@@ -24,7 +24,7 @@ const TeammatesLayout = () => {
     
       // Extracting data and pagination details
       const is_teammates = isSuccess && teammatesData && Object.keys(teammatesData).length > 0 && teammatesData.data;
-
+      const is_pagination = isSuccess && teammatesData && Object.keys(teammatesData).length > 0 && teammatesData.pagination;
    
   return (
     <ContainerBox>
@@ -35,7 +35,7 @@ const TeammatesLayout = () => {
             <div className='px-6 py-5 flex gap-4 flex-col md:flex-row md:justify-between'>
                 <div className='flex items-center gap-4'>
                     <p className='font-[500]'>Users:</p>
-                    <p className='text-[#b0afaf] font-[500]'>{is_teammates?is_teammates.length:0}</p>
+                    <p className='text-[#b0afaf] font-[500]'>{is_pagination?is_pagination.total:0}</p>
                 </div>
                 <div>
                     <SaveChangesES text={"Add Teammates"} onClick={handleModal}/>

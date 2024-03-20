@@ -4,10 +4,9 @@ import ContainerBox from "@/components/common/ContainerBox";
 import PageHeaderComp from "@/components/common/PageHeaderComp";
 import BillingMainCompo from "@/components/view/billing/BillingMainCompo";
 
-export default function Dashboard() {
-
+export default function Billings() {
   return (
-    <Box>
+    <Box className="mb-10">
       <PageHeaderComp title={"Billing"} review={""} />
       <ContainerBox>
           <div className="grid grid-cols-12 gap-4">

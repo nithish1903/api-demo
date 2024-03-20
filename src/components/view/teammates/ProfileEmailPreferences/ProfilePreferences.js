@@ -96,8 +96,10 @@ const ProfilePreferences = () => {
                 "current_password":currentPassword,
                 "new_password":newPassword,
                 "id": account_id,
+                profilePic
             }
-            handleForgotPswRequest(data)
+            console.log(data)
+            // handleForgotPswRequest(data)
         }
     }
 
@@ -136,7 +138,7 @@ const ProfilePreferences = () => {
             <div className='col-span-12'>
                 <div className='flex flex-col gap-4 items-center cursor-pointer' onClick={()=>{ fileInputRef.current.click();}}>
                     <div className='w-[170px] md:w-[200px] h-[170px] md:h-[200px] border-[2px] border-[#CFD5E1] grid grid-cols-2 gap-0 content-between overflow-hidden rounded-full'>
-                        <div className='col-span-2 flex justify-center items-center pt-10 pb-8'>
+                        <div className='col-span-2 flex justify-center items-center pt-4 pb-3 lg:pt-10 lg:pb-8'>
                             {/* Display the selected profile picture if available */}
                             {profilePic ? (
                             <img src={URL.createObjectURL(profilePic)} alt='Selected Profile Pic' className='w-[100px] h-auto' />
@@ -146,7 +148,7 @@ const ProfilePreferences = () => {
                             {/* File input for selecting profile picture */}
                             <input type="file" ref={fileInputRef} accept="image/*" onChange={handleFileChange}style={{ display: 'none' }} />
                         </div>
-                        <div className='col-span-2 bg-[#0266E1] w-full pt-3 pb-8 flex justify-center items-center'>
+                        <div className='col-span-2 bg-[#0266E1] w-full pt-4 lg:pt-3 pb-4 lg:pb-8 flex justify-center items-center'>
                             <button type="submit" className='text-[16px] font-[700] text-[#fff] text-center bg-[#0266E1] '>Update</button>
                         </div>
                     </div>

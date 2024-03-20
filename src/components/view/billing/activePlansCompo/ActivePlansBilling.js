@@ -10,6 +10,7 @@ import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Link from 'next/link';
+import { useSelector } from 'react-redux';
 
 const options = [
     {
@@ -19,7 +20,7 @@ const options = [
   ];
   const ITEM_HEIGHT = 48;
 
-  const thead = ["Plan","Subscription","Current Usage Fee","Paid By","Due On","Total","Action"]
+  const thead = ["Plan","Subscription","Paid By","Due On","Action"]
 
 
 const ActivePlansBilling = () => {
@@ -33,7 +34,13 @@ const ActivePlansBilling = () => {
         setAnchorEl(null);
     };
 
+    const {activePlan , isLoading,isSuccess,isError,errorMessage}  = useSelector((state)=>{
+        return state.billings
+    })
 
+    const is_activePlan = isSuccess && activePlan && Object.keys(activePlan).length>0 && activePlan.data
+
+    console.log(is_activePlan)
   return (
     <div className=''>
         <div className='mb-7'>
@@ -51,15 +58,15 @@ const ActivePlansBilling = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr className=' box-border  border-2 border-[#CFD5E1] rounded-[6px]'>
+                    <tr className=' box-border  border-2 border-[#CFD5E1] rounded-[10px]'>
                         <td data-label="Plan" className='py-4 pl-4 '>
                             <div className='flex items-center justify-end xl:justify-start gap-4'>
                                 <div className='w-[50px] h-[50px] flex justify-center items-center bg-[#F3F6F9] rounded-[6px]'>
                                     <HiOutlineBookOpen className='w-[20px] h-[20px] text-[#0266E1]' /> 
                                 </div>
                                 <div>
-                                    <h6 className='text-[16px] font-[700]'>Reviews</h6>
-                                    <p className='text-[14px]'>Growth 500</p>
+                                    <h6 className='text-[16px] font-[700]'>{is_activePlan&&is_activePlan.plan_name?is_activePlan.plan_name:"Null"}</h6>
+                                    {/* <p className='text-[14px]'>{is_activePlan&&is_activePlan.description?is_activePlan.description:"Null"}</p> */}
                                 </div>
                             </div>
                         </td>
@@ -68,10 +75,10 @@ const ActivePlansBilling = () => {
                                 <div>
                                     <BsCreditCardFill className='text-[#D9D9D9] w-[12px] h-auto' />
                                 </div>
-                                <p className='text-[16px]'>₹199/Monthly</p>
+                                <p className='text-[16px]'>{is_activePlan&&is_activePlan.price} {is_activePlan&&is_activePlan.currency?is_activePlan.currency:""} / Month </p>
                             </div>
                         </td>
-                        <td data-label="Current Usage Fee" className='py-4'>
+                        {/* <td data-label="Current Usage Fee" className='py-4'>
                             <div className='flex flex-col md:flex-row justify-end xl:justify-start gap-4'>
                                 <div>
                                     <div className='flex items-center justify-end xl:justify-start gap-2'>
@@ -89,16 +96,16 @@ const ActivePlansBilling = () => {
                                     <p className='text-[14px]'>OFF</p>
                                 </div>
                             </div>
-                        </td>
+                        </td> */}
                         <td data-label="Paid By" className='py-4'>
                             <p className='text-[16px]'>Credit Card</p>
                         </td>
                         <td data-label="Due On" className='py-4'>
-                            <p className='text-[16px]'>Feb 29, 2024</p>
+                            <p className='text-[16px]'>{is_activePlan&&is_activePlan.days?`${is_activePlan.days} Days`:"Null"}</p>
                         </td>
-                        <td data-label="Total" className='py-4'>
+                        {/* <td data-label="Total" className='py-4'>
                             <p className='text-[16px] font-bold'>₹2388.00</p>
-                        </td>
+                        </td> */}
                         <td data-label="Action" className='py-4 pr-4'>
                             <IconButton
                                 aria-label="more"

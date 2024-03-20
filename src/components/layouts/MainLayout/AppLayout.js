@@ -9,12 +9,10 @@ import DashboardHeader from './DashboardHeader';
 import { usePathname } from 'next/navigation'
 import PageHeaderLayout from './PageHeaderLayout';
 import { RiBillLine } from "react-icons/ri";
-import { LuUserCog2 ,} from "react-icons/lu";
 import { AiOutlineControl } from "react-icons/ai";
 import { LuSettings } from "react-icons/lu";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { userDetails } from '@/lib/redux/features/userAuth/userAction';
-import { getCookiesNext } from '@/lib/cookies/cookiesNext';
 import Cookies from 'js-cookie';
 
 
@@ -83,12 +81,6 @@ const AppLayout = React.memo(({children}) => {
                 //     link:"/auth/login"
                 // },
             ]
-        },
-        {
-            label:"Teammates",
-            link:"/app/teammates",
-            icon:(className)=><LuUserCog2  className={`${className}`}/>,
-            subLink:[]
         },
     ]
 

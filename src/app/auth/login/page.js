@@ -1,11 +1,10 @@
-import Container from "@/components/common/Container";
 import Image from "next/image";
 import LoginFormComp from "./components/LoginFormComp";
 
 export default function Home() {
   return (
     <main className="">
-      <Container>
+      <section className="container mx-auto px-4 lg:px-0 ">
         <div className="grid grid-cols-12 gap-1">
           <div className="col-span-12">
             <div className="mt-10 w-[225px] mx-auto">
@@ -16,7 +15,7 @@ export default function Home() {
             <LoginFormComp />
           </div>
         </div>
-      </Container>
+      </section>
     </main>
   );
 }

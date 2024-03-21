@@ -24,21 +24,21 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
-
 :root {
-  --font: "Nunito", sans-serif;
+  --black-color: #334851;
+  --primary-color: #0266E1;
+  --error-color: #C7022D;
 }
 
 * {
   box-sizing: border-box;
-  transition: all 0.2s ease;
-  font-family: var(--font);
+  transition: all 70ms ease;
+  font-family: var(--font-nunito) !important;
 }
 
 body {
   box-sizing: border-box !important;
-  font-family: var(--font);
+  font-family: var(--font-nunito);
   padding: 0;
   margin: 0;
 }
@@ -66,41 +66,68 @@ input[type=number] {
 h1 {
   font-size: 46px;
   font-weight: 800;
-  font-family: var(--font);
+  font-family: var(--font-nunito);
+  color: var(--black-color);
 }
 h2 {
   font-size: 38px;
   font-weight: 800;
- font-family: var(--font);
+  font-family: var(--font-nunito);
+  color: var(--black-color);
 }
 h3 {
   font-size: 32px;
   font-weight: 800;
+  font-family: var(--font-nunito);
+  color: var(--black-color);
 }
 h4 {
   font-size: 28px;
   font-weight: 700;
+  font-family: var(--font-nunito);
+  color: var(--black-color);
 }
 h5 {
   font-size: 24px;
   font-weight: 600;
+  font-family: var(--font-nunito);
+  color: var(--black-color);
 }
 h6 {
   font-size: 20px;
   font-weight: 500;
+  font-family: var(--font-nunito);
+  color: var(--black-color);
 }
 p {
     font-size: 18px;
     font-weight: 400;
+    font-family: var(--font-nunito);
+    color: var(--black-color);
 }
 a {
-  color: #0266E1;
+  color: var(--black-color);
   font-weight: 400 !important;
+  text-decoration: none;
+  font-family: var(--font-nunito);
 }
+a:hover{
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+
 /*----------------------------------------*/
 /* 2.Common CSS */
 /*----------------------------------------*/
-
+.black{
+  color: var(--black-color);
+}
+.pry-clr{
+  color: var(--primary-color);
+}
+.err-cl{
+  color: var(--error-color);
+}
 /*----------------------------------------*/
 /* 3.Header CSS */
 /*----------------------------------------*/

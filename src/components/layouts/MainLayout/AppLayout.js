@@ -40,7 +40,7 @@ const AppLayout = React.memo(({children}) => {
               window.removeEventListener("resize", checkIsTablet);
             };
         }
-    }, [window]);
+    }, []);
 
     useEffect(()=>{
         const user_token  = JSON.parse(Cookies.get("user"))
@@ -176,5 +176,7 @@ const AppLayout = React.memo(({children}) => {
     </Box>
   )
 })
+
+AppLayout.displayName = "AppLayout"
 
 export default AppLayout

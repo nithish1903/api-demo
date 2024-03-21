@@ -14,18 +14,17 @@ const StarRatingsCommentMdt = () => {
 
     const {moderationData,isLoading,isSuccess,isError,errorMessage} = useSelector((state)=>{
         return state.moderation
-      })
+    })
+    const presentData  = isSuccess && moderationData && Object.keys(moderationData).length>0 && moderationData.data && Object.keys(moderationData.data).length>0 && moderationData.data 
 
-      console.log(moderationData)
+    console.log(presentData && presentData)
+    console.log("presentData && presentData")
 
-      const presentData  = (isSuccess && moderationData && Object.keys(moderationData).length>0 && moderationData.data && Object.keys(moderationData.data).length>0)
-    
   return (
         <div className='grid grid-cols-12 gap-3'>
             <div className='col-span-12'>
                 <h6 className='font-[700]'>{ reviewFilter.content_type !== "product_question_answers" ? "Star Ratings" : " Media & Comments"  }</h6>
             </div>
-            
             {
                 reviewFilter.content_type !== "product_question_answers" && (
                     <div className='col-span-12'>
@@ -43,7 +42,7 @@ const StarRatingsCommentMdt = () => {
                                 </div>
                             </div>
                             <div className='inline-block bg-[#0266E1] px-1.5 py-1 rounded-[20px]'>
-                                <p className='text-[12px] font-[700] text-[#fff]'>{presentData && moderationData.data.ratings_counts && moderationData.data.ratings_counts.length>0 && moderationData.data.ratings_counts['5'] ? moderationData.data.ratings_counts['5']:0 }</p>
+                                <p className='text-[12px] font-[700] text-[#fff]'>{presentData && presentData.ratings_counts ? (presentData.ratings_counts["5"] ? presentData.ratings_counts["5"] : 0) : 0 }</p>
                             </div>
                         </div>
                         <div className='flex items-start justify-between mb-1'>
@@ -60,7 +59,7 @@ const StarRatingsCommentMdt = () => {
                                 </div>
                             </div>
                             <div className='inline-block bg-[#0266E1] px-1.5 py-1 rounded-[20px]'>
-                                <p className='text-[12px] font-[700] text-[#fff]'>{presentData && moderationData.data.ratings_counts && moderationData.data.ratings_counts.length>0 &&moderationData.data.ratings_counts['4']?moderationData.data.ratings_counts['4']:0 }</p>
+                                <p className='text-[12px] font-[700] text-[#fff]'>{presentData && presentData.ratings_counts ? (presentData.ratings_counts["4"] ? presentData.ratings_counts["4"] : 0) : 0 }</p>
                             </div>
                         </div>
                         <div className='flex items-start justify-between mb-1'>
@@ -77,7 +76,7 @@ const StarRatingsCommentMdt = () => {
                                 </div>
                             </div>
                             <div className='inline-block bg-[#0266E1] px-1.5 py-1 rounded-[20px]'>
-                                <p className='text-[12px] font-[700] text-[#fff]'>{presentData&& moderationData.data.ratings_counts && moderationData.data.ratings_counts.length>0&&moderationData.data.ratings_counts['3']?moderationData.data.ratings_counts['3']:0}</p>
+                                <p className='text-[12px] font-[700] text-[#fff]'>{presentData && presentData.ratings_counts ? (presentData.ratings_counts["3"] ? presentData.ratings_counts["3"] : 0) : 0 }</p>
                             </div>
                         </div>
                         <div className='flex items-start justify-between mb-1'>
@@ -94,7 +93,7 @@ const StarRatingsCommentMdt = () => {
                                 </div>
                             </div>
                             <div className='inline-block bg-[#0266E1] px-1.5 py-1 rounded-[20px]'>
-                                <p className='text-[12px] font-[700] text-[#fff]'>{presentData&& moderationData.data.ratings_counts && moderationData.data.ratings_counts.length>0&&moderationData.data.ratings_counts['2']?moderationData.data.ratings_counts['2']:0}</p>
+                                <p className='text-[12px] font-[700] text-[#fff]'>{presentData && presentData.ratings_counts ? (presentData.ratings_counts["2"] ? presentData.ratings_counts["2"] : 0) : 0 }</p>
                             </div>
                         </div>
                         <div className='flex items-start justify-between mb-1'>
@@ -111,7 +110,7 @@ const StarRatingsCommentMdt = () => {
                                 </div>
                             </div>
                             <div className='inline-block bg-[#0266E1] px-1.5 py-1 rounded-[20px]'>
-                                <p className='text-[12px] font-[700] text-[#fff]'>{presentData && moderationData.data.ratings_counts && moderationData.data.ratings_counts.length>0 &&moderationData.data.ratings_counts['1']?moderationData.data.ratings_counts['1']:0}</p>
+                                <p className='text-[12px] font-[700] text-[#fff]'>{presentData && presentData.ratings_counts ? (presentData.ratings_counts["1"] ? presentData.ratings_counts["1"] : 0 ) : 0}</p>
                             </div>
                         </div>
                     </div>

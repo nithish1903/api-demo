@@ -1,6 +1,5 @@
 import React from 'react'
 
-import { Dropdown, DropdownMenuItem,DropdownNestedMenuItem } from '@/components/common/DropdownCustom';
 
 import { TiArrowSortedDown } from 'react-icons/ti'
 // import { ArrowRight } from '@mui/icons-material';
@@ -11,110 +10,12 @@ import { ErrorSnackbar, SuccessSnackbars } from '@/components/common/Snackbars';
 import { useReviewsFilter } from '@/context/ReviewsFilterContext';
 import { useDispatch } from 'react-redux';
 import { moderationActionPost } from '@/lib/redux/features/moderation/moderationAction';
-// import { AiOutlineDelete } from 'react-icons/ai';
-// import Link from 'next/link';
-
-// const nestedMenu = [
-//     {
-//         lable:"Rejected",
-//         icon: ()=><AiOutlineDelete />,
-//         link:"",
-//         nested:[
-//             {
-//                 lable:"Legal transgression",
-//                 icon: ()=>{},
-//                 link:"",
-//             },
-//             {
-//                 lable:"Profanity / Inappropriate",
-//                 icon: ()=>{},
-//                 link:"",
-//             },
-//             {
-//                 lable:"Foreign language",
-//                 icon: ()=>{},
-//                 link:"",
-//             },
-//             {
-//                 lable:"Contains private information",
-//                 icon: ()=>{},
-//                 link:"",
-//             },
-//             {
-//                 lable:"Unrelated to the product or service",
-//                 icon: ()=>{},
-//                 link:"",
-//             },
-//             {
-//                 lable:"False or misleading",
-//                 icon: ()=>{},
-//                 link:"",
-//             },
-//             {
-//                 lable:"Fake",
-//                 icon: ()=>{},
-//                 link:"",
-//             },
-//             {
-//                 lable:"Other (Write your own)",
-//                 icon: ()=>{},
-//                 link:"",
-//             },
-//         ]
-//     },
-// ]
-
-// let nested =[
-//     {
-//         lable:"Legal transgression",
-//         icon: ()=>{},
-//         link:"",
-//     },
-//     {
-//         lable:"Profanity / Inappropriate",
-//         icon: ()=>{},
-//         link:"",
-//     },
-//     {
-//         lable:"Foreign language",
-//         icon: ()=>{},
-//         link:"",
-//     },
-//     {
-//         lable:"Contains private information",
-//         icon: ()=>{},
-//         link:"",
-//     },
-//     {
-//         lable:"Unrelated to the product or service",
-//         icon: ()=>{},
-//         link:"",
-//     },
-//     {
-//         lable:"False or misleading",
-//         icon: ()=>{},
-//         link:"",
-//     },
-//     {
-//         lable:"Fake",
-//         icon: ()=>{},
-//         link:"",
-//     },
-//     {
-//         lable:"Other (Write your own)",
-//         icon: ()=>{},
-//         link:"",
-//     },
-// ]
+import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 
 
 const othernested = [
-    // {
-    //     lable:"Select",
-    //     icon: ()=>{},
-    //     link:"",
-    //     nested:[]
-    // },
     {
         lable:"Publish",
         value:"approved",
@@ -136,6 +37,15 @@ const PublishedDrepDown = ({_id,status}) => {
     const dipatch = useDispatch()
 
     const {reviewFilter} = useReviewsFilter()
+
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
 
     const { 
         isLoading,
@@ -190,68 +100,73 @@ const PublishedDrepDown = ({_id,status}) => {
     <>
         <ErrorSnackbar open={isError} handleCloseSnack={setIsErrorFalse} message={errorMessage}/>
         <SuccessSnackbars open={isSuccess} handleCloseSnack={setIsSuccessFalse} message={successMessage} />
-        <Dropdown
-                className=" overflow-scroll w-[100%] "
-                trigger={<button className='flex items-center gap-3 justify-center border-2 border-[#CFD5E1] px-2 rounded-[4px]'>
-                <span className='w-[14px] h-[14px] bg-[#0266E1] text-[#fff] rounded-full flex items-center justify-center'><IoMdArrowRoundUp /></span>
-                    Published
-                <TiArrowSortedDown className=''/>
-            </button>}
-                menu={[
-                    <div>
-                        {
-                            (status === "rejected") && (
-                                <DropdownMenuItem>
-                                    <div className='my-1 mx-3 w-full block  '>
-                                        <div className='flex items-center' onClick={()=>{handleApiCall("approved")}}>
-                                        Publish
-                                        </div>
-                                    </div>
-                                </DropdownMenuItem>
-                            )
-                        }
-                    </div>,
-                    <div>
-                        {
-                            (status === "approved") && (
-                                <DropdownMenuItem>
-                                    <div className='my-1 mx-3 w-full block  '>
-                                        <div className='flex items-center' onClick={()=>{handleApiCall("rejected")}}>
-                                            Reject
-                                        </div>
-                                    </div>
-                                </DropdownMenuItem>
-                            )
-                        }
-                    </div>,
-                    <div>
-                        {
-                            (status === "pending") && (
-                                <DropdownMenuItem>
-                                    <div className='my-1 mx-3 w-full block  '>
-                                        <div className='flex items-center' onClick={()=>{handleApiCall("approved")}}>
-                                            Publish
-                                        </div>
-                                    </div>
-                                </DropdownMenuItem>
-                            )
-                        }
-                    </div>,
-                    <div>
-                        {
-                            (status === "pending") && (
-                                <DropdownMenuItem>
-                                    <div className='my-1 mx-3 w-full block  '>
-                                        <div className='flex items-center' onClick={()=>{handleApiCall("rejected")}}>
-                                            Reject
-                                        </div>
-                                    </div>
-                                </DropdownMenuItem>
-                            )
-                        }
-                    </div>,     
-                ]}
-                />
+        <button 
+            id="basic-button"
+            aria-controls={open ? 'basic-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+            onClick={handleClick}
+            className='flex items-center gap-3 justify-center border-2 border-[#CFD5E1] px-2 rounded-[4px]'
+        >
+            <span className='w-[14px] h-[14px] bg-[#0266E1] text-[#fff] rounded-full flex items-center justify-center'><IoMdArrowRoundUp /></span>
+                Published
+            <TiArrowSortedDown className=''/>
+        </button> 
+        <Menu
+            id="basic-menu"
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            MenuListProps={{
+            'aria-labelledby': 'basic-button',
+            }}
+        >
+            {
+                (status === "rejected") && (
+                    <MenuItem onClick={handleClose}>
+                        <div className='my-1 mx-3 w-full block  '>
+                            <div className='flex items-center' onClick={()=>{handleApiCall("approved")}}>
+                            Publish
+                            </div>
+                        </div>
+                    </MenuItem>
+                )
+            }
+            {
+                (status === "approved") && (
+                    <MenuItem onClick={handleClose}>
+                        <div className='my-1 mx-3 w-full block  '>
+                            <div className='flex items-center' onClick={()=>{handleApiCall("rejected")}}>
+                                Reject
+                            </div>
+                        </div>
+                    </MenuItem>
+                )
+            }
+            {
+                (status === "pending") && (
+                    <MenuItem onClick={handleClose}>
+                        <div className='my-1 mx-3 w-full block  '>
+                            <div className='flex items-center' onClick={()=>{handleApiCall("approved")}}>
+                                Publish
+                            </div>
+                        </div>
+                    </MenuItem>
+                )
+            }
+            {
+                (status === "pending") && (
+                    <MenuItem onClick={handleClose}>
+                        <div className='my-1 mx-3 w-full block  '>
+                            <div className='flex items-center' onClick={()=>{handleApiCall("rejected")}}>
+                                Reject
+                            </div>
+                        </div>
+                    </MenuItem>
+                )
+            }
+        </Menu>
+        
     </>
   )
 }

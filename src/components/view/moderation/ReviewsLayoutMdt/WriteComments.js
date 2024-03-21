@@ -26,27 +26,30 @@ const WriteComments = ( {
 
     const refOne = useRef(null)
 
+    const handleHide = (e)=>{
+        if(e.key == "Escape"){
+            setWriteComment("")
+            setShowWriteComment(false)
+            setPrivateComment(false)
+        }
+      }
+    
+      const handleOnClickOutside = (e)=>{
+        if(refOne.current && !refOne.current.contains(e.target)){
+            setWriteComment("")
+            setShowWriteComment(false)
+            setPrivateComment(false)
+        }
+      }
+      
+
     useEffect(()=>{
         document.addEventListener("keydown",handleHide,true)
         document.addEventListener("click",handleOnClickOutside,true)
-    },[])
+    },[handleHide,handleOnClickOutside])
 
 
-  const handleHide = (e)=>{
-    if(e.key == "Escape"){
-        setWriteComment("")
-        setShowWriteComment(false)
-        setPrivateComment(false)
-    }
-  }
-
-  const handleOnClickOutside = (e)=>{
-    if(refOne.current && !refOne.current.contains(e.target)){
-        setWriteComment("")
-        setShowWriteComment(false)
-        setPrivateComment(false)
-    }
-  }
+  
 
     const { 
         isLoading,

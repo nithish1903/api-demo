@@ -71,7 +71,7 @@ const ReviewsLayoutMdt = () => {
 
     if(isError){
       errorClearRedirct(errorMessage)
-      if( errorMessage && errorMessage.response && errorMessage.response.status && errorMessage.response.status===500){
+      if( errorMessage && errorMessage.response && errorMessage.response.status && errorMessage.response.status!==401){
         let msg_err = errorMessage.response.data && errorMessage.response.data.message
         return <div className="w-[100%] h-[85vh] flex items-center justify-center">
          <div className="flex justify-center items-center flex-col">
@@ -151,7 +151,7 @@ const ReviewsLayoutMdt = () => {
                 <>
                   <div className='col-span-12'>
                     <div className='bg-[#D4E6FD] flex justify-center items-center rounded-[10px] w-[90%] mx-auto py-10'>
-                      <h5>No Comments</h5>
+                      <h5>No {reviewFilter.content_type==="product_reviews" && "Product Reviews"} {reviewFilter.content_type==="site_reviews" && "Site Reviews"} {reviewFilter.content_type==="product_question_answers" && "Product Question & Answers"}</h5>
                     </div>
                   </div>
                 </>

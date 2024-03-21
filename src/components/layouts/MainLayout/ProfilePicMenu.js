@@ -1,18 +1,44 @@
 
 import React, { useRef, useState } from 'react';
 import { IoIosArrowDown } from "react-icons/io";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavMenuHeader } from '@/components/common/MenuCustom';
 import { Box } from '@mui/material';
 import Image from 'next/image';
+import { errorClearRedirct } from '@/lib/cookies/cookiesNext';
+import { SaveChangesES } from '@/components/common/ButtonEmailSettings';
+import { userDetails } from '@/lib/redux/features/userAuth/userAction';
 
 const ProfilePicMenu = () => {
+    const dispatch = useDispatch()
+
     const {userData , isLoading,errorMessage,isError,isSuccess} = useSelector((state)=>{
         return state.user
     })
     const user_response = isSuccess && userData &&  Object.keys(userData).length>0  
     const [anchorEl,setAnchorEl] = useState(null)
     const ref_one = useRef()
+
+
+    const handleDispatchError = ()=>{
+        const user_token  = JSON.parse(Cookies.get("user"))
+        if(user_token && user_token.account_id){
+            dispatch(userDetails({ "user_id": user_token.account_id}))
+        }
+    }
+
+    if(isError){
+        errorClearRedirct(errorMessage)
+        if( errorMessage && errorMessage.response && errorMessage.response.status && errorMessage.response.status!==401){
+          let msg_err = errorMessage.response.data && errorMessage.response.data.message
+          return <div className="w-[100%] h-[85vh] flex items-center justify-center">
+           <div className="flex justify-center items-center flex-col">
+                <p>{msg_err&&msg_err}</p>
+                <SaveChangesES text={"Re-try Again"} onClick={()=>{ handleDispatchError }} />
+           </div>
+          </div>
+        }
+    }
 
   return (
     <div>

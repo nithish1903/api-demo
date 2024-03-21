@@ -3,6 +3,7 @@ import { ErrorSnackbar, SuccessSnackbars } from '@/components/common/Snackbars'
 import SwitchGreen from '@/components/common/SwitchGreen'
 import { useReviewsFilter } from '@/context/ReviewsFilterContext'
 import useAPi from '@/hooks/useApi'
+import baseURL from '@/lib/others/baseURL'
 import { moderationActionPost } from '@/lib/redux/features/moderation/moderationAction'
 import { Button } from '@mui/material'
 import axios from 'axios'
@@ -83,7 +84,7 @@ const WriteComments = ( {
         }
         try {
             setLoadingTrue()
-            const response  = await axios.post("http://localhost:9024/v1/shopify/manage-comment",data ,{withCredentials: true} )
+            const response  = await axios.post(`${baseURL}/v1/shopify/manage-comment`,data ,{withCredentials: true} )
             const resData = response.data
             if(response.status === 200 && resData.data && resData.statuscode === 200 ){
                 setIsSuccessTrue()

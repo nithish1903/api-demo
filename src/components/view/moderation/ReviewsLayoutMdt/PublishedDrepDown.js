@@ -13,6 +13,7 @@ import { moderationActionPost } from '@/lib/redux/features/moderation/moderation
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import baseURL from '@/lib/others/baseURL';
 
 
 const othernested = [
@@ -79,7 +80,7 @@ const PublishedDrepDown = ({_id,status}) => {
     const handlePublishedReview = async (data)=>{
         try {
             setLoadingTrue()
-            const response  = await axios.post("http://localhost:9024/v1/shopify/publish-review",data ,{withCredentials: true} )
+            const response  = await axios.post(`${baseURL}/v1/shopify/publish-review`,data ,{withCredentials: true} )
             const resData = response.data
             if(response.status === 200 && resData.data && resData.statuscode === 200 ){
                 setIsSuccessTrue()

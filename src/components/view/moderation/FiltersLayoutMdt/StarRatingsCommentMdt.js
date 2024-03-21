@@ -17,9 +17,6 @@ const StarRatingsCommentMdt = () => {
     })
     const presentData  = isSuccess && moderationData && Object.keys(moderationData).length>0 && moderationData.data && Object.keys(moderationData.data).length>0 && moderationData.data 
 
-    console.log(presentData && presentData)
-    console.log("presentData && presentData")
-
   return (
         <div className='grid grid-cols-12 gap-3'>
             <div className='col-span-12'>

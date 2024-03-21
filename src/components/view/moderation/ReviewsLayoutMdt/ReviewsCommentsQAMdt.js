@@ -13,6 +13,8 @@ const ReviewsCommentsQAMdt = ({user,created_at,question,status,answer,_id}) => {
     const [showWirteAns,setshowWirteAns] = useState(false)
     const { toggle,handleToggle } = useToggle()
 
+    const hasStatusOneanswer =  answer && answer.length>0 &&  answer.some(answer => answer.status === 1);
+
   return (
     <div className='grid grid-cols-12 gap-4 px-3 lg:px-8 py-8 border-2 border-[#CFD5E1] rounded-[10px]'>
         <div className='col-span-12 lg:col-span-3 grid grid-cols-1 content-between h-[100%] gap-5 lg:gap-2'>
@@ -47,7 +49,7 @@ const ReviewsCommentsQAMdt = ({user,created_at,question,status,answer,_id}) => {
             </div>
         </div>
         {
-            answer && answer.length>0 && (
+            hasStatusOneanswer && answer && answer.length>0 && (
                 <div className='col-span-12'>
                         <div>
                             <Button variant="text" className='text-[#0266E1]' onClick={handleToggle}>{toggle?"Hide Answer":"Show Answer"}</Button>

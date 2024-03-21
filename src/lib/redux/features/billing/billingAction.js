@@ -1,10 +1,11 @@
+import baseURL from "@/lib/others/baseURL"
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import axios from "axios"
 
 
 export const billingActionGet = createAsyncThunk("billings/GET", async (thunkApi) => {
     try {
-        const response = await axios.get("http://localhost:9024/v1/billing-plan" ,{
+        const response = await axios.get(`${baseURL}/v1/billing-plan` ,{
             withCredentials: true
         })
         if (response.status === 200) {
@@ -21,7 +22,7 @@ export const billingActionGet = createAsyncThunk("billings/GET", async (thunkApi
 
 export const planActionGet = createAsyncThunk("plan/GET", async (id,thunkApi) => {
     try {
-        const response = await axios.get(`http://localhost:9024/v1/client-billing-plan?account_id=${id}` ,{
+        const response = await axios.get(`${baseURL}/v1/client-billing-plan?account_id=${id}` ,{
             withCredentials: true
         })
         if (response.status === 200) {

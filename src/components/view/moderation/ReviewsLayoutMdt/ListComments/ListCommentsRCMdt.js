@@ -5,6 +5,7 @@ import SwitchGreen from '@/components/common/SwitchGreen'
 import { useReviewsFilter } from '@/context/ReviewsFilterContext'
 import useAPi from '@/hooks/useApi'
 import useToggle from '@/hooks/useToggle'
+import baseURL from '@/lib/others/baseURL'
 import { moderationActionPost } from '@/lib/redux/features/moderation/moderationAction'
 import { Box, Button, Modal } from '@mui/material'
 import axios from 'axios'
@@ -65,7 +66,7 @@ const ListCommentsRCMdt = ({comment,_id}) => {
     const handlePublishedReview = async (data)=>{
         try {
             setLoadingTrue()
-            const response  = await axios.post("http://localhost:9024/v1/shopify/manage-comment",data ,{withCredentials: true} )
+            const response  = await axios.post(`${baseURL}/v1/shopify/manage-comment`,data ,{withCredentials: true} )
             const resData = response.data
             if(response.status === 200 && resData.data && resData.statuscode === 200 ){
                 setIsSuccessTrue()

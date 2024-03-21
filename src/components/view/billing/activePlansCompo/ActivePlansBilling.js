@@ -10,7 +10,9 @@ import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Link from 'next/link';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { errorClearRedirct } from '@/lib/cookies/cookiesNext';
+import { SaveChangesES } from '@/components/common/ButtonEmailSettings';
 
 const options = [
     {
@@ -24,6 +26,9 @@ const options = [
 
 
 const ActivePlansBilling = () => {
+    const dispatch = useDispatch()
+    
+
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
 
@@ -40,7 +45,28 @@ const ActivePlansBilling = () => {
 
     const is_activePlan = isSuccess && activePlan && Object.keys(activePlan).length>0 && activePlan.data
 
-    console.log(is_activePlan)
+    const handleDispatchError = ()=>{
+        const user_token  = JSON.parse(Cookies.get("user"))
+        if(user_token && user_token.account_id){
+            const id = user_token.account_id
+            dispatch(planActionGet(id))
+        }
+    }
+
+    if(isError){
+        errorClearRedirct(errorMessage)
+        if( errorMessage && errorMessage.response && errorMessage.response.status && errorMessage.response.status!==401){
+          let msg_err = errorMessage.response.data && errorMessage.response.data.message
+          return <div className="w-[100%] h-[85vh] flex items-center justify-center">
+           <div className="flex justify-center items-center flex-col">
+            <p>{msg_err&&msg_err}</p>
+            <SaveChangesES text={"Re-try Again"} onClick={()=>{ handleDispatchError }} />
+           </div>
+          </div>
+        }
+    }
+
+
   return (
     <div className=''>
         <div className='mb-7'>

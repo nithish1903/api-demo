@@ -71,7 +71,7 @@ const ReviewsLayoutMdt = () => {
 
     if(isError){
       errorClearRedirct(errorMessage)
-      if( errorMessage && errorMessage.response && errorMessage.response.status && errorMessage.response.status===500){
+      if( errorMessage && errorMessage.response && errorMessage.response.status && errorMessage.response.status!==401){
         let msg_err = errorMessage.response.data && errorMessage.response.data.message
         return <div className="w-[100%] h-[85vh] flex items-center justify-center">
          <div className="flex justify-center items-center flex-col">

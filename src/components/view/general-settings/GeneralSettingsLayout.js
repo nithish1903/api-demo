@@ -2,6 +2,7 @@
 import { SaveChangesES } from '@/components/common/ButtonEmailSettings'
 import FormInputFiled from '@/components/common/FormInputFiled'
 import Label from '@/components/common/Label'
+import { errorClearRedirct } from '@/lib/cookies/cookiesNext'
 import { generalSettingsGet, publicKey_update } from '@/lib/redux/features/generalSettings/generalSettingsAction'
 // import { SelectOptions } from '@/components/common/SelectOptions'
 import React, { useEffect, useState } from 'react'
@@ -16,8 +17,8 @@ const GeneralSettingsLayout = () => {
 
     const generateToken = () => {
         let generatedToken = '';
-        const characters = '012346789abcdefghijklm0123456789nopqrstuvwxyz012346789';
-        for (let i = 0; i < 32; i++) {
+        const characters = 'a0b1c2d3e4f5g6h7i8j9k0l1mN2O3P4Q5R6S7T8U9V0W1X2Y3ZnAoBpCqDrEsFtGuHvIwJxKyLzM';
+        for (let i = 0; i < 9; i++) {
             generatedToken += characters.charAt(Math.floor(Math.random() * characters.length));
         }
         const formData = {
@@ -31,6 +32,19 @@ const GeneralSettingsLayout = () => {
     })
 
     const is_settings  = isSuccess && settings && Object.keys(settings).length>0 && settings
+
+    if(isError){
+        errorClearRedirct(errorMessage)
+        if( errorMessage && errorMessage.response && errorMessage.response.status && errorMessage.response.status!==401){
+          let msg_err = errorMessage.response.data && errorMessage.response.data.message
+          return <div className="w-[100%] h-[85vh] flex items-center justify-center">
+           <div className="flex justify-center items-center flex-col">
+            <p>{msg_err&&msg_err}</p>
+            <SaveChangesES text={"Re-try Again"} onClick={()=>{ dispatch(generalSettingsGet({}))}} />
+           </div>
+          </div>
+        }
+    }
 
   return (
     <div>
@@ -47,7 +61,7 @@ const GeneralSettingsLayout = () => {
                         placplaceholder={"Company Name"} 
                         value={is_settings&&is_settings.name?is_settings.name:""} 
                         classInput={"w-full"} 
-                        inuputProps={{readonly:true}}
+                        inuputProps={{readOnly:true}}
                     />
                 </div>
             </div>
@@ -60,7 +74,7 @@ const GeneralSettingsLayout = () => {
                         placplaceholder={"Account ID"} 
                         value={is_settings&&is_settings.id?is_settings.id:""} 
                         classInput={"w-full"} 
-                        inuputProps={{readonly:true}}
+                        inuputProps={{readOnly:true}}
                     />
                 </div>
             </div>
@@ -73,7 +87,7 @@ const GeneralSettingsLayout = () => {
                         placplaceholder={"Store Name"} 
                         value={is_settings&&is_settings.display_name?is_settings.display_name:""} 
                         classInput={"w-full"} 
-                        inuputProps={{readonly:true}}
+                        inuputProps={{readOnly:true}}
                     />
                 </div>
             </div>
@@ -86,7 +100,7 @@ const GeneralSettingsLayout = () => {
                         placplaceholder={"Website Url"} 
                         value={is_settings&&is_settings.frontend_url?is_settings.frontend_url:""} 
                         classInput={"w-full"} 
-                        inuputProps={{readonly:true}}
+                        inuputProps={{readOnly:true}}
                     />
                 </div>
             </div>
@@ -100,7 +114,7 @@ const GeneralSettingsLayout = () => {
                     <Label htmlFor={""} label={"Public key:"} className={"text-[16px]"} />
                 </div>
                 <div className='col-span-12 md:col-span-9'>
-                    <FormInputFiled placeholder={"Key"} value={is_settings&&is_settings.public_key?is_settings.public_key:""} classInput={"w-full"} inuputProps={{readonly:true}}/>
+                    <FormInputFiled placeholder={"Key"} value={is_settings&&is_settings.public_key?is_settings.public_key:""} classInput={"w-full"} inuputProps={{readOnly:true}}/>
                 </div>
             </div>
             <div className='col-span-12 grid grid-cols-12 md:gap-6 items-center'>

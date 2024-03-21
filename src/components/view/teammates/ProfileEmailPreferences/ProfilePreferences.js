@@ -141,9 +141,9 @@ const ProfilePreferences = () => {
                         <div className='col-span-2 flex justify-center items-center pt-4 pb-3 lg:pt-10 lg:pb-8'>
                             {/* Display the selected profile picture if available */}
                             {profilePic ? (
-                            <img src={URL.createObjectURL(profilePic)} alt='Selected Profile Pic' className='w-[100px] h-auto' />
+                            <Image src={URL.createObjectURL(profilePic)} alt='Selected Profile Pic' width={0} height={0} className='w-[100px] h-auto' />
                             ) : (
-                            <img src={"/assets/images/emailSetting/company-logo.svg"} alt='company-logo' className='w-[100px] h-auto' />
+                            <Image src={"/assets/images/emailSetting/company-logo.svg"} alt='company-logo'  width={0} height={0} className='w-[100px] h-auto' />
                             )}
                             {/* File input for selecting profile picture */}
                             <input type="file" ref={fileInputRef} accept="image/*" onChange={handleFileChange}style={{ display: 'none' }} />

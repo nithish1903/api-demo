@@ -61,7 +61,7 @@ const LooksFeelEmail = () => {
             const position3 = fontOptions.indexOf(is_site_reviews.button_position);
             setbtnPosition_site(position3? btnPositionOptions[position3] :"")
         }
-    },[settingsData])
+    },[settingsData,is_product_reviews,is_site_reviews,fontOptions,btnPositionOptions])
 
     const handleFormSubmit = (e)=>{
         e.preventDefault()

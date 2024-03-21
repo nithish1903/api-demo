@@ -1,10 +1,10 @@
-import { userPageHeader } from '@/context/PageHeaderContext';
+import { usePageHeader } from '@/context/PageHeaderContext';
 import React from 'react';
 import { HiArrowLongLeft } from "react-icons/hi2";
 import ProfilePicMenu from './ProfilePicMenu';
 
 const PageHeaderLayout = () => {
-  const { pageTitle, goBack,reviewTitle } = userPageHeader();
+  const { pageTitle, goBack,reviewTitle } = usePageHeader();
  
 
   return (

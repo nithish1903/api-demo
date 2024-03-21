@@ -1,15 +1,15 @@
 "use client"
 import React from 'react'
-import { userPageHeader } from "@/context/PageHeaderContext";
+import { usePageHeader } from "@/context/PageHeaderContext";
 
 const PageHeaderComp = ({title,review}) => {
     
-    const { setPageTitle ,setReviewTitle } = userPageHeader();
+    const { setPageTitle ,setReviewTitle } = usePageHeader();
 
     React.useEffect(() => {
         setPageTitle(title);
         setReviewTitle(review)
-    }, [title,review]);
+    }, [title,review,setPageTitle ,setReviewTitle]);
 
   return (
     <></>

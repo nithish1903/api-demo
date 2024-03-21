@@ -151,7 +151,7 @@ const ReviewsLayoutMdt = () => {
                 <>
                   <div className='col-span-12'>
                     <div className='bg-[#D4E6FD] flex justify-center items-center rounded-[10px] w-[90%] mx-auto py-10'>
-                      <h5>No Comments</h5>
+                      <h5>No {reviewFilter.content_type==="product_reviews" && "Product Reviews"} {reviewFilter.content_type==="site_reviews" && "Site Reviews"} {reviewFilter.content_type==="product_question_answers" && "Product Question & Answers"}</h5>
                     </div>
                   </div>
                 </>

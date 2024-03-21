@@ -7,7 +7,7 @@ import GeneralSettingsLayout from "@/components/view/general-settings/GeneralSet
 export default function GeneralSettings() {
 
   return (
-    <Box>
+    <Box className="mb-10">
       <PageHeaderComp title={"General Settings"} review={""} />
       <ContainerBox>
         <GeneralSettingsLayout />

@@ -99,7 +99,7 @@ const ProfilePreferences = () => {
                 profilePic
             }
             console.log(data)
-            // handleForgotPswRequest(data)
+            handleForgotPswRequest(data)
         }
     }
 

@@ -27,7 +27,6 @@ const generalSettingsSlice = createSlice({
       state.errorMessage = null;
       state.isError = false;
       state.isSuccess = false
-      state.settings = {}
     });
     builder.addCase( generalSettingsGet.fulfilled , (state,action)=>{
       state.isLoading = false;
@@ -49,7 +48,6 @@ const generalSettingsSlice = createSlice({
       state.errorMessage = null;
       state.isError = false;
       state.isSuccess = false
-      state.settings = {}
     });
     builder.addCase( publicKey_update.fulfilled , (state,action)=>{
       state.isLoading = false;

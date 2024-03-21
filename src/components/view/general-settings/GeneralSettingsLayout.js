@@ -2,12 +2,33 @@
 import { SaveChangesES } from '@/components/common/ButtonEmailSettings'
 import FormInputFiled from '@/components/common/FormInputFiled'
 import Label from '@/components/common/Label'
-import { SelectOptions } from '@/components/common/SelectOptions'
+import { publicKey_update } from '@/lib/redux/features/generalSettings/generalSettingsAction'
+// import { SelectOptions } from '@/components/common/SelectOptions'
 import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 const GeneralSettingsLayout = () => {
-    const options = ["A review","B review"]
-    const [review,setreview] = useState(options[0])
+    const dispatch = useDispatch()
+
+    const generateToken = () => {
+        let generatedToken = '';
+        const characters = '012345abcdefghijklmno6789pqrstuvwxyz';
+        for (let i = 0; i < 32; i++) {
+            generatedToken += characters.charAt(Math.floor(Math.random() * characters.length));
+        }
+        const formData = {
+            "public_key":generatedToken
+        }
+        dispatch(publicKey_update(formData))
+    };
+
+    const {settings , isLoading , isSuccess , isError , errorMessage} = useSelector((state)=>{
+        return state.generalSettings
+    })
+
+    const is_settings  = isSuccess && settings && Object.keys(settings).length>0 && settings
+
+    console.log(is_settings)
 
   return (
     <div>
@@ -21,14 +42,6 @@ const GeneralSettingsLayout = () => {
                 </div>
                 <div className='col-span-12 md:col-span-9'>
                     <FormInputFiled placeholder={"Fashion Studio"} classInput={"w-full"}/>
-                </div>
-            </div>
-            <div className='col-span-12 grid grid-cols-12 gap-0 md:gap-6 items-center'>
-                <div className='col-span-12 md:col-span-3'>
-                    <Label htmlFor={""} label={"Your Store Industry:"} className={"text-[16px]"} />
-                </div>
-                <div className='col-span-12 md:col-span-9'>
-                    <SelectOptions className={"w-full lg:px-6"} options={options} value={review} handleChange={(e)=>{setreview(e.target.value)}} placeholder={"Select the review star rating"} />
                 </div>
             </div>
             <div className='col-span-12 grid grid-cols-12 md:gap-6 items-center'>
@@ -55,14 +68,6 @@ const GeneralSettingsLayout = () => {
                     <FormInputFiled placeholder={"Fashion Studio"} classInput={"w-full"}/>
                 </div>
             </div>
-            <div className='col-span-12 grid grid-cols-12 md:gap-6 items-center'>
-                <div className='col-span-12 md:col-span-3'>
-                    <Label htmlFor={""} label={"Language:"} className={"text-[16px]"} />
-                </div>
-                <div className='col-span-12 md:col-span-9'>
-                    <SelectOptions className={"w-full lg:px-6"} options={options} value={review} handleChange={(e)=>{setreview(e.target.value)}} placeholder={"Select the review star rating"} />
-                </div>
-            </div>
         </div>
         <div className='mt-10 mb-6'>
             <h5 className='font-[700]'>API Credentials</h5>
@@ -70,23 +75,19 @@ const GeneralSettingsLayout = () => {
         <div className='grid grid-cols-12 gap-5 pb-14 border-b-2 border-[#CFD5E1]'>
             <div className='col-span-12 grid grid-cols-12 md:gap-6 items-center'>
                 <div className='col-span-12 md:col-span-3'>
-                    <Label htmlFor={""} label={"App Key:"} className={"text-[16px]"} />
+                    <Label htmlFor={""} label={"Public key:"} className={"text-[16px]"} />
                 </div>
                 <div className='col-span-12 md:col-span-9'>
-                    <FormInputFiled placeholder={"Fashion Studio"} classInput={"w-full"}/>
+                    <FormInputFiled placeholder={"Key"} value={is_settings&&is_settings.public_key?is_settings.public_key:""} classInput={"w-full"} inuputProps={{readonly:true}}/>
                 </div>
             </div>
             <div className='col-span-12 grid grid-cols-12 md:gap-6 items-center'>
                 <div className='col-span-12 md:col-span-3'>
-                    <Label htmlFor={""} label={"Secret Key:"} className={"text-[16px]"} />
                 </div>
                 <div className='col-span-12 md:col-span-9'>
-                    <SaveChangesES className={"w-full"} text={"GET SECRET KEY"}/>
+                    <SaveChangesES className={"w-full"} onClick={generateToken} text={"Generate New Public key"}/>
                 </div>
             </div>
-        </div>
-        <div className='pt-10'>
-            <SaveChangesES text={"Save Changes"} />
         </div>
     </div>
   )

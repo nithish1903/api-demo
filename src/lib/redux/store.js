@@ -5,6 +5,7 @@ import moderationSlice from "./features/moderation/moderationSlice";
 import settingsSlice from "./features/settings/settingsSlice";
 import teammatesSlice from "./features/teammates/teammatesSlice";
 import billingSlice from "./features/billing/billingSlice";
+import generalSettingsSlice from "./features/generalSettings/generalSettingsSlice";
 
 
 const store = configureStore({
@@ -15,6 +16,7 @@ const store = configureStore({
         settings:settingsSlice,
         teammates:teammatesSlice,
         billings:billingSlice,
+        generalSettings:generalSettingsSlice
     },
 })
 

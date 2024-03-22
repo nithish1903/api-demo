@@ -6,10 +6,9 @@ import { moderationActionPost } from '@/lib/redux/features/moderation/moderation
 import { ErrorSnackbar, SuccessSnackbars } from '@/components/common/Snackbars'
 import { ModalCustomBox } from '@/components/common/ModalBox'
 import SwitchGreen from '@/components/common/SwitchGreen'
-import axios from 'axios'
 import Label from '@/components/common/Label'
 import { Button } from '@mui/material'
-import baseURL from '@/lib/others/baseURL'
+import { axiosInstance } from '@/lib/others/axiosInstance'
 
 
 const WriteAnswerrRCQAMdt = ({_id,showWirteAns,handleShowWriteAns}) => {
@@ -57,7 +56,7 @@ const WriteAnswerrRCQAMdt = ({_id,showWirteAns,handleShowWriteAns}) => {
         }
         try {
             setLoadingTrue()
-            const response  = await axios.post(`${baseURL}/v1/shopify/manage-answer`,data ,{withCredentials: true} )
+            const response  = await axiosInstance.post(`/v1/shopify/manage-answer`,data )
             const resData = response.data
             if(response.status === 200 && resData.data && resData.statuscode === 200 ){
                 setIsSuccessTrue()

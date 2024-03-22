@@ -76,8 +76,6 @@ export default function MainLayoutDB() {
     }
     //  <ErrorBasicSnackbar isError={isError} errorMessage={errorMessage} handleCallBack={()=>{dispatch(dashboardActionPost({}))}}  />
   }
-
-
   return (
     <Box>
       <>

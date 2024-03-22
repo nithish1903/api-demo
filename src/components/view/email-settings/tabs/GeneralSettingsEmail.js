@@ -9,6 +9,11 @@ import { useDispatch, useSelector } from 'react-redux'
 
 const GeneralSettingsEmail = () => {
     const dispatch = useDispatch()
+
+    useEffect(()=>{
+        dispatch(settingsActionGet())
+    },[dispatch])
+
     const {settingsData,isError,errorMessage} = useSelector((state)=>{
         return state.settings
     })

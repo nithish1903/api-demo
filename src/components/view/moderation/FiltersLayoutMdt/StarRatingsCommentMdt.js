@@ -7,6 +7,8 @@ import { Checkbox, Radio } from '@mui/material';
 import Label from '@/components/common/Label';
 import { useReviewsFilter } from '@/context/ReviewsFilterContext';
 import { useSelector } from 'react-redux';
+import { ErrorBasicSnackbar } from '@/components/common/Snackbars';
+import { errorClearRedirct } from '@/lib/cookies/cookiesNext';
 
 
 const StarRatingsCommentMdt = () => {
@@ -16,6 +18,15 @@ const StarRatingsCommentMdt = () => {
         return state.moderation
     })
     const presentData  = isSuccess && moderationData && Object.keys(moderationData).length>0 && moderationData.data && Object.keys(moderationData.data).length>0 && moderationData.data 
+
+    if(isError){
+        errorClearRedirct(errorMessage)
+        if( errorMessage && errorMessage.response && errorMessage.response.status && errorMessage.response.status!==401){
+            <ErrorBasicSnackbar isError={isError} errorMessage={errorMessage} handleCallBack={()=>{dispatch(moderationActionPost(reviewFilter))}}  />
+        }
+        // <ErrorPageHnadleBasic handleCallBack={()=>{ dispatch(moderationActionPost(reviewFilter)) }} errorMessage={errorMessage}/>
+        //  <ErrorBasicSnackbar isError={isError} errorMessage={errorMessage} handleCallBack={()=>{dispatch(dashboardActionPost({}))}}  />
+    }
 
   return (
         <div className='grid grid-cols-12 gap-3'>

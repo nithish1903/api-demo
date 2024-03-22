@@ -1,8 +1,9 @@
-import { redirect } from "next/navigation";
+import CheckCookiesRedirect from "@/lib/cookies/CheckCookiesRedirect";
 
 export default function AppPage() {
-  redirect('/app/dashboard')
   return (
-    <p>Home</p>
+    <>
+      <CheckCookiesRedirect></CheckCookiesRedirect>
+    </>
   );
 }

@@ -6,6 +6,8 @@ import ContainerBox from '@/components/common/ContainerBox'
 import AddTeammates from './AddTeammates'
 import { useDispatch, useSelector } from 'react-redux'
 import { teammatesActionGet } from '@/lib/redux/features/teammates/teammatesAction'
+import { ErrorPageHnadleBasic } from '@/components/common/ErrorHnadle'
+import { errorClearRedirct } from '@/lib/cookies/cookiesNext'
 
 const TeammatesLayout = () => {
     const dispatch = useDispatch()
@@ -25,6 +27,15 @@ const TeammatesLayout = () => {
       // Extracting data and pagination details
       const is_teammates = isSuccess && teammatesData && Object.keys(teammatesData).length > 0 && teammatesData.data;
       const is_pagination = isSuccess && teammatesData && Object.keys(teammatesData).length > 0 && teammatesData.pagination;
+
+    if(isError){
+        errorClearRedirct(errorMessage)
+        if( errorMessage && errorMessage.response && errorMessage.response.status && errorMessage.response.status!==401){
+            const formData1 = {}
+            return <ErrorPageHnadleBasic handleCallBack={()=>{ dispatch(teammatesActionGet(formData1)) }} errorMessage={errorMessage}/>
+        }
+        //  <ErrorBasicSnackbar isError={isError} errorMessage={errorMessage} handleCallBack={()=>{dispatch(dashboardActionPost({}))}}  />
+    }
    
   return (
     <ContainerBox>

@@ -2,7 +2,6 @@
 import React, { useState } from 'react'
 import { HiOutlineBookOpen } from "react-icons/hi";
 import { BsCreditCardFill } from "react-icons/bs";
-import SwitchGreen from '@/components/common/SwitchGreen';
 import { HiDotsHorizontal } from "react-icons/hi";
 import "./table.css"
 
@@ -12,7 +11,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux';
 import { errorClearRedirct } from '@/lib/cookies/cookiesNext';
-import { SaveChangesES } from '@/components/common/ButtonEmailSettings';
+import { ErrorPageHnadleBasic } from '@/components/common/ErrorHnadle';
 
 const options = [
     {
@@ -56,14 +55,9 @@ const ActivePlansBilling = () => {
     if(isError){
         errorClearRedirct(errorMessage)
         if( errorMessage && errorMessage.response && errorMessage.response.status && errorMessage.response.status!==401){
-          let msg_err = errorMessage.response.data && errorMessage.response.data.message
-          return <div className="w-[100%] h-[85vh] flex items-center justify-center">
-           <div className="flex justify-center items-center flex-col">
-            <p>{msg_err&&msg_err}</p>
-            <SaveChangesES text={"Re-try Again"} onClick={()=>{ handleDispatchError }} />
-           </div>
-          </div>
+            return <ErrorPageHnadleBasic handleCallBack={()=>{handleDispatchError}} errorMessage={errorMessage}/>
         }
+        //  <ErrorBasicSnackbar isError={isError} errorMessage={errorMessage} handleCallBack={()=>{dispatch(dashboardActionPost({}))}}  />
     }
 
 

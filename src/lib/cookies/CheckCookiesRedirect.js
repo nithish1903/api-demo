@@ -7,12 +7,12 @@ import { redirect } from 'next/navigation'
 const CheckCookiesRedirect = ({children}) => {
 
     useEffect(()=>{
-        if(getCookiesNext("user")){
+        if(getCookiesNext("user")&& getCookiesNext("token")){
             redirect('/app/dashboard')
         }else{
             redirect('/auth/login')
         }
-      },[])
+    },[])
 
   return (
     <>

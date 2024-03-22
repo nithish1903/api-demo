@@ -4,34 +4,16 @@ import React from 'react'
 import { TiArrowSortedDown } from 'react-icons/ti'
 // import { ArrowRight } from '@mui/icons-material';
 import { IoMdArrowRoundUp } from 'react-icons/io';
-import axios from 'axios';
 import useAPi from '@/hooks/useApi';
 import { ErrorSnackbar, SuccessSnackbars } from '@/components/common/Snackbars';
 import { useReviewsFilter } from '@/context/ReviewsFilterContext';
 import { useDispatch } from 'react-redux';
 import { moderationActionPost } from '@/lib/redux/features/moderation/moderationAction';
-import Button from '@mui/material/Button';
+// import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import baseURL from '@/lib/others/baseURL';
+import { axiosInstance } from '@/lib/others/axiosInstance';
 
-
-const othernested = [
-    {
-        lable:"Publish",
-        value:"approved",
-        icon: ()=>{},
-        link:"",
-        nested:[]
-    },
-    {
-        lable:"Reject",
-        value:"rejected",
-        icon: ()=>{},
-        link:"",
-        nested:[]
-    },
-]
 
 const PublishedDrepDown = ({_id,status}) => {
 
@@ -80,7 +62,7 @@ const PublishedDrepDown = ({_id,status}) => {
     const handlePublishedReview = async (data)=>{
         try {
             setLoadingTrue()
-            const response  = await axios.post(`${baseURL}/v1/shopify/publish-review`,data ,{withCredentials: true} )
+            const response  = await axiosInstance.post(`/v1/shopify/publish-review`,data)
             const resData = response.data
             if(response.status === 200 && resData.data && resData.statuscode === 200 ){
                 setIsSuccessTrue()

@@ -23,7 +23,7 @@ export function NavMenuHeader({anchorEl,setAnchorEl}) {
       dispatch(userReset())
       dispatch(dashboardReset())
       Cookies.remove("user")
-      Cookies.remove("user-cache")
+      Cookies.remove("token")
       router.push("/auth/login")
   }
 

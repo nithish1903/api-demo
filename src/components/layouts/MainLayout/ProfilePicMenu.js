@@ -6,8 +6,9 @@ import { NavMenuHeader } from '@/components/common/MenuCustom';
 import { Box } from '@mui/material';
 import Image from 'next/image';
 import { errorClearRedirct } from '@/lib/cookies/cookiesNext';
-import { SaveChangesES } from '@/components/common/ButtonEmailSettings';
 import { userDetails } from '@/lib/redux/features/userAuth/userAction';
+import { ErrorBasicSnackbar } from '@/components/common/Snackbars';
+import Cookies from 'js-cookie';
 
 const ProfilePicMenu = () => {
     const dispatch = useDispatch()
@@ -30,13 +31,7 @@ const ProfilePicMenu = () => {
     if(isError){
         errorClearRedirct(errorMessage)
         if( errorMessage && errorMessage.response && errorMessage.response.status && errorMessage.response.status!==401){
-          let msg_err = errorMessage.response.data && errorMessage.response.data.message
-          return <div className="w-[100%] h-[85vh] flex items-center justify-center">
-           <div className="flex justify-center items-center flex-col">
-                <p>{msg_err&&msg_err}</p>
-                <SaveChangesES text={"Re-try Again"} onClick={()=>{ handleDispatchError }} />
-           </div>
-          </div>
+          return <ErrorBasicSnackbar isError={isError} errorMessage={errorMessage} handleCallBack={handleDispatchError}  />
         }
     }
 

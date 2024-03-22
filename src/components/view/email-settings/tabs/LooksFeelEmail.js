@@ -6,6 +6,8 @@ import SettingsLooksFeelES from './LooksFeelEmail/SettingsLooksFeelES';
 import { useDispatch, useSelector } from 'react-redux';
 import { LoadingSkeletonBasic } from '@/components/common/LoadingSkeleton';
 import { settingsActionGet, settingsActionPost } from '@/lib/redux/features/settings/settingsAction';
+import { errorClearRedirct } from '@/lib/cookies/cookiesNext';
+import { ErrorPageHnadleBasic } from '@/components/common/ErrorHnadle';
 
 
 const LooksFeelEmail = () => {
@@ -38,12 +40,11 @@ const LooksFeelEmail = () => {
     const is_product_reviews = isSuccess && settingsData && Object.keys(settingsData).length > 0 && settingsData.data && Object.keys(settingsData.data).length>0 && settingsData.data.product_reviews
     const is_site_reviews = isSuccess && settingsData && Object.keys(settingsData).length > 0 && settingsData.data && Object.keys(settingsData.data).length>0 && settingsData.data.site_reviews  
 
-    console.log(settingsData)
-// inherit
     useEffect(()=>{
         if(settingsData && is_product_reviews){
             settitle_prd(is_product_reviews.title?is_product_reviews.title:"Product Reviews")
             const position1 = fontOptions.indexOf(is_product_reviews.font_family);
+
             setCurrentFont_prd( position1? fontOptions[position1] :"" )
             setColor1_prd(is_product_reviews.button_bg_color?is_product_reviews.button_bg_color:"")
             setColor2_prd(is_product_reviews.button_title_color?is_product_reviews.button_title_color:"")
@@ -53,15 +54,18 @@ const LooksFeelEmail = () => {
         if(settingsData && is_site_reviews){
             settitle_site(is_site_reviews.button_title?is_site_reviews.button_title:"Site Reviews")
             const position2 = fontOptions.indexOf(is_site_reviews.font_family);
+
             setCurrentFont_site( position2? fontOptions[position2] :"")
             setColor1_site(is_site_reviews.button_bg_color?is_site_reviews.button_bg_color:"")
             setColor2_site(is_site_reviews.button_title_color?is_site_reviews.button_title_color:"")
             setStatus_site(is_site_reviews.status&&is_site_reviews.status===1?true:false)
+            setStarColor_site(is_site_reviews.star_color?is_site_reviews.star_color:"#F9C612")
 
             const position3 = fontOptions.indexOf(is_site_reviews.button_position);
             setbtnPosition_site(position3? btnPositionOptions[position3] :"")
         }
     },[settingsData,is_product_reviews,is_site_reviews,fontOptions,btnPositionOptions])
+    
 
     const handleFormSubmit = (e)=>{
         e.preventDefault()
@@ -84,6 +88,14 @@ const LooksFeelEmail = () => {
         }
         dispatch(settingsActionPost(formData))
 
+    }
+
+    if(isError){
+        errorClearRedirct(errorMessage)
+        if( errorMessage && errorMessage.response && errorMessage.response.status && errorMessage.response.status!==401){
+            return <ErrorPageHnadleBasic handleCallBack={()=>{ dispatch(settingsActionGet()) }} errorMessage={errorMessage}/>
+        }
+        //  <ErrorBasicSnackbar isError={isError} errorMessage={errorMessage} handleCallBack={()=>{dispatch(dashboardActionPost({}))}}  />
     }
     
   return (

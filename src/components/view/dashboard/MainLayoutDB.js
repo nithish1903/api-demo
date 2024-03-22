@@ -12,7 +12,7 @@ import AllTimeDB from "@/components/view/dashboard/AllTimeDB";
 import ReviewRequestCards from "@/components/view/dashboard/ReviewRequestCards";
 import { LoadingSkeletonBasic } from "@/components/common/LoadingSkeleton";
 import { errorClearRedirct } from "@/lib/cookies/cookiesNext";
-import { SaveChangesES } from "@/components/common/ButtonEmailSettings";
+import { ErrorPageHnadleBasic } from "@/components/common/ErrorHnadle";
 
 export default function MainLayoutDB() {
 
@@ -66,20 +66,16 @@ export default function MainLayoutDB() {
     }
     return str
   }
-
+  
 
   if(isError){
     errorClearRedirct(errorMessage)
     if( errorMessage && errorMessage.response && errorMessage.response.status && errorMessage.response.status!==401){
-      let msg_err = errorMessage.response.data && errorMessage.response.data.message
-      return <div className="w-[100%] h-[85vh] flex items-center justify-center">
-       <div className="flex justify-center items-center flex-col">
-        <p>{msg_err&&msg_err}</p>
-        <SaveChangesES text={"Re-try Again"} onClick={()=>{ dispatch(dashboardActionPost({}))}} />
-       </div>
-      </div>
+      return <ErrorPageHnadleBasic handleCallBack={()=>{dispatch(dashboardActionPost({}))}} errorMessage={errorMessage}/>
     }
+    //  <ErrorBasicSnackbar isError={isError} errorMessage={errorMessage} handleCallBack={()=>{dispatch(dashboardActionPost({}))}}  />
   }
+
 
   return (
     <Box>

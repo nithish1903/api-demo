@@ -12,7 +12,7 @@ const CheckCookiesRedirect = ({children}) => {
         }else{
             redirect('/auth/login')
         }
-      },[])
+    },[])
 
   return (
     <>

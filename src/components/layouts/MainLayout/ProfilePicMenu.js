@@ -8,6 +8,7 @@ import Image from 'next/image';
 import { errorClearRedirct } from '@/lib/cookies/cookiesNext';
 import { userDetails } from '@/lib/redux/features/userAuth/userAction';
 import { ErrorBasicSnackbar } from '@/components/common/Snackbars';
+import Cookies from 'js-cookie';
 
 const ProfilePicMenu = () => {
     const dispatch = useDispatch()
@@ -30,7 +31,7 @@ const ProfilePicMenu = () => {
     if(isError){
         errorClearRedirct(errorMessage)
         if( errorMessage && errorMessage.response && errorMessage.response.status && errorMessage.response.status!==401){
-          return <ErrorBasicSnackbar isError={isError} errorMessage={errorMessage} handleCallBack={()=>{handleDispatchError}}  />
+          return <ErrorBasicSnackbar isError={isError} errorMessage={errorMessage} handleCallBack={handleDispatchError}  />
         }
     }
 

@@ -8,7 +8,7 @@ import useAPi from '@/hooks/useApi'
 import { ErrorSnackbar, SuccessSnackbars } from '@/components/common/Snackbars'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { LoadingSkeletonBasic } from '@/components/common/LoadingSkeleton'
-import { axiosInstance } from '@/lib/others/axiosInstance'
+import axios from 'axios'
 
 
 
@@ -91,7 +91,7 @@ const ResetPasswordForm = () => {
     const handleResetPswRequest = async (data)=>{
         try{
             setLoadingTrue()
-            const response  = await axiosInstance.post(`/v1/user/reset-password`,data)
+            const response  = await axios.post(`/v1/user/reset-password`,data)
             const resData = response.data
             if(response.status === 200 && resData.data && resData.statuscode === 200 ){
                 setIsSuccessTrue()

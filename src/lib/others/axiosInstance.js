@@ -7,6 +7,6 @@ export const axiosInstance = axios.create({
   baseURL: baseURL,
   headers: {
     'Content-Type': 'application/json',
-    "Authorization": `bearer ${ JSON.parse(Cookies.get("token"))}`
+    "Authorization": `bearer ${JSON.parse(Cookies.get("token")) ? JSON.parse(Cookies.get("token")): ""}`
   },
 });

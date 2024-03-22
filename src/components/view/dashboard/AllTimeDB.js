@@ -30,7 +30,6 @@ const AllTimeDB = () => {
 
   useEffect(()=>{
     if(range&&range.length>0&&range[0].startDate){
-      // console.log(range[0].startDate,"S" , range[0].endDate , "E")
         setDateRangeValue(`${format(range[0].startDate,"dd/MM/yyyy")} to ${format(range[0].endDate,"dd/MM/yyyy")}`)
         setTimeRange({start_date:convertToISOFormat(range[0].startDate),end_date:convertToISOFormat(range[0].endDate)})
     }

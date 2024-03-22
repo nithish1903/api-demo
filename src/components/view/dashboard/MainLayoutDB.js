@@ -66,12 +66,13 @@ export default function MainLayoutDB() {
     }
     return str
   }
-  
 
   if(isError){
     errorClearRedirct(errorMessage)
     if( errorMessage && errorMessage.response && errorMessage.response.status && errorMessage.response.status!==401){
-      return <ErrorPageHnadleBasic handleCallBack={()=>{dispatch(dashboardActionPost({}))}} errorMessage={errorMessage}/>
+      return <ErrorPageHnadleBasic handleCallBack={()=>{
+        dispatch(dashboardActionPost({}))
+      }} errorMessage={errorMessage}/>
     }
     //  <ErrorBasicSnackbar isError={isError} errorMessage={errorMessage} handleCallBack={()=>{dispatch(dashboardActionPost({}))}}  />
   }

@@ -8,7 +8,9 @@ export const ErrorPageHnadleBasic = ({handleCallBack,errorMessage}) => {
        <div className="w-[100%] h-[85vh] flex items-center justify-center">
             <div className="flex justify-center items-center flex-col">
                 <p>{msg_err?msg_err:"Something went wrong!"}</p>
-                <SaveChangesES text={"Re-try Again"} onClick={()=>{handleCallBack}} />
+                <SaveChangesES text={"Re-try Again"} onClick={()=>{
+                    handleCallBack()
+                }} />
             </div>
         </div>
     </>

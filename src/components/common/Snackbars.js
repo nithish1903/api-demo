@@ -157,7 +157,9 @@ export function ErrorBasicSnackbar({isError,handleCallBack,errorMessage}) {
 
   const action = (
     <React.Fragment>
-      <button className='bg-[#fff] px-2 py-1 text-blue-600 rounded-md font-[600] mx-3' onClick={handleCallBack}>
+      <button className='bg-[#fff] px-2 py-1 text-blue-600 rounded-md font-[600] mx-3' onClick={()=>{
+        handleCallBack()
+      }}>
         Re-try Again
       </button>
       <IconButton

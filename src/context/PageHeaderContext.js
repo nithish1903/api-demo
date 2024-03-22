@@ -15,10 +15,10 @@ export const PageHeaderProvider = ({ children }) => {
   };
 
   return (
-    <PageHeaderContext.Provider value={{ pageTitle, setPageTitle, goBack, reviewTitle,setReviewTitle }}>
+    <PageHeaderContext.Provider value={{ pageTitle, setPageTitle, goBack, reviewTitle, setReviewTitle }}>
       {children}
     </PageHeaderContext.Provider>
   );
 };
 
-export const userPageHeader = () => useContext(PageHeaderContext);
+export const usePageHeader = () => useContext(PageHeaderContext); // Rename the function to start with "use" and use useContext inside a custom hook

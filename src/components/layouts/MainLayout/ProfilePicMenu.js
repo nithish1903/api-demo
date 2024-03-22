@@ -1,18 +1,39 @@
 
 import React, { useRef, useState } from 'react';
 import { IoIosArrowDown } from "react-icons/io";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavMenuHeader } from '@/components/common/MenuCustom';
 import { Box } from '@mui/material';
 import Image from 'next/image';
+import { errorClearRedirct } from '@/lib/cookies/cookiesNext';
+import { userDetails } from '@/lib/redux/features/userAuth/userAction';
+import { ErrorBasicSnackbar } from '@/components/common/Snackbars';
+import Cookies from 'js-cookie';
 
 const ProfilePicMenu = () => {
+    const dispatch = useDispatch()
+
     const {userData , isLoading,errorMessage,isError,isSuccess} = useSelector((state)=>{
         return state.user
     })
     const user_response = isSuccess && userData &&  Object.keys(userData).length>0  
     const [anchorEl,setAnchorEl] = useState(null)
     const ref_one = useRef()
+
+
+    const handleDispatchError = ()=>{
+        const user_token  = JSON.parse(Cookies.get("user"))
+        if(user_token && user_token.account_id){
+            dispatch(userDetails({ "user_id": user_token.account_id}))
+        }
+    }
+
+    if(isError){
+        errorClearRedirct(errorMessage)
+        if( errorMessage && errorMessage.response && errorMessage.response.status && errorMessage.response.status!==401){
+          return <ErrorBasicSnackbar isError={isError} errorMessage={errorMessage} handleCallBack={handleDispatchError}  />
+        }
+    }
 
   return (
     <div>

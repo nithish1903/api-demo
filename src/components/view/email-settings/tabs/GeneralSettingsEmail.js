@@ -1,14 +1,19 @@
 "use client"
 import { SaveChangesES } from '@/components/common/ButtonEmailSettings'
+import { ErrorPageHnadleBasic } from '@/components/common/ErrorHnadle'
 import FormInputFiled from '@/components/common/FormInputFiled'
-import { settingsActionPost } from '@/lib/redux/features/settings/settingsAction'
-import { Checkbox } from '@mui/material'
-import Image from 'next/image'
+import { errorClearRedirct } from '@/lib/cookies/cookiesNext'
+import { settingsActionGet, settingsActionPost } from '@/lib/redux/features/settings/settingsAction'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 const GeneralSettingsEmail = () => {
     const dispatch = useDispatch()
+
+    useEffect(()=>{
+        dispatch(settingsActionGet())
+    },[dispatch])
+
     const {settingsData,isError,errorMessage} = useSelector((state)=>{
         return state.settings
     })
@@ -17,10 +22,7 @@ const GeneralSettingsEmail = () => {
     const [from_name,setfrom_name] = useState(is_email_notifications&&is_email_notifications.from_name?is_email_notifications.from_name:"")
     const [from_email,setfrom_email] = useState(is_email_notifications&&is_email_notifications.from_email?is_email_notifications.from_email:"")
     const [reply_to,setreply_to] = useState(is_email_notifications&&is_email_notifications.reply_to?is_email_notifications.reply_to:"")
-
-    // const [fontSize,setFontSize] = useState(0)
     const [formError,setFormError] = React.useState({})
-    // setErrorMessage(error.response.data.message)
 
     let formErr  = {}
 
@@ -50,16 +52,6 @@ const GeneralSettingsEmail = () => {
         }
     }
 
-    // const handleFontSizeInc = () => {
-    //     setFontSize((count) => count + 1)
-    // }
-
-    // const handleFontSizeDec = () => {
-    //     if (fontSize > 0) {
-    //         setFontSize((count) => count - 1)
-    //     }
-    // }
-
     const handleFormSubmit = (e)=>{
         e.preventDefault()
         handleError()
@@ -73,6 +65,14 @@ const GeneralSettingsEmail = () => {
             }
             dispatch(settingsActionPost(data))
         }
+    }
+
+    if(isError){
+        errorClearRedirct(errorMessage)
+        if( errorMessage && errorMessage.response && errorMessage.response.status && errorMessage.response.status!==401){
+            return <ErrorPageHnadleBasic handleCallBack={()=>{ dispatch(settingsActionGet()) }} errorMessage={errorMessage}/>
+        }
+        //  <ErrorBasicSnackbar isError={isError} errorMessage={errorMessage} handleCallBack={()=>{dispatch(dashboardActionPost({}))}}  />
     }
 
   return (

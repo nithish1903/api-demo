@@ -4,7 +4,8 @@ import FormInputFiled from '@/components/common/FormInputFiled'
 import InputPassword from '@/components/common/InputPassword'
 import { ErrorSnackbar, SuccessSnackbars } from '@/components/common/Snackbars'
 import useAPi from '@/hooks/useApi'
-import axios from 'axios'
+import { axiosInstance } from '@/lib/others/axiosInstance'
+import Cookies from 'js-cookie'
 import Image from 'next/image'
 import React, { useEffect, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
@@ -98,8 +99,7 @@ const ProfilePreferences = () => {
                 "id": account_id,
                 profilePic
             }
-            console.log(data)
-            // handleForgotPswRequest(data)
+            handleForgotPswRequest(data)
         }
     }
 
@@ -111,9 +111,12 @@ const ProfilePreferences = () => {
     const handleForgotPswRequest = async (data)=>{
         try {
             setLoadingTrue()
-            const response  = await axios.post("http://localhost:9024/v1/user/get-user-details",data ,{withCredentials: true} )
+            const response  = await axiosInstance.post(`/v1/user/get-user-details`,data , {
+                headers:{
+                    "Authorization": Cookies.get("token") ? `Bearer ${JSON.parse(Cookies.get("token"))}` : ''
+                }
+            } )
             const resData = response.data
-            console.log(response)
             if(response.status === 200 && resData.data && resData.statuscode === 200 ){
                 setIsSuccessTrue()
                 setSuccessMessage(resData.data)
@@ -141,9 +144,9 @@ const ProfilePreferences = () => {
                         <div className='col-span-2 flex justify-center items-center pt-4 pb-3 lg:pt-10 lg:pb-8'>
                             {/* Display the selected profile picture if available */}
                             {profilePic ? (
-                            <img src={URL.createObjectURL(profilePic)} alt='Selected Profile Pic' className='w-[100px] h-auto' />
+                            <Image src={URL.createObjectURL(profilePic)} alt='Selected Profile Pic' width={0} height={0} className='w-[100px] h-auto' />
                             ) : (
-                            <img src={"/assets/images/emailSetting/company-logo.svg"} alt='company-logo' className='w-[100px] h-auto' />
+                            <Image src={"/assets/images/emailSetting/company-logo.svg"} alt='company-logo'  width={0} height={0} className='w-[100px] h-auto' />
                             )}
                             {/* File input for selecting profile picture */}
                             <input type="file" ref={fileInputRef} accept="image/*" onChange={handleFileChange}style={{ display: 'none' }} />

@@ -26,6 +26,9 @@ const ReviewsCommentsMdt = ({user,created_at,title,content,rating,comment,_id,st
 
     const countMinsStar = rating && 5-rating
 
+     // Check if any comment with status === 1 exists
+     const hasStatusOneComment =  comment && comment.length>0 &&  comment.some(comment => comment.status === 1);
+
     
   return (
     <div className='grid grid-cols-12 gap-4 px-3 lg:px-8 py-8 border-2 border-[#CFD5E1] rounded-[10px]'>
@@ -85,7 +88,7 @@ const ReviewsCommentsMdt = ({user,created_at,title,content,rating,comment,_id,st
             </div>
         </div>
         {
-            comment && comment.length>0 && (
+            hasStatusOneComment && comment && comment.length>0 && (
                 <div className='col-span-12'>
                         <div>
                             <Button variant="text" className='text-[#0266E1]' onClick={handleToggle}>{toggle?"Hide Comments":"Show Comments"}</Button>

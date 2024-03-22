@@ -11,8 +11,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { LoadingSkeletonReview } from '@/components/common/LoadingSkeleton';
 import ReviewsCommentsQAMdt from './ReviewsLayoutMdt/ReviewsCommentsQAMdt';
 import { moderationActionPost } from '@/lib/redux/features/moderation/moderationAction';
-import { SaveChangesES } from '@/components/common/ButtonEmailSettings';
 import { errorClearRedirct } from '@/lib/cookies/cookiesNext';
+import { ErrorPageHnadleBasic } from '@/components/common/ErrorHnadle';
 
 const options = [
   { value: 'newest', label: 'Date (newest first)' },
@@ -70,16 +70,11 @@ const ReviewsLayoutMdt = () => {
     };
 
     if(isError){
-      errorClearRedirct(errorMessage)
-      if( errorMessage && errorMessage.response && errorMessage.response.status && errorMessage.response.status===500){
-        let msg_err = errorMessage.response.data && errorMessage.response.data.message
-        return <div className="w-[100%] h-[85vh] flex items-center justify-center">
-         <div className="flex justify-center items-center flex-col">
-          <p>{msg_err&&msg_err}</p>
-          <SaveChangesES text={"Re-try Again"} onClick={()=>{ dispatch(moderationActionPost(reviewFilter) ) }} />
-         </div>
-        </div>
-      }
+        errorClearRedirct(errorMessage)
+        if( errorMessage && errorMessage.response && errorMessage.response.status && errorMessage.response.status!==401){
+            return <ErrorPageHnadleBasic handleCallBack={()=>{ dispatch(moderationActionPost(reviewFilter)) }} errorMessage={errorMessage}/>
+        }
+        //  <ErrorBasicSnackbar isError={isError} errorMessage={errorMessage} handleCallBack={()=>{dispatch(dashboardActionPost({}))}}  />
     }
 
   return (
@@ -151,7 +146,7 @@ const ReviewsLayoutMdt = () => {
                 <>
                   <div className='col-span-12'>
                     <div className='bg-[#D4E6FD] flex justify-center items-center rounded-[10px] w-[90%] mx-auto py-10'>
-                      <h5>No Comments</h5>
+                      <h5>No {reviewFilter.content_type==="product_reviews" && "Product Reviews"} {reviewFilter.content_type==="site_reviews" && "Site Reviews"} {reviewFilter.content_type==="product_question_answers" && "Product Question & Answers"}</h5>
                     </div>
                   </div>
                 </>

@@ -3,9 +3,10 @@ import { ErrorSnackbar, SuccessSnackbars } from '@/components/common/Snackbars'
 import SwitchGreen from '@/components/common/SwitchGreen'
 import { useReviewsFilter } from '@/context/ReviewsFilterContext'
 import useAPi from '@/hooks/useApi'
+import { axiosInstance } from '@/lib/others/axiosInstance'
 import { moderationActionPost } from '@/lib/redux/features/moderation/moderationAction'
 import { Button } from '@mui/material'
-import axios from 'axios'
+import Cookies from 'js-cookie'
 import React, { useEffect, useRef } from 'react'
 import { useDispatch } from 'react-redux'
 
@@ -26,27 +27,30 @@ const WriteComments = ( {
 
     const refOne = useRef(null)
 
+    const handleHide = (e)=>{
+        if(e.key == "Escape"){
+            setWriteComment("")
+            setShowWriteComment(false)
+            setPrivateComment(false)
+        }
+      }
+    
+      const handleOnClickOutside = (e)=>{
+        if(refOne.current && !refOne.current.contains(e.target)){
+            setWriteComment("")
+            setShowWriteComment(false)
+            setPrivateComment(false)
+        }
+      }
+      
+
     useEffect(()=>{
         document.addEventListener("keydown",handleHide,true)
         document.addEventListener("click",handleOnClickOutside,true)
-    },[])
+    },[handleHide,handleOnClickOutside])
 
 
-  const handleHide = (e)=>{
-    if(e.key == "Escape"){
-        setWriteComment("")
-        setShowWriteComment(false)
-        setPrivateComment(false)
-    }
-  }
-
-  const handleOnClickOutside = (e)=>{
-    if(refOne.current && !refOne.current.contains(e.target)){
-        setWriteComment("")
-        setShowWriteComment(false)
-        setPrivateComment(false)
-    }
-  }
+  
 
     const { 
         isLoading,
@@ -80,7 +84,11 @@ const WriteComments = ( {
         }
         try {
             setLoadingTrue()
-            const response  = await axios.post("http://localhost:9024/v1/shopify/manage-comment",data ,{withCredentials: true} )
+            const response  = await axiosInstance.post(`/v1/shopify/manage-comment`,data , {
+                headers:{
+                    "Authorization": Cookies.get("token") ? `Bearer ${JSON.parse(Cookies.get("token"))}` : ''
+                }
+            } )
             const resData = response.data
             if(response.status === 200 && resData.data && resData.statuscode === 200 ){
                 setIsSuccessTrue()

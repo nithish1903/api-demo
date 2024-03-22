@@ -13,7 +13,7 @@ export function getCookiesNext(name) {
 export  function errorClearRedirct(error){
   if(error && error.response && error.response.status && error.response.status===401){
       Cookies.remove("user")
-      Cookies.remove("user-cache")
-      redirect("/auth/login")
+      Cookies.remove("token")
+      return redirect("/auth/login")
   }
 }

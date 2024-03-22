@@ -2,7 +2,6 @@
 import React, { useState } from 'react'
 import { HiOutlineBookOpen } from "react-icons/hi";
 import { BsCreditCardFill } from "react-icons/bs";
-import SwitchGreen from '@/components/common/SwitchGreen';
 import { HiDotsHorizontal } from "react-icons/hi";
 import "./table.css"
 
@@ -10,7 +9,9 @@ import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Link from 'next/link';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { errorClearRedirct } from '@/lib/cookies/cookiesNext';
+import { ErrorPageHnadleBasic } from '@/components/common/ErrorHnadle';
 
 const options = [
     {
@@ -24,6 +25,9 @@ const options = [
 
 
 const ActivePlansBilling = () => {
+    const dispatch = useDispatch()
+    
+
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
 
@@ -40,7 +44,23 @@ const ActivePlansBilling = () => {
 
     const is_activePlan = isSuccess && activePlan && Object.keys(activePlan).length>0 && activePlan.data
 
-    console.log(is_activePlan)
+    const handleDispatchError = ()=>{
+        const user_token  = JSON.parse(Cookies.get("user"))
+        if(user_token && user_token.account_id){
+            const id = user_token.account_id
+            dispatch(planActionGet(id))
+        }
+    }
+
+    if(isError){
+        errorClearRedirct(errorMessage)
+        if( errorMessage && errorMessage.response && errorMessage.response.status && errorMessage.response.status!==401){
+            return <ErrorPageHnadleBasic handleCallBack={()=>{handleDispatchError}} errorMessage={errorMessage}/>
+        }
+        //  <ErrorBasicSnackbar isError={isError} errorMessage={errorMessage} handleCallBack={()=>{dispatch(dashboardActionPost({}))}}  />
+    }
+
+
   return (
     <div className=''>
         <div className='mb-7'>

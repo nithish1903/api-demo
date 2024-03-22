@@ -1,13 +1,16 @@
+import { axiosInstance } from "@/lib/others/axiosInstance"
 import { createAsyncThunk } from "@reduxjs/toolkit"
-import axios from "axios"
+import Cookies from "js-cookie"
 
 
 
 export const dashboardActionPost = createAsyncThunk("user/dasnboard", async (form, thunkApi) => {
     try {
-        const response = await axios.post("http://localhost:9024/v1/shopify/get-reviews-count", form,{
-            withCredentials: true
-        })
+        const response = await axiosInstance.post(`/v1/shopify/get-reviews-count`, form, {
+            headers:{
+                "Authorization": Cookies.get("token") ? `Bearer ${JSON.parse(Cookies.get("token"))}` : ''
+            }
+        } )
         if (response.status === 200 && response.data.statuscode===200) {
             const resData =  response.data
             if(resData && resData.data && Object.keys(resData.data).length>0){
@@ -15,11 +18,6 @@ export const dashboardActionPost = createAsyncThunk("user/dasnboard", async (for
             }
         }
     } catch (error) {
-        // if(error.response.status===401){
-        //     Cookies.remove("user")
-        //     Cookies.remove("user-cache")
-        //     redirect("/auth/login")
-        // }
         return thunkApi.rejectWithValue(error)
     }
 })

@@ -5,9 +5,10 @@ import SwitchGreen from '@/components/common/SwitchGreen'
 import { useReviewsFilter } from '@/context/ReviewsFilterContext'
 import useAPi from '@/hooks/useApi'
 import useToggle from '@/hooks/useToggle'
+import { axiosInstance } from '@/lib/others/axiosInstance'
 import { moderationActionPost } from '@/lib/redux/features/moderation/moderationAction'
-import { Box, Button, Modal } from '@mui/material'
-import axios from 'axios'
+import { Button } from '@mui/material'
+import Cookies from 'js-cookie'
 import React, { useState } from 'react'
 import { BiSolidEdit } from 'react-icons/bi'
 import { MdDelete } from 'react-icons/md'
@@ -65,7 +66,11 @@ const ListCommentsRCMdt = ({comment,_id}) => {
     const handlePublishedReview = async (data)=>{
         try {
             setLoadingTrue()
-            const response  = await axios.post("http://localhost:9024/v1/shopify/manage-comment",data ,{withCredentials: true} )
+            const response  = await axiosInstance.post(`/v1/shopify/manage-comment`,data , {
+                headers:{
+                    "Authorization": Cookies.get("token") ? `Bearer ${JSON.parse(Cookies.get("token"))}` : ''
+                }
+            } )
             const resData = response.data
             if(response.status === 200 && resData.data && resData.statuscode === 200 ){
                 setIsSuccessTrue()

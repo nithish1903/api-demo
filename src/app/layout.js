@@ -4,6 +4,8 @@ import { Nunito } from 'next/font/google'
 import ThemeWrapper from "./ThemeWrapper";
 import { PageHeaderProvider } from "@/context/PageHeaderContext";
 import ReduxProvider from "@/lib/redux/ReduxProvider";
+import Head from "next/head";
+import Link from "next/link";
 
 export const metadata = {
   title: "Create Next App",
@@ -20,6 +22,10 @@ const nunito_init = Nunito({
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <Head>
+        {/* <link rel="shortcut icon" href={favicon} /> */}
+        <Link rel="shortcut icon" href="/favicon.ico" />
+      </Head>
       <body className={nunito_init.variable}>
         <ReduxProvider>
           <PageHeaderProvider>

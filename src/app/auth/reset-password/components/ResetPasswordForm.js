@@ -9,6 +9,7 @@ import { ErrorSnackbar, SuccessSnackbars } from '@/components/common/Snackbars'
 import { redirect, useRouter, useSearchParams } from 'next/navigation'
 import { LoadingSkeletonBasic } from '@/components/common/LoadingSkeleton'
 import axios from 'axios'
+import baseURL from '@/lib/others/baseURL'
 const ResetPasswordForm = () => {
     const searchParams = useSearchParams()
     const router = useRouter()
@@ -88,7 +89,7 @@ const ResetPasswordForm = () => {
     const handleResetPswRequest = async (data)=>{
         try{
             setLoadingTrue()
-            const response  = await axios.post("http://localhost:9024/v1/user/reset-password",data,{withCredentials: true})
+            const response  = await axios.post(`${baseURL}/v1/user/reset-password`,data,{withCredentials: true})
             const resData = response.data
             if(response.status === 200 && resData.data && resData.statuscode === 200 ){
                 setIsSuccessTrue()

@@ -1,3 +1,4 @@
+import baseURL from "@/lib/others/baseURL"
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import axios from "axios"
 
@@ -5,7 +6,7 @@ import axios from "axios"
 
 export const dashboardActionPost = createAsyncThunk("user/dasnboard", async (form, thunkApi) => {
     try {
-        const response = await axios.post("http://localhost:9024/v1/shopify/get-reviews-count", form,{
+        const response = await axios.post(`${baseURL}/v1/shopify/get-reviews-count`, form,{
             withCredentials: true
         })
         if (response.status === 200 && response.data.statuscode===200) {

@@ -1,3 +1,4 @@
+import baseURL from "@/lib/others/baseURL"
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import axios from "axios"
 
@@ -5,7 +6,7 @@ import axios from "axios"
 
 export const teammatesActionGet = createAsyncThunk("teammates/GET", async (formData,thunkApi) => {
     try {
-        const response = await axios.post("http://localhost:9024/v1/user/get-users-list", formData ,{
+        const response = await axios.post(`${baseURL}/v1/user/get-users-list`, formData ,{
             withCredentials: true
         })
         if (response.status === 200 && response.data.statuscode===200) {
@@ -23,7 +24,7 @@ export const teammatesActionGet = createAsyncThunk("teammates/GET", async (formD
 
 export const teammatesAddPost = createAsyncThunk("teammates/Add", async (req,thunkApi) => {
     try {
-        const response = await axios.post("http://localhost:9024/v1/user/add-team-member", req.data ,{
+        const response = await axios.post(`${baseURL}/v1/user/add-team-member`, req.data ,{
             withCredentials: true
         })
         if (response.status === 200 && response.data.statuscode===200) {

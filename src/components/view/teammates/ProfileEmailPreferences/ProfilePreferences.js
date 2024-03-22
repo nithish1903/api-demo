@@ -4,6 +4,7 @@ import FormInputFiled from '@/components/common/FormInputFiled'
 import InputPassword from '@/components/common/InputPassword'
 import { ErrorSnackbar, SuccessSnackbars } from '@/components/common/Snackbars'
 import useAPi from '@/hooks/useApi'
+import baseURL from '@/lib/others/baseURL'
 import axios from 'axios'
 import Image from 'next/image'
 import React, { useEffect, useRef, useState } from 'react'
@@ -111,7 +112,7 @@ const ProfilePreferences = () => {
     const handleForgotPswRequest = async (data)=>{
         try {
             setLoadingTrue()
-            const response  = await axios.post("http://localhost:9024/v1/user/get-user-details",data ,{withCredentials: true} )
+            const response  = await axios.post(`${baseURL}/v1/user/get-user-details`,data ,{withCredentials: true} )
             const resData = response.data
             console.log(response)
             if(response.status === 200 && resData.data && resData.statuscode === 200 ){

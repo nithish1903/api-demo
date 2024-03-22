@@ -1,9 +1,10 @@
+import baseURL from "@/lib/others/baseURL"
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import axios from "axios"
 
 export const generalSettingsGet = createAsyncThunk("generalSettings/GET", async (formData, thunkApi) => {
     try {
-        const response = await axios.post("http://localhost:9024/v1/user/get-account-details", formData,{
+        const response = await axios.post(`${baseURL}/v1/user/get-account-details`, formData,{
             withCredentials: true
         })
         if (response.status === 200 && response.data.statuscode===200) {
@@ -21,7 +22,7 @@ export const generalSettingsGet = createAsyncThunk("generalSettings/GET", async 
 
 export const publicKey_update = createAsyncThunk("publicKey/update", async (formData, thunkApi) => {
     try {
-        const response = await axios.post("http://localhost:9024/v1/user/update-account-details", formData,{
+        const response = await axios.post(`${baseURL}/v1/user/update-account-details`, formData,{
             withCredentials: true
         })
         if (response.status === 200 && response.data.statuscode===200) {

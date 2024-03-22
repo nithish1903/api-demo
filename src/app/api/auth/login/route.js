@@ -1,4 +1,5 @@
 "use server"
+import baseURL from "@/lib/others/baseURL";
 import axios from "axios";
 import { cookies } from 'next/headers'
 import { NextResponse } from "next/server";
@@ -22,7 +23,7 @@ import { NextResponse } from "next/server";
 //         email: "support@kasplo.com",
 //         password: "syspass"
 //     };
-//     axios.post('http://localhost:9024/v1/user/login',loginReq,{
+//     axios.post(`${baseURL}/v1/user/login`,loginReq,{
 //         headers: {
 //         'Content-Type': 'application/json', 
 //         },
@@ -48,7 +49,7 @@ const POST =  async () => {
       };
 
     try {
-        const response = await fetch('http://localhost:9024/v1/user/login',{
+        const response = await fetch(`${baseURL}/v1/user/login`,{
             method: 'POST',
             headers: {
             'Content-Type': 'application/json', 

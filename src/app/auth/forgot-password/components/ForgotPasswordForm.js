@@ -7,6 +7,7 @@ import axios from 'axios'
 import useAPi from '@/hooks/useApi'
 import { ErrorSnackbar, SuccessSnackbars } from '@/components/common/Snackbars'
 import { LoadingSkeletonBasic } from '@/components/common/LoadingSkeleton'
+import baseURL from '@/lib/others/baseURL'
 
 
 const ForgotPasswordForm = () => {
@@ -73,7 +74,7 @@ const ForgotPasswordForm = () => {
     const handleForgotPswRequest = async (data)=>{
         try {
             setLoadingTrue()
-            const response  = await axios.post("http://localhost:9024/v1/user/request-password-reset",data ,{withCredentials: true} )
+            const response  = await axios.post(`${baseURL}/v1/user/request-password-reset`,data ,{withCredentials: true} )
             const resData = response.data
             if(response.status === 200 && resData.data && resData.statuscode === 200 ){
                 setIsSuccessTrue()

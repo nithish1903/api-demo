@@ -12,6 +12,7 @@ import Label from '@/components/common/Label'
 import { Button } from '@mui/material'
 import { BiSolidEdit } from 'react-icons/bi'
 import { MdDelete } from 'react-icons/md'
+import baseURL from '@/lib/others/baseURL'
 
 
 
@@ -63,7 +64,7 @@ const ListAnswersRCQAMdt = ({answer,_id}) => {
         }
         try {
             setLoadingTrue()
-            const response  = await axios.post("http://localhost:9024/v1/shopify/manage-answer",data ,{withCredentials: true} )
+            const response  = await axios.post(`${baseURL}/v1/shopify/manage-answer`,data ,{withCredentials: true} )
             const resData = response.data
             if(response.status === 200 && resData.data && resData.statuscode === 200 ){
                 setIsSuccessTrue()

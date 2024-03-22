@@ -1,3 +1,4 @@
+import baseURL from "@/lib/others/baseURL"
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import axios from "axios"
 
@@ -5,7 +6,7 @@ import axios from "axios"
 
 export const settingsActionGet = createAsyncThunk("settings/GET", async (thunkApi) => {
     try {
-        const response = await axios.post("http://localhost:9024/v1/user/get-review-settings", {} ,{
+        const response = await axios.post(`${baseURL}/v1/user/get-review-settings`, {} ,{
             withCredentials: true
         })
         if (response.status === 200 && response.data.statuscode===200) {
@@ -23,7 +24,7 @@ export const settingsActionGet = createAsyncThunk("settings/GET", async (thunkAp
 
 export const settingsActionPost = createAsyncThunk("settings/POST", async (form, thunkApi) => {
     try {
-        const response = await axios.post("http://localhost:9024/v1/user/save-review-settings", form ,{
+        const response = await axios.post(`${baseURL}/v1/user/save-review-settings`, form ,{
             withCredentials: true
         })
         if (response.status === 200 && response.data.statuscode===200) {

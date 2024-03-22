@@ -6,6 +6,8 @@ import SettingsLooksFeelES from './LooksFeelEmail/SettingsLooksFeelES';
 import { useDispatch, useSelector } from 'react-redux';
 import { LoadingSkeletonBasic } from '@/components/common/LoadingSkeleton';
 import { settingsActionGet, settingsActionPost } from '@/lib/redux/features/settings/settingsAction';
+import { errorClearRedirct } from '@/lib/cookies/cookiesNext';
+import { ErrorPageHnadleBasic } from '@/components/common/ErrorHnadle';
 
 
 const LooksFeelEmail = () => {
@@ -84,6 +86,14 @@ const LooksFeelEmail = () => {
         }
         dispatch(settingsActionPost(formData))
 
+    }
+
+    if(isError){
+        errorClearRedirct(errorMessage)
+        if( errorMessage && errorMessage.response && errorMessage.response.status && errorMessage.response.status!==401){
+            return <ErrorPageHnadleBasic handleCallBack={()=>{ dispatch(settingsActionGet()) }} errorMessage={errorMessage}/>
+        }
+        //  <ErrorBasicSnackbar isError={isError} errorMessage={errorMessage} handleCallBack={()=>{dispatch(dashboardActionPost({}))}}  />
     }
     
   return (

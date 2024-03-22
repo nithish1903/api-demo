@@ -7,7 +7,9 @@ import axios from "axios"
 
 export const userLogin = createAsyncThunk("user/login", async (req, thunkApi) => {
     try {
-        const response = await axios.post(`${baseURL}/v1/user/login`, req.formData ,{withCredentials: true})
+        const response = await axios.post(`${baseURL}/v1/user/login`, req.formData , {
+            withCredentials: true,
+        })
         if (response.status === 200 && response.data.statuscode===200) {
             const resData =  response.data
             if(resData && resData.data && Object.keys(resData.data).length>0){

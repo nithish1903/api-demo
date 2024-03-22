@@ -4,6 +4,8 @@ import { SaveChangesES } from '@/components/common/ButtonEmailSettings'
 
 import { AiOutlineCheck } from "react-icons/ai";
 import { useSelector } from 'react-redux';
+import { ErrorBasicSnackbar } from '@/components/common/Snackbars';
+import { errorClearRedirct } from '@/lib/cookies/cookiesNext';
 
 const ChoosePlanBilling = () => {
 
@@ -15,55 +17,14 @@ const ChoosePlanBilling = () => {
 
     const id = isSuccess && activePlan && Object.keys(activePlan).length>0 && activePlan.data && activePlan.data.id
 
-    // const plans = [
-    //     {
-    //         plane:1,
-    //         name:"Plan 1",
-    //         para:"Maximize reviews impact with tools to drive SEO & brand awareness.",
-    //         price:"₹9,999",
-    //         order:"Up to 500 orders / month",
-    //         link:"",
-    //         pointHead:"Plans include",
-    //         points:[
-    //             "Beautiful on-site display",
-    //             "Powerful tools to share content",
-    //             "Chat & email support"
-    //         ],
-    //         bg:"bg-[#F7E8E0]"
-    //     },
-    //     {
-    //         plane:2,
-    //         name:"Plan 2",
-    //         para:"Optimize display to collect shopper data & drive on-site conversion.",
-    //         price:"₹11,999",
-    //         order:"Up to 500 orders / month",
-    //         link:"",
-    //         pointHead:"Everything in growth",
-    //         points:[
-    //             "Seller ratings for shoppers trust",
-    //             "Robust insights & metrics",
-    //             "Onboarding supports"
-    //         ],
-    //         bg:"bg-[#E9F4F2]"
-    //     },
-    //     {
-    //         plane:3,
-    //         name:"Plan 3",
-    //         para:"Optimize display to collect shopper data & drive on-site conversion.",
-    //         price:"₹13,999",
-    //         order:"Up to 500 orders / month",
-    //         link:"",
-    //         pointHead:"Everything in growth",
-    //         points:[
-    //             "Seller ratings for shoppers trust",
-    //             "Robust insights & metrics",
-    //             "Onboarding supports"
-    //         ],
-    //         bg:"bg-[#E8EDF6]"
-    //     },
-    // ]
-
-    console.log(id)
+    if(isError){
+        errorClearRedirct(errorMessage)
+        if( errorMessage && errorMessage.response && errorMessage.response.status && errorMessage.response.status!==401){
+            return <ErrorBasicSnackbar isError={isError} errorMessage={errorMessage} handleCallBack={()=>{dispatch(moderationActionPost(reviewFilter))}}  />
+        }
+        // <ErrorPageHnadleBasic handleCallBack={()=>{ dispatch(moderationActionPost(reviewFilter)) }} errorMessage={errorMessage}/>
+        //  <ErrorBasicSnackbar isError={isError} errorMessage={errorMessage} handleCallBack={()=>{dispatch(dashboardActionPost({}))}}  />
+    }
 
 
   return (

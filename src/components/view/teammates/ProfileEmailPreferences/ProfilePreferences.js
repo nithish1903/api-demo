@@ -5,6 +5,7 @@ import InputPassword from '@/components/common/InputPassword'
 import { ErrorSnackbar, SuccessSnackbars } from '@/components/common/Snackbars'
 import useAPi from '@/hooks/useApi'
 import { axiosInstance } from '@/lib/others/axiosInstance'
+import Cookies from 'js-cookie'
 import Image from 'next/image'
 import React, { useEffect, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
@@ -110,7 +111,11 @@ const ProfilePreferences = () => {
     const handleForgotPswRequest = async (data)=>{
         try {
             setLoadingTrue()
-            const response  = await axiosInstance.post(`/v1/user/get-user-details`,data)
+            const response  = await axiosInstance.post(`/v1/user/get-user-details`,data , {
+                headers:{
+                    "Authorization": Cookies.get("token") ? `Bearer ${JSON.parse(Cookies.get("token"))}` : ''
+                }
+            } )
             const resData = response.data
             if(response.status === 200 && resData.data && resData.statuscode === 200 ){
                 setIsSuccessTrue()

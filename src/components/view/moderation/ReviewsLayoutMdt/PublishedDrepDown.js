@@ -13,6 +13,7 @@ import { moderationActionPost } from '@/lib/redux/features/moderation/moderation
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { axiosInstance } from '@/lib/others/axiosInstance';
+import Cookies from 'js-cookie';
 
 
 const PublishedDrepDown = ({_id,status}) => {
@@ -62,7 +63,11 @@ const PublishedDrepDown = ({_id,status}) => {
     const handlePublishedReview = async (data)=>{
         try {
             setLoadingTrue()
-            const response  = await axiosInstance.post(`/v1/shopify/publish-review`,data)
+            const response  = await axiosInstance.post(`/v1/shopify/publish-review`,data , {
+                headers:{
+                    "Authorization": Cookies.get("token") ? `Bearer ${JSON.parse(Cookies.get("token"))}` : ''
+                }
+            })
             const resData = response.data
             if(response.status === 200 && resData.data && resData.statuscode === 200 ){
                 setIsSuccessTrue()

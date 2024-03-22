@@ -6,6 +6,7 @@ import useAPi from '@/hooks/useApi'
 import { axiosInstance } from '@/lib/others/axiosInstance'
 import { moderationActionPost } from '@/lib/redux/features/moderation/moderationAction'
 import { Button } from '@mui/material'
+import Cookies from 'js-cookie'
 import React, { useEffect, useRef } from 'react'
 import { useDispatch } from 'react-redux'
 
@@ -83,7 +84,11 @@ const WriteComments = ( {
         }
         try {
             setLoadingTrue()
-            const response  = await axiosInstance.post(`/v1/shopify/manage-comment`,data)
+            const response  = await axiosInstance.post(`/v1/shopify/manage-comment`,data , {
+                headers:{
+                    "Authorization": Cookies.get("token") ? `Bearer ${JSON.parse(Cookies.get("token"))}` : ''
+                }
+            } )
             const resData = response.data
             if(response.status === 200 && resData.data && resData.statuscode === 200 ){
                 setIsSuccessTrue()

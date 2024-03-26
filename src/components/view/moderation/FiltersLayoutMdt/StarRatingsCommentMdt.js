@@ -12,7 +12,7 @@ import { errorClearRedirct } from '@/lib/cookies/cookiesNext';
 
 
 const StarRatingsCommentMdt = () => {
-    const { reviewFilter , handleStar_ratings , handleMedia,handleComments }  = useReviewsFilter()
+    const { reviewFilter , handleStar_ratings , handleMedia,handleComments ,handlePage}  = useReviewsFilter()
 
     const {moderationData,isLoading,isSuccess,isError,errorMessage} = useSelector((state)=>{
         return state.moderation
@@ -28,6 +28,11 @@ const StarRatingsCommentMdt = () => {
         //  <ErrorBasicSnackbar isError={isError} errorMessage={errorMessage} handleCallBack={()=>{dispatch(dashboardActionPost({}))}}  />
     }
 
+    const handleChangeStarRating = (n)=>{
+        handleStar_ratings(n)
+        handlePage(1)
+    }
+
   return (
         <div className='grid grid-cols-12 gap-3'>
             <div className='col-span-12'>
@@ -39,7 +44,7 @@ const StarRatingsCommentMdt = () => {
                         <div className='flex items-start justify-between mb-1'>
                             <div className='flex items-center gap-2'>
                                 <div>
-                                    <Checkbox sx={{padding:"0px"}} checked={reviewFilter.star_ratings.includes(5)} onChange={()=>{handleStar_ratings(5)}}/>
+                                    <Checkbox sx={{padding:"0px"}} checked={reviewFilter.star_ratings.includes(5)} onChange={()=>{handleChangeStarRating(5)}}/>
                                 </div>
                                 <div className='flex items-center gap-2'>
                                     <IoIosStar className='text-[#F9C612] w-[18px] h-[18px]' />
@@ -56,7 +61,7 @@ const StarRatingsCommentMdt = () => {
                         <div className='flex items-start justify-between mb-1'>
                             <div className='flex items-center gap-2'>
                                 <div>
-                                    <Checkbox sx={{padding:"0px"}} checked={reviewFilter.star_ratings.includes(4)} onChange={()=>{handleStar_ratings(4)}} />
+                                    <Checkbox sx={{padding:"0px"}} checked={reviewFilter.star_ratings.includes(4)} onChange={()=>{handleChangeStarRating(4)}} />
                                 </div>
                                 <div className='flex items-center gap-2'>
                                     <IoIosStar className='text-[#F9C612] w-[18px] h-[18px]' />
@@ -73,7 +78,7 @@ const StarRatingsCommentMdt = () => {
                         <div className='flex items-start justify-between mb-1'>
                             <div className='flex items-center gap-2'>
                                 <div>
-                                    <Checkbox sx={{padding:"0px"}} checked={reviewFilter.star_ratings.includes(3)} onChange={()=>{handleStar_ratings(3)}}/>
+                                    <Checkbox sx={{padding:"0px"}} checked={reviewFilter.star_ratings.includes(3)} onChange={()=>{handleChangeStarRating(3)}}/>
                                 </div>
                                 <div className='flex items-center gap-2'>
                                     <IoIosStar className='text-[#F9C612] w-[18px] h-[18px]' />
@@ -90,7 +95,7 @@ const StarRatingsCommentMdt = () => {
                         <div className='flex items-start justify-between mb-1'>
                             <div className='flex items-center gap-2'>
                                 <div>
-                                    <Checkbox sx={{padding:"0px"}} checked={reviewFilter.star_ratings.includes(2)} onChange={()=>{handleStar_ratings(2)}}/>
+                                    <Checkbox sx={{padding:"0px"}} checked={reviewFilter.star_ratings.includes(2)} onChange={()=>{handleChangeStarRating(2)}}/>
                                 </div>
                                 <div className='flex items-center gap-2'>
                                     <IoIosStar className='text-[#F9C612] w-[18px] h-[18px]' />
@@ -107,7 +112,7 @@ const StarRatingsCommentMdt = () => {
                         <div className='flex items-start justify-between mb-1'>
                             <div className='flex items-center gap-2'>
                                 <div>
-                                    <Checkbox sx={{padding:"0px"}} checked={reviewFilter.star_ratings.includes(1)} onChange={()=>{handleStar_ratings(1)}}/>
+                                    <Checkbox sx={{padding:"0px"}} checked={reviewFilter.star_ratings.includes(1)} onChange={()=>{handleChangeStarRating(1)}}/>
                                 </div>
                                 <div className='flex items-center gap-2'>
                                     <IoIosStar className='text-[#F9C612] w-[18px] h-[18px]' />
@@ -129,7 +134,10 @@ const StarRatingsCommentMdt = () => {
             </div>
             <div className='col-span-6'>
                 <div className='flex items-center gap-2'>
-                    <Checkbox id='Photos' sx={{padding:"0px"}} checked={reviewFilter.media.includes("image")} value={"image"} onChange={(e)=>{handleMedia(e.target.value)}} />
+                    <Checkbox id='Photos' sx={{padding:"0px"}} checked={reviewFilter.media.includes("image")} value={"image"} onChange={(e)=>{
+                        handleMedia(e.target.value)
+                        handlePage(1)
+                    }} />
                     <Label label={"Photos"} htmlFor={"Photos"}  />
                 </div>
             </div>
@@ -144,13 +152,19 @@ const StarRatingsCommentMdt = () => {
             </div>
             <div className='col-span-6'>
                 <div className='flex items-center gap-1'>
-                    <Radio sx={{padding:"0px"}}  checked={reviewFilter.comments} onChange={()=>{handleComments(true)}} id='WithResponse' name='Comments'  />
+                    <Radio sx={{padding:"0px"}}  checked={reviewFilter.comments} onChange={()=>{
+                        handleComments(true)
+                        handlePage(1)
+                    }} id='WithResponse' name='Comments'  />
                     <Label label={"With Response"} htmlFor={"WithResponse"}  />
                 </div>
             </div>
             <div className='col-span-6'>
                 <div className='flex items-center gap-1'>
-                    <Radio sx={{padding:"0px"}} checked={!reviewFilter.comments} onChange={()=>{handleComments(false)}} id='WithoutResponse' name='Comments'  />
+                    <Radio sx={{padding:"0px"}} checked={!reviewFilter.comments} onChange={()=>{
+                        handleComments(false)
+                        handlePage(1)
+                    }} id='WithoutResponse' name='Comments'  />
                     <Label label={"Without Response"} htmlFor={"WithoutResponse"}/>
                 </div>
             </div>

@@ -7,7 +7,7 @@ import { FiSearch } from 'react-icons/fi'
 
 const FilterSearchMdt = () => {
 
-    const { reviewFilter , handleSearch_keyword }  = useReviewsFilter()
+    const { reviewFilter , handleSearch_keyword ,handlePage}  = useReviewsFilter()
 
   return (
     <div className='grid grid-cols-12 gap-3'>
@@ -21,6 +21,7 @@ const FilterSearchMdt = () => {
                     placeholder='Search content & email address' 
                     value={reviewFilter.search_keyword}
                     onChange={(e)=>{
+                        handlePage(1)
                         handleSearch_keyword(e.target.value)
                     }}
                 />

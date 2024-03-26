@@ -13,7 +13,7 @@ import { useReviewsFilter } from '@/context/ReviewsFilterContext';
 import { convertToISOFormat } from '@/lib/others/timeConvertion';
 
 const DateRangeAFMdt = () => {
-  const { handleTimeRange }  = useReviewsFilter()
+  const { handleTimeRange,handlePage }  = useReviewsFilter()
 
   const [dateRangeValue,setDateRangeValue] = useState("All Time")
 
@@ -32,6 +32,7 @@ const DateRangeAFMdt = () => {
     if(range&&range.length>0&&range[0].startDate){
         setDateRangeValue(`${format(range[0].startDate,"dd/MM/yyyy")} to ${format(range[0].endDate,"dd/MM/yyyy")}`)
         handleTimeRange(convertToISOFormat(range[0].startDate),convertToISOFormat(range[0].endDate))
+        handlePage(1)
     }
   },[range])
 

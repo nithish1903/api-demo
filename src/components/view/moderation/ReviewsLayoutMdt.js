@@ -49,6 +49,7 @@ const ReviewsLayoutMdt = () => {
       if(isSuccess&&moderationData&& Object.keys(moderationData).length>0 && moderationData.pagination){
         setPagination(prevPagination => ({
           ...prevPagination,
+          currentPage:moderationData.pagination.page,
           total: moderationData.pagination.total,
           perPage: moderationData.pagination.per_page
         }));
@@ -98,7 +99,10 @@ const ReviewsLayoutMdt = () => {
           <div className='col-span-12 lg:col-span-8 grid grid-cols-12 gap-3'>
             <div className='col-span-12 md:col-span-12 xl:col-span-12 flex flex-col md:flex-row md:items-center gap-2 justify-end'>
                 <Label label={"Sort by:"} className={"inline-block"}/>
-                <SelectReact className={"w-[265px]"} options={options} value={sortReview} handleChange={(e)=>{SetSortReview(e)}} placeholder={"Select the review star rating"} />
+                <SelectReact className={"w-[265px]"} options={options} value={sortReview} handleChange={(e)=>{
+                  SetSortReview(e)
+                  handlePage(Number(1))
+                }} placeholder={"Select the review star rating"} />
             </div>
             {/* <div className='col-span-12 md:col-span-4 flex items-center gap-2'>
                 <SelectReact className={"w-[180px]"} options={optionsExportCSV} value={exportCSV} handleChange={(e)=>{setExportCSV(e)}} placeholder={"Export to CSV"} />
